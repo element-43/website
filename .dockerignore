@@ -1,0 +1,11 @@
+.env
+.gitignore
+.idea
+coverage
+lib
+nginx
+node_modules
+npm-debug.log
+public
+test-results.xml
+tmp
