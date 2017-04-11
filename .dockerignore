@@ -2,10 +2,10 @@
 .gitignore
 .idea
 coverage
-lib
+dist
 nginx
 node_modules
 npm-debug.log
-public
+stats
 test-results.xml
 tmp

@@ -2,19 +2,11 @@ nginx:
   build: ./nginx
   links:
     # Run two instances of the application.
-    - app1:app1
-    - app2:app2
+    - app:app
   ports:
     - "80:80"
 
-app1:
-  build: .
-  ports:
-    - "1337"
-  environment:
-    - NODE_ENV=production
-
-app2:
+app:
   build: .
   ports:
     - "1337"

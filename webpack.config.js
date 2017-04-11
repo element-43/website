@@ -13,8 +13,8 @@ const webpackCombineLoaders = require('webpack-combine-loaders');
 const defaults = require('./config/defaults');
 const strings = require('./config/strings');
 
-const distPath = path.join(__dirname, 'public');
-const srcPath = path.join(__dirname, 'client');
+const distPath = path.join(__dirname, 'dist', 'public');
+const srcPath = path.join(__dirname, 'src', 'client');
 const uriLimit = 50000;
 
 const cssLoader = webpackCombineLoaders([
@@ -182,9 +182,7 @@ module.exports = {
                 minifyCSS: true
             }
         }),
-        new VisualizerPlugin({
-            filename: '../stats/stats.html'
-        }),
+        new VisualizerPlugin({ filename: path.resolve(__dirname, 'stats', 'stats.html') }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production')

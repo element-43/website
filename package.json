@@ -2,7 +2,7 @@
   "name": "element-43-website",
   "private": true,
   "version": "0.1.0",
-  "main": "app.js",
+  "main": "src/server/app.js",
   "description": "Template for a KeystoneJS application using React for server-side rendering.",
   "author": {
     "name": "Kieran O'Neill",
@@ -18,17 +18,17 @@
     "node": "6.9.5"
   },
   "scripts": {
-    "build": "babel server -d lib --ignore test.js && webpack --progress",
+    "build": "babel src/server -d dist/lib --ignore test.js && webpack --progress",
     "eslint": "eslint",
     "istanbul": "istanbul",
     "lint": "eslint --ext .js --ext .jsx . && stylelint -q './client/**/*.css'",
     "mocha": "mocha",
     "nodemon": "nodemon",
     "postinstall": "(cp -n .env.example .env || true)",
-    "start": "nodemon server/app --exec babel-node",
-    "test": "NODE_ENV=test istanbul cover _mocha -- './test/integration/**/*.spec.js' './{client,server}/**/*.{spec,test}.{js,jsx}'",
+    "start": "nodemon src/server/app --exec babel-node",
+    "test": "NODE_ENV=test istanbul cover _mocha -- './test/integration/**/*.spec.js' './src/{client,server}/**/*.{spec,test}.{js,jsx}'",
     "test:integration": "NODE_ENV=test mocha './test/integration/**/*.spec.js'",
-    "test:unit": "istanbul cover _mocha -- './{client,server}/**/*.{spec,test}.{js,jsx}'",
+    "test:unit": "istanbul cover _mocha -- './src/{client,server}/**/*.{spec,test}.{js,jsx}'",
     "webpack": "webpack"
   },
   "dependencies": {

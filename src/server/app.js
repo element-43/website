@@ -12,13 +12,13 @@ import path from 'path';
 import { HeaderMiddleware } from './middlewares/index';
 import { ExpressUtil } from './utilities/index';
 
-import defaults from '../config/defaults';
-import strings from '../config/strings';
+import defaults from '../../config/defaults';
+import strings from '../../config/strings';
 
 const app = express();
 const port = (process.env.NODE_ENV === 'test' ? ExpressUtil.randomPort() : defaults.port); // Use a random port when testing.
-const rootPath = path.resolve(__dirname, '..');
-const staticPath = path.resolve(rootPath, 'public');
+const rootPath = path.resolve(__dirname, '..', '..');
+const staticPath = path.resolve('..', 'public');
 let webpack, webpackCompiler, webpackDevConfig, webpackDevMiddleware, webpackHotMiddleware;
 
 //====================================================
@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'development') {
     webpack = require('webpack');
     webpackDevMiddleware = require('webpack-dev-middleware');
     webpackHotMiddleware = require('webpack-hot-middleware');
-    webpackDevConfig = require('../webpack.dev.config.js');
+    webpackDevConfig = require('../../webpack.dev.config.js');
     webpackCompiler = webpack(webpackDevConfig);
 
     app.use(webpackDevMiddleware(webpackCompiler, {

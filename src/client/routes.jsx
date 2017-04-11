@@ -3,7 +3,7 @@ import React from 'react';
 import { IndexRedirect, Redirect, Route, Router } from 'react-router';
 
 // Config.
-import defaults from '../config/defaults';
+import defaults from '../../config/defaults';
 
 // Containers.
 import App from './containers/App/App';

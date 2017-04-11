@@ -32,10 +32,10 @@ ADD . /usr/app
 
 # Install PM2 and dependencies.
 RUN npm install -g pm2
-RUN npm install --production
+RUN yarn install --production
 
 # Build the server/client.
-RUN npm run build
+RUN yarn run build
 
 # Open up the l33t port
 EXPOSE 1337

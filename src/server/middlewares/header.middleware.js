@@ -1,5 +1,5 @@
-import packageJson from '../../package.json';
-import defaults from '../../config/defaults';
+import packageJson from '../../../package.json';
+import defaults from '../../../config/defaults';
 
 export function addResponseHeaders(request, response, next) {
     response.set(defaults.headers.poweredBy, 'Unicorns');

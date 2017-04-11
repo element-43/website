@@ -21,7 +21,7 @@ let server;
 
 // Only load on integration tests.
 if(process.env.NODE_ENV === 'test') {
-    server = require('../server/app');
+    server = require('./app');
 }
 
 // Use bluebird promises.
