@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import * as HeaderMiddleware from './header.middleware';
 
 import packageJson from '../../package.json';
@@ -19,8 +21,8 @@ describe('middlewares/header', () => {
         it('should add a new "x-powered-by" header', function() {
             HeaderMiddleware.addResponseHeaders({}, this.response, this.nextSpy);
 
-            expect(this.response.getHeader(strings.headers.POWERED_BY)).to.equal(strings.APP_TITLE);
-            expect(this.response.getHeader(strings.headers.APP_VERSION)).to.equal(packageJson.version);
+            expect(this.response.getHeader(defaults.headers.poweredBy)).to.equal('Unicorns');
+            expect(this.response.getHeader(defaults.headers.appVersion)).to.equal(packageJson.version);
 
             assert.calledWith(this.nextSpy);
         });
@@ -30,7 +32,7 @@ describe('middlewares/header', () => {
         it('should add a new "x-powered-by" header', function() {
             HeaderMiddleware.addStaticResponseHeaders(this.response);
 
-            expect(this.response.getHeader(strings.headers.POWERED_BY)).to.equal(strings.APP_TITLE);
+            expect(this.response.getHeader(defaults.headers.poweredBy)).to.equal('Unicorns');
         });
     });
 });

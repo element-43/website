@@ -21,5 +21,9 @@ module.exports = {
         error: 'error',
         home: 'home',
         notFound: '404'
+    },
+
+    social: {
+        twitter: '@kieranroneill'
     }
 };

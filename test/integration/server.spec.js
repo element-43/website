@@ -12,11 +12,11 @@ describe('server', () => {
                 .end((error, response) => {
                     expect(error).to.equal(null);
 
-                    expect(response.headers).to.have.property(strings.headers.POWERED_BY.toLowerCase());
-                    expect(response.headers[strings.headers.POWERED_BY.toLowerCase()]).to.equal(strings.APP_TITLE);
+                    expect(response.headers).to.have.property(defaults.headers.poweredBy.toLowerCase());
+                    expect(response.headers[defaults.headers.poweredBy.toLowerCase()]).to.equal('Unicorns');
 
-                    expect(response.headers).to.have.property(strings.headers.APP_VERSION.toLowerCase());
-                    expect(response.headers[strings.headers.APP_VERSION.toLowerCase()]).to.equal(packageJson.version);
+                    expect(response.headers).to.have.property(defaults.headers.appVersion.toLowerCase());
+                    expect(response.headers[defaults.headers.appVersion.toLowerCase()]).to.equal(packageJson.version);
 
                     done();
                 });

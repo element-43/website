@@ -6,9 +6,6 @@ import Helmet from 'react-helmet';
 import defaults from '../../config/defaults';
 import strings from '../../config/strings';
 
-// Images.
-import homeImage from '../images/main_img_overlay.jpg';
-
 /**
  * Creates a <Helmet> node that is used by react-helmet to change the meta data in the head of the DOM.
  * @param title specifies what the <title> will be, defaults to 'Certua'
@@ -20,7 +17,7 @@ export function getHelmet(title, image, isBlog = false) {
     const url = location.protocol + '//' + location.host + location.pathname;
 
     title = (_.isEmpty(title) ? strings.document.title : title);
-    image = (_.isEmpty(image) ? homeImage : image);
+    image = (_.isEmpty(image) ? '' : image);
 
     return (
         <Helmet>

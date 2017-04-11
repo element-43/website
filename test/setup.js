@@ -1,5 +1,4 @@
 import _ from 'underscore';
-import axios from 'axios';
 import Promise from 'bluebird';
 import { expect, should } from 'chai';
 import { mount, shallow } from 'enzyme';
@@ -14,12 +13,13 @@ import supertest from 'supertest';
 
 import 'ignore-styles';
 
-import strings from '../config/strings.json';
+import defaults from '../config/defaults';
+import strings from '../config/strings';
 import errors from '../config/errors.json';
 
 let server;
 
-// Only load in integration tests.
+// Only load on integration tests.
 if(process.env.NODE_ENV === 'test') {
     server = require('../server/app');
 }
@@ -28,11 +28,11 @@ if(process.env.NODE_ENV === 'test') {
 sinonAsPromised(Promise);
 
 // General globals.
-global._ = _;
 global.assert = assert;
 global.strings = strings;
 global.errors = errors;
 global.expect = expect;
+global.defaults = defaults;
 global.mock = mock;
 global.should = should;
 global.spy = spy;
@@ -46,7 +46,6 @@ global.server = server;
 global.supertest = supertest;
 
 // Client globals.
-global.axios = axios;
 global.document = jsdom('<!doctype html><html><body></body></html>');
 global.mount = mount;
 global.navigator = { userAgent: 'node.js' };
