@@ -182,7 +182,7 @@ module.exports = {
                 minifyCSS: true
             }
         }),
-        new VisualizerPlugin({ filename: path.resolve(__dirname, 'stats', 'stats.html') }),
+        new VisualizerPlugin({ filename: path.join('..', '..', 'stats', 'stats.html') }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production')

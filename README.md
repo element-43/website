@@ -1,6 +1,6 @@
 # Element 43 Website
 
-[![CircleCI](https://circleci.com/gh/kieranroneill/element-43-website/tree/master.svg?style=shield&circle-token=aeaee34d69c54a1eb5d30ad5ccc9903e448bcbef)](https://circleci.com/gh/kieranroneill/element-43-website/tree/master)  [![Codecov private](https://img.shields.io/codecov/c/token/YwRjUTJRVb/github/kieranroneill/element-43-website/master.svg?style=flat-square)](https://codecov.io/gh/kieranroneill/element-43-website)
+[![CircleCI](https://circleci.com/gh/kieranroneill/element-43-website/tree/master.svg?style=shield&circle-token=0021905716662964e22a628a542aa1067666b16b)](https://circleci.com/gh/kieranroneill/element-43-website/tree/master)  [![Codecov private](https://img.shields.io/codecov/c/token/VTbUoel0V2/github/kieranroneill/element-43-website/master.svg?style=flat-square)](https://codecov.io/gh/kieranroneill/element-43-website)
 
 # Development
 
@@ -27,6 +27,7 @@
     
 ## CircleCI
 
+* Save a random guid as the CircleCI environment variable: `COOKIE_SECRET`
 * Save the Codecov API key as the CircleCI environment variable: `CODECOV_KEY`
     
 ## AWS ECS

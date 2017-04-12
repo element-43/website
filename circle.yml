@@ -1,16 +1,15 @@
 machine:
   timezone:
     Europe/London
-
   node:
     # LTS (as of 12/04/2017)
     version: 6.10.2
-
+  services:
+      - docker
   environment:
     # Set Yarn version and PATH.
     YARN_VERSION: 0.20.3
     PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
-    COOKIE_SECRET: super_secret
     MONGO_URI: mongodb://localhost/test
 
 dependencies:
@@ -31,13 +30,12 @@ dependencies:
 #  post:
 #    # Build the docker images ready for delivery!
 #    - docker build -t $AWS_ECR_WEBSERVER_ID.dkr.ecr.AWS_REGION.amazonaws.com/webserver:$CIRCLE_SHA1 ./nginx
-#    - docker build -t $AWS_ECR_APP_ID.dkr.ecr.AWS_REGION.amazonaws.com/app:$CIRCLE_SHA1 .
+#    - docker build -t $AWS_ECR_APP_ID.dkr.ecr.AWS_REGION.amazonaws.com/app:$CIRCLE_SHA1 . --build-arg COOKIE_SECRET=${COOKIE_SECRET}
 
 test:
   override:
     - yarn run lint
     - yarn test
-
   post:
     # Save JUnit style test data for the test summary section.
     - mkdir -p $CIRCLE_TEST_REPORTS/junit && cp test-results.xml $CIRCLE_TEST_REPORTS/junit

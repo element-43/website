@@ -13,6 +13,7 @@ RUN apt-get install -y build-essential libssl-dev
 
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 6.10.2
+ENV COOKIE_SECRET $COOKIE_SECRET
 
 # Install node & npm with nvm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash \
