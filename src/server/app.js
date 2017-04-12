@@ -18,7 +18,7 @@ import strings from '../../config/strings';
 const app = express();
 const port = (process.env.NODE_ENV === 'test' ? ExpressUtil.randomPort() : defaults.port); // Use a random port when testing.
 const rootPath = path.resolve(__dirname, '..', '..');
-const staticPath = path.resolve('..', 'public');
+const staticPath = path.resolve(__dirname, '..', 'public');
 let webpack, webpackCompiler, webpackDevConfig, webpackDevMiddleware, webpackHotMiddleware;
 
 //====================================================

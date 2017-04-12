@@ -1,7 +1,6 @@
 nginx:
   build: ./nginx
   links:
-    # Run two instances of the application.
     - app:app
   ports:
     - "80:80"

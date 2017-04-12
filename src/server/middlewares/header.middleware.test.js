@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import * as HeaderMiddleware from './header.middleware';
 
-import packageJson from '../../package.json';
+import packageJson from '../../../package.json';
 
 describe('middlewares/header', () => {
     beforeEach(function() {

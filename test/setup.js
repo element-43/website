@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import Promise from 'bluebird';
 import { expect, should } from 'chai';
 import { mount, shallow } from 'enzyme';
@@ -21,7 +20,7 @@ let server;
 
 // Only load on integration tests.
 if(process.env.NODE_ENV === 'test') {
-    server = require('./app');
+    server = require('../dist/lib/app');
 }
 
 // Use bluebird promises.

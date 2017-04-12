@@ -10,7 +10,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const strings = require('./config/strings');
 
 const distPath = path.join(__dirname, 'dist', 'public');
-const srcPath = path.join(__dirname, 'src', 'client');
+const srcPath = path.join(__dirname, 'src', 'public');
 const uriLimit = 50000;
 
 module.exports = {

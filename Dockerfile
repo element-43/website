@@ -12,7 +12,7 @@ RUN apt-get install -y curl
 RUN apt-get install -y build-essential libssl-dev
 
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 6.9.5
+ENV NODE_VERSION 6.10.5
 
 # Install node & npm with nvm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash \
@@ -30,12 +30,12 @@ RUN mkdir -p /usr/app
 WORKDIR /usr/app
 ADD . /usr/app
 
-# Install PM2 and dependencies.
+# Install PM2 globally via npm.
 RUN npm install -g pm2
-RUN yarn install --production
 
-# Build the server/client.
-RUN yarn run build
+# Install the dependencies and build the app.
+RUN npm install --production
+RUN npm run build
 
 # Open up the l33t port
 EXPOSE 1337
