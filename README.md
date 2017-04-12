@@ -6,7 +6,7 @@
 
 ## Local
 
-* Install [Node.js v6.9.5+](https://nodejs.org/en/)
+* Install [Node.js v6.10.2+](https://nodejs.org/en/)
 * Install [MongoDB v2.4+](http://www.mongodb.org/downloads)
 * Install [Yarn](https://yarnpkg.com/lang/en/docs/install)
 * Install dependencies `yarn install`
