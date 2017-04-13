@@ -6,20 +6,16 @@ import dotenv from 'dotenv';
 import express from 'express';
 import helmet from 'helmet';
 import httpCodes from 'http-codes';
-import keystone from 'keystone';
 import path from 'path';
 
+// Utilities.
 import { HeaderMiddleware } from './middlewares/index';
-import { ExpressUtil } from './utilities/index';
-
-import defaults from '../../config/defaults';
-import strings from '../../config/strings';
 
 const app = express();
-const port = (process.env.NODE_ENV === 'test' ? ExpressUtil.randomPort() : defaults.port); // Use a random port when testing.
+//const port = (process.env.NODE_ENV === 'test' ? ExpressUtil.randomPort() : defaults.port); // Use a random port when testing.
 const rootPath = path.resolve(__dirname, '..', '..');
 const staticPath = path.resolve(rootPath, 'dist', 'public');
-let webpack, webpackCompiler, webpackDevConfig, webpackDevMiddleware, webpackHotMiddleware;
+let webpack, webpackCompiler, webpackDevConfig, webpackDevMiddleware, webpackHotMiddleware, indexRouter;
 
 //====================================================
 // Configuration.
@@ -53,8 +49,26 @@ if (process.env.NODE_ENV === 'development') {
     /* eslint-disable no-console */
     app.use(webpackHotMiddleware(webpackCompiler, { log: console.log }));
     /* eslint-enable no-console */
+
+    indexRouter = (request, response, next) => {
+        const filePath = path.join(webpackCompiler.outputPath, 'index.html');
+
+        // Read the index file from the file system.
+        webpackCompiler.outputFileSystem.readFile(filePath, (error, result) => {
+            if (error) {
+                return next(error);
+            }
+
+            // Send file.
+            response.set('content-type','text/html');
+            response.send(result);
+            response.end();
+        });
+    };
 }
 else {
+    indexRouter = (request, response) => response.sendFile(path.resolve(staticPath, 'index.html'));
+
     // Serve static assets.
     app.use(express.static(staticPath, { setHeaders: HeaderMiddleware.addStaticResponseHeaders }));
 }
@@ -63,7 +77,7 @@ else {
 // Routes.
 //====================================================
 
-app.get('*', (request, response) => response.sendFile(path.resolve(staticPath, 'index.html')));
+app.get('*', indexRouter);
 
 //====================================================
 // Errors...gotta catch 'em all.
@@ -77,31 +91,4 @@ app.use((error, request, response, next) => {
     next();
 });
 
-//====================================================
-// Keystone initialisation.
-//====================================================
-
-keystone.init({
-    // Project settings.
-    'name': strings.appTitle,
-    'brand': strings.appTitle,
-
-    // Web server.
-    'port': port,
-
-    'auto update': true,
-    'mongo': process.env.MONGO_URI,
-    'updates': 'updates',
-
-    'session': false,
-    'auth': true,
-    'user model': 'User',
-    'cookie secret': process.env.COOKIE_SECRET
-});
-
-keystone.import('models');
-keystone.set('routes', app);
-keystone.start();
-
-// Export for testing.
-export { app };
+export default app;

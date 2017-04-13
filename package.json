@@ -2,7 +2,7 @@
   "name": "element-43-website",
   "private": true,
   "version": "0.1.0",
-  "main": "src/server/app.js",
+  "main": "src/server/keystone.js",
   "description": "Template for a KeystoneJS application using React for server-side rendering.",
   "author": {
     "name": "Kieran O'Neill",
@@ -26,7 +26,7 @@
     "lint": "eslint --ext .js --ext .jsx . && sass-lint -v && stylelint -q './src/public/**/*.css'",
     "mocha": "mocha",
     "nodemon": "nodemon",
-    "start": "(cp -n .env.example .env || true) && nodemon src/server/app --exec babel-node",
+    "start": "(cp -n .env.example .env || true) && nodemon src/server/keystone --exec babel-node",
     "test": "NODE_ENV=test istanbul cover _mocha -- './test/integration/**/*.spec.js' './src/{public,server}/**/*.{spec,test}.{js,jsx}'",
     "test:integration": "NODE_ENV=test mocha './test/integration/**/*.spec.js'",
     "test:unit": "mocha './src/{public,server}/**/*.{spec,test}.{js,jsx}'",

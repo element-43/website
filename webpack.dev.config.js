@@ -22,7 +22,6 @@ module.exports = {
     devtool: 'source-map',
     entry: [
         'webpack-hot-middleware/client',
-        'webpack/hot/dev-server',
         path.resolve(srcPath, 'index.jsx')
     ],
     module: {
