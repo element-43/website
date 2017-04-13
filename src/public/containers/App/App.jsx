@@ -1,14 +1,45 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
-class App extends React.Component {
-    render() {
-        return this.props.children && React.cloneElement(this.props.children, { services: 'testy' });
-    }
-}
+// Config.
+import defaults from '../../../../config/defaults';
 
-App.propTypes = {
-    children: PropTypes.node
+//Components.
+import Async from '../../components/Async/Async';
+import GoogleAnalytics from '../../components/GoogleAnalytics/GoogleAnalytics';
+import Header from '../../components/Header/Header';
+import ScrollTop from '../../components/ScrollToTop/ScrollToTop';
+
+const App = () => {
+    /* eslint-disable max-len */
+    return (
+        <Router>
+            <div>
+                <GoogleAnalytics />
+                <ScrollTop />
+                <Header />
+                <Switch>
+                    <Route
+                        exact
+                        path='/'
+                        component={ props => <Async load={ System.import('../HomePage/HomePage') } { ...props } /> } />
+                    <Route
+                        path={ defaults.routes.about }
+                        component={ props => <Async load={ System.import('../AboutPage/AboutPage') } { ...props } /> } />
+                    <Route
+                        path={ defaults.routes.blog }
+                        component={ props => <Async load={ System.import('../BlogPage/BlogPage') } { ...props } /> } />
+                    <Route
+                        path={ defaults.routes.notFound }
+                        component={ props => <Async load={ System.import('../NotFoundPage/NotFoundPage') } { ...props } /> } />
+                    <Redirect
+                        from="*"
+                        to={ defaults.routes.notFound } />
+                </Switch>
+            </div>
+        </Router>
+    );
+    /* eslint-enable max-len */
 };
 
 export default App;

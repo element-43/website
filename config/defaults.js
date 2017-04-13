@@ -16,11 +16,11 @@ module.exports = {
     port: 1337,
 
     routes: {
-        about: 'about',
-        blog: 'blog',
-        error: 'error',
-        home: 'home',
-        notFound: '404'
+        about: '/about',
+        blog: '/blog',
+        error: '/error',
+        home: '/home',
+        notFound: '/404'
     },
 
     social: {
