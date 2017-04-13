@@ -1,0 +1,31 @@
+[
+  {
+    "name": "nginx",
+    "links": [
+      "app"
+    ],
+    "image": "%s",
+    "essential": true,
+    "memory": 128,
+    "cpu": 10,
+    "portMappings": [
+      {
+        "containerPort": 443,
+        "hostPort": 443
+      }
+    ]
+  },
+  {
+    "name": "app",
+    "environment": [
+      {
+        "name": "NODE_ENV",
+        "value": "production"
+      }
+    ],
+    "image": "%s",
+    "essential": true,
+    "memory": 256,
+    "cpu": 10
+  }
+]

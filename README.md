@@ -29,6 +29,7 @@
 
 * Save a random guid as the CircleCI environment variable: `COOKIE_SECRET`
 * Save the Codecov API key as the CircleCI environment variable: `CODECOV_KEY`
+* Set a MongoDB URL as the CircleCI environment variable: `MONGO_URI`
     
 ### 2. AWS ECS
 

@@ -40,9 +40,9 @@ function main() {
     local container_definition_template
 
     # Get the container environment's container configuration.
-    container_definition_template=$(cat ./config/aws/container-definition.production.json | ${JQ} .)
+    container_definition_template=$(cat ./config/aws/container-definition.json | ${JQ} .)
 
-    AWS_ECS_CONTAINER_DEFINITION=$(printf "$container_definition_template" ${AWS_ECR_WEBSERVER_IMAGE} ${AWS_ECR_APP_IMAGE} ${AWS_ECR_APP_IMAGE})
+    AWS_ECS_CONTAINER_DEFINITION=$(printf "$container_definition_template" ${AWS_ECR_WEBSERVER_IMAGE} ${AWS_ECR_APP_IMAGE})
 
     echo "$(date "+%Y-%m-%d %H:%M:%S") Configuring AWS CLI."
     configure_aws_cli ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY} ${AWS_REGION}
