@@ -18,9 +18,10 @@ module.exports = {
     routes: {
         about: '/about',
         blog: '/blog',
+        clients: '/clients',
         error: '/error',
         home: '/home',
-        notFound: '/404'
+        notFound: '/lost-marbles'
     },
 
     social: {

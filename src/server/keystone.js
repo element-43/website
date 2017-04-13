@@ -9,8 +9,8 @@ import app from './app';
 
 keystone.init({
     // Project settings.
-    'name': strings.appTitle,
-    'brand': strings.appTitle,
+    'name': strings.document.title,
+    'brand': strings.document.title,
 
     // Web server.
     'port': defaults.port,

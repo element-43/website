@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 
 // Config.
 import defaults from '../../../../config/defaults';
+import strings from '../../../../config/strings';
+
+// Utilities.
+import { getHelmet } from '../../utilities/application.util';
 
 //Components.
 import Async from '../../components/Async/Async';
@@ -15,6 +19,7 @@ const App = () => {
     return (
         <Router>
             <div>
+                { getHelmet(strings.document.title) }
                 <GoogleAnalytics />
                 <ScrollTop />
                 <Header />
@@ -29,6 +34,12 @@ const App = () => {
                     <Route
                         path={ defaults.routes.blog }
                         component={ props => <Async load={ System.import('../BlogPage/BlogPage') } { ...props } /> } />
+                    <Route
+                        path={ defaults.routes.clients }
+                        component={ props => <Async load={ System.import('../ClientsPage/ClientsPage') } { ...props } /> } />
+                    <Route
+                        path={ defaults.routes.error }
+                        component={ props => <Async load={ System.import('../ErrorPage/ErrorPage') } { ...props } /> } />
                     <Route
                         path={ defaults.routes.notFound }
                         component={ props => <Async load={ System.import('../NotFoundPage/NotFoundPage') } { ...props } /> } />

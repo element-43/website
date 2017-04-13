@@ -1,1 +1,8 @@
+.menu {
+    list-style: none;
+}
 
+.item > a {
+    display: block;
+    text-decoration: none;
+}

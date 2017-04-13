@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class BlogPage extends React.Component {
+// Config.
+import strings from '../../../../config/strings';
+
+// Utilities.
+import { getHelmet } from '../../utilities/application.util';
+
+class BlogPage extends Component {
     render() {
         return (
-            <div className="page">Blog</div>
+            <main>
+                { getHelmet(strings.document.title + ' | ' + strings.page.blog.title) }
+            </main>
         );
     }
 }

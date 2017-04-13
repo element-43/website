@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class NotFoundPage extends React.Component {
+// Config.
+import strings from '../../../../config/strings';
+
+// Utilities.
+import { getHelmet } from '../../utilities/application.util';
+
+class NotFoundPage extends Component {
     render() {
         return (
-            <div className="page">Not found</div>
+            <main>
+                { getHelmet(strings.document.title + ' | ' + strings.page.notFound.title) }
+            </main>
         );
     }
 }

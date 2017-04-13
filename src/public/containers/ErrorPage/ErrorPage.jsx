@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class ErrorPage extends React.Component {
+// Config.
+import strings from '../../../../config/strings';
+
+// Utilities.
+import { getHelmet } from '../../utilities/application.util';
+
+class ErrorPage extends Component {
     render() {
         return (
-            <div className="page">Error</div>
+            <main>
+                { getHelmet(strings.document.title + ' | ' + strings.page.error.title) }
+            </main>
         );
     }
 }
+
 
 export default ErrorPage;
 

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class HomePage extends React.Component {
+// Config.
+import strings from '../../../../config/strings';
+
+// Utilities.
+import { getHelmet } from '../../utilities/application.util';
+
+class HomePage extends Component {
     render() {
         return (
-            <div className="page">Home</div>
+            <main>
+                { getHelmet(strings.document.title + ' | ' + strings.page.home.title) }
+            </main>
         );
     }
 }
