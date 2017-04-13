@@ -7,7 +7,15 @@ nginx:
 
 app:
   build: .
+  links:
+    - db
   ports:
     - "1337"
   environment:
     - NODE_ENV=production
+    - COOKIE_SECRET=super_secret
+
+db:
+  image: mongo
+  ports:
+    - "27017"

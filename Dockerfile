@@ -13,7 +13,9 @@ RUN apt-get install -y build-essential libssl-dev
 
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 6.10.2
+# Environment variables used in app.
 ENV COOKIE_SECRET $COOKIE_SECRET
+ENV MONGO_URI mongodb://db:27017/element-43
 
 # Install node & npm with nvm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash \

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { IndexRedirect, Redirect, Route, Router } from 'react-router';
+import { BrowserRouter as Router, IndexRedirect, Redirect, Route } from 'react-router-dom';
 
 // Config.
 import defaults from '../../config/defaults';

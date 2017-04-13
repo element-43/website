@@ -2,9 +2,9 @@
 
 [![CircleCI](https://circleci.com/gh/kieranroneill/element-43-website/tree/master.svg?style=shield&circle-token=0021905716662964e22a628a542aa1067666b16b)](https://circleci.com/gh/kieranroneill/element-43-website/tree/master)  [![Codecov private](https://img.shields.io/codecov/c/token/VTbUoel0V2/github/kieranroneill/element-43-website/master.svg?style=flat-square)](https://codecov.io/gh/kieranroneill/element-43-website)
 
-# Development
+## Development
 
-## Local
+### Local
 
 * Install [Node.js v6.10.2+](https://nodejs.org/en/)
 * Install [MongoDB v2.4+](http://www.mongodb.org/downloads)
@@ -14,23 +14,23 @@
 * Navigate to [http://localhost:1337](http://localhost:1337)
     * To access the admin UI navigate to [http://localhost:1337/keystone](http://localhost:1337/keystone)
 
-## Docker
+### Docker
 
 * Build and run docker: `docker-compose up -d`
 * Build and run docker with watcher: `docker-compose up`
-* Build and run docker with another configuration: `docker-compose -f docker-compose.staging.yml up -d`
+* Build and run docker with another configuration: `docker-compose -f docker-compose.example.yml up -d`
 * Update only Nginx? `docker-compose build nginx && docker-compose up nginx -d`
 
-# Testing
+## Testing
 
-# Deployment
+## Deployment
     
-## CircleCI
+### 1. CircleCI
 
 * Save a random guid as the CircleCI environment variable: `COOKIE_SECRET`
 * Save the Codecov API key as the CircleCI environment variable: `CODECOV_KEY`
     
-## AWS ECS
+### 2. AWS ECS
 
 1. Go to the IAM service and create a User with the permissions `AmazonEC2ContainerServiceFullAccess` & `AmazonEC2ContainerRegistryFullAccess`.
     * Save the access key ID as the CircleCI environment variable: `AWS_ACCESS_KEY_ID`.

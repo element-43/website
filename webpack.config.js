@@ -48,7 +48,8 @@ module.exports = {
     },
 
     // Production specific.
-    devtool: false,
+    //devtool: false,
+    devtool: 'source-map',
     entry: {
         main: path.resolve(srcPath, 'index.jsx'),
         vendor: [
@@ -196,14 +197,14 @@ module.exports = {
         new webpack.optimize.MinChunkSizePlugin({
             minChunkSize: 50000, // 50kb
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            comments: false,
-            compress: {
-                warnings: false
-            },
-            sourceMap: false,
-            mangle: true
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     comments: false,
+        //     compress: {
+        //         warnings: false
+        //     },
+        //     sourceMap: false,
+        //     mangle: true
+        // }),
         new webpack.LoaderOptionsPlugin({
             options: {
                 postcss: () => [
