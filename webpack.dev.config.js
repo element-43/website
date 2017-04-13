@@ -134,7 +134,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: distPath,
-        publicPath: distPath + '/'
+        publicPath: '/'
     },
     plugins: [
         new FaviconsWebpackPlugin({

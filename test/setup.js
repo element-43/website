@@ -20,7 +20,7 @@ let server;
 
 // Only load on integration tests.
 if(process.env.NODE_ENV === 'test') {
-    server = require('../dist/lib/app');
+    server = require('../src/server/app');
 }
 
 // Use bluebird promises.

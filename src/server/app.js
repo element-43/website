@@ -14,8 +14,7 @@ import { HeaderMiddleware } from './middlewares/index';
 const app = express();
 //const port = (process.env.NODE_ENV === 'test' ? ExpressUtil.randomPort() : defaults.port); // Use a random port when testing.
 const rootPath = path.resolve(__dirname, '..', '..');
-const staticPath = path.resolve(rootPath, 'dist', 'public');
-let webpack, webpackCompiler, webpackDevConfig, webpackDevMiddleware, webpackHotMiddleware, indexRouter;
+let webpack, webpackCompiler, webpackDevConfig, webpackDevMiddleware, webpackHotMiddleware, indexRouter, staticPath;
 
 //====================================================
 // Configuration.
@@ -50,6 +49,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(webpackHotMiddleware(webpackCompiler, { log: console.log }));
     /* eslint-enable no-console */
 
+    staticPath = webpackDevConfig.output.publicPath;
     indexRouter = (request, response, next) => {
         const filePath = path.join(webpackCompiler.outputPath, 'index.html');
 
@@ -67,11 +67,12 @@ if (process.env.NODE_ENV === 'development') {
     };
 }
 else {
+    staticPath = path.resolve(rootPath, 'dist', 'public');
     indexRouter = (request, response) => response.sendFile(path.resolve(staticPath, 'index.html'));
-
-    // Serve static assets.
-    app.use(express.static(staticPath, { setHeaders: HeaderMiddleware.addStaticResponseHeaders }));
 }
+
+// Serve static assets.
+app.use(express.static(staticPath, { setHeaders: HeaderMiddleware.addStaticResponseHeaders }));
 
 //====================================================
 // Routes.
