@@ -10,6 +10,9 @@ import strings from '../../../../config/strings';
 // Styles.
 import styles from './Header.css';
 
+// Images.
+import logoImageWhite from '../../images/logo-white.png';
+
 class Header extends Component {
     constructor() {
         super();
@@ -42,10 +45,27 @@ class Header extends Component {
 
     render() {
         return (
-            <header>
-                <ul styleName="menu">
-                    { _.map(this.navigation, this.createMenuItem) }
-                </ul>
+            <header styleName="header">
+                <div
+                    className="container"
+                    styleName="headerInner">
+                    <div styleName="brand">
+                        <Link
+                            styleName="logo"
+                            to="/">
+                            <img src={ logoImageWhite } />
+                        </Link>
+
+                        {/*<div styleName="social">*/}
+                            {/*<a href={}>*/}
+                                {/*<img  />*/}
+                            {/*</a>*/}
+                        {/*</div>*/}
+                    </div>
+                    <ul styleName="menu">
+                        { _.map(this.navigation, this.createMenuItem) }
+                    </ul>
+                </div>
             </header>
         );
     }

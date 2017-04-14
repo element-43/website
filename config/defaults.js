@@ -19,7 +19,7 @@ module.exports = {
         about: '/about',
         blog: '/blog',
         clients: '/clients',
-        error: '/error',
+        error: '/game-over',
         home: '/home',
         notFound: '/lost-marbles'
     },

@@ -11,6 +11,7 @@ class AboutPage extends Component {
         return (
             <main>
                 { getHelmet(strings.document.title + ' | ' + strings.page.about.title) }
+
             </main>
         );
     }

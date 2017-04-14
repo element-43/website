@@ -1,5 +1,49 @@
+.header {
+    background-color: black;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+}
+
+.headerInner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1rem auto;
+    position: relative;
+}
+
+/* Brand */
+.brand {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.logo {
+    display: block;
+    height: 4rem;
+}
+
+.logo > img {
+    max-height: 100%;
+}
+
+/* Nav menu */
 .menu {
-    list-style: none;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+}
+
+.item {
+    cursor: pointer;
 }
 
 .item > a {

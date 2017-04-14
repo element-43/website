@@ -1,3 +1,77 @@
 // Base colours.
 $black: #000;
 $white: #fff;
+
+// Primary colours.
+$primary-300-purple: #9a6dea;
+$primary-400-purple: #8154d1;
+$primary-500-purple: #673ab7;
+$primary-600-purple: #4e219e;
+$primary-700-purple: #340784;
+$primary-800-purple: #1b006b;
+
+// Background colours.
+.black-background-color {
+    background-color: $black;
+}
+
+.primary-300-purple-background-color {
+    background-color: $primary-300-purple;
+}
+
+.primary-400-purple-background-color {
+    background-color: $primary-400-purple;
+}
+
+.primary-500-purple-background-color {
+    background-color: $primary-500-purple;
+}
+
+.primary-600-purple-background-color {
+    background-color: $primary-600-purple;
+}
+
+.primary-700-purple-background-color {
+    background-color: $primary-700-purple;
+}
+
+.primary-800-purple-background-color {
+    background-color: $primary-800-purple;
+}
+
+.white-background-color {
+    background-color: $white;
+}
+
+// Colours.
+.black-color {
+    color: $black;
+}
+
+.primary-300-purple-color {
+    color: $primary-300-purple;
+}
+
+.primary-400-purple-color {
+    color: $primary-400-purple;
+}
+
+.primary-500-purple-color {
+    color: $primary-500-purple;
+}
+
+.primary-600-purple-color {
+    color: $primary-500-purple;
+}
+
+.primary-700-purple-color {
+    color: $primary-500-purple;
+}
+
+.primary-800-purple-color {
+    color: $primary-500-purple;
+}
+
+.white-color {
+    color: $white;
+}

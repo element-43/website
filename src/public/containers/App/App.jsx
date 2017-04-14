@@ -18,11 +18,11 @@ const App = () => {
     /* eslint-disable max-len */
     return (
         <Router>
-            <div>
+            <div className="app">
                 { getHelmet(strings.document.title) }
                 <GoogleAnalytics />
                 <ScrollTop />
-                <Header />
+                {/*<Header />*/}
                 <Switch>
                     <Route
                         exact
