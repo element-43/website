@@ -11,7 +11,7 @@ import { getHelmet } from '../../utilities/application.util';
 //Components.
 import Async from '../../components/Async/Async';
 import GoogleAnalytics from '../../components/GoogleAnalytics/GoogleAnalytics';
-import Header from '../../components/Header/Header';
+//import Header from '../../components/Header/Header';
 import ScrollTop from '../../components/ScrollToTop/ScrollToTop';
 
 const App = () => {

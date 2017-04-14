@@ -1,0 +1,1 @@
+export const TOGGLE_TERMINAL = 'TOGGLE_TERMINAL';

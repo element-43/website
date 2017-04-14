@@ -1,0 +1,105 @@
+.link {
+    background-color: #000;
+    border-radius: 50%;
+    color: #fff;
+    display: block;
+    font-size: 4rem;
+    line-height: 96px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: 96px;
+    z-index: 1;
+}
+
+.link:hover span {
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 300ms;
+}
+
+/* 8-bit edge */
+.link span {
+    backface-visibility: hidden;
+    background-color: #000;
+    display: block;
+    opacity: 0;
+    perspective: 1000px;
+    position: absolute;
+    transform: scale(0);
+    transition: transform 0.3s, opacity 0s 0.3s;
+}
+
+.link span:before,
+.link span:after {
+    background-color: #000;
+    content: "";
+    display: block;
+    height: 10px;
+    position: absolute;
+    width: 10px;
+}
+
+.link span:first-child { top: -6px; }
+
+.link span:nth-child(2) { right: -6px; }
+
+.link span:nth-child(3) { bottom: -6px; }
+
+.link span:last-child { left: -6px; }
+
+.link span:first-child,
+.link span:nth-child(3) {
+    left: 24px;
+    width: 48px;
+    height: 10px;
+}
+
+.link span:first-child:before,
+.link span:first-child:after,
+.link span:nth-child(3):before,
+.link span:nth-child(3):after {
+    width: 16px;
+}
+
+.link span:nth-child(2),
+.link span:last-child {
+    top: 24px;
+    width: 10px;
+    height: 48px;
+}
+
+.link span:last-child:before,
+.link span:last-child:after,
+.link span:nth-child(2):before,
+.link span:nth-child(2):after {
+    height: 16px;
+}
+
+.link span:nth-child(2):before,
+.link span:last-child:before,
+.link span:nth-child(3):before,
+.link span:nth-child(3):after {
+    top: -10px;
+}
+
+.link span:first-child:after,
+.link span:nth-child(3):after,
+.link span:last-child:before,
+.link span:last-child:after {
+    right: -10px;
+}
+
+.link span:nth-child(2):after,
+.link span:last-child:after,
+.link span:first-child:before,
+.link span:first-child:after {
+    bottom: -10px;
+}
+
+.link span:first-child:before,
+.link span:nth-child(3):before,
+.link span:nth-child(2):before,
+.link span:nth-child(2):after {
+    left: -10px;
+}

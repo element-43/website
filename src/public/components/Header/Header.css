@@ -1,5 +1,5 @@
 .header {
-    background-color: black;
+    composes: black-background-color from "../../stylesheets/modules/colours.scss";
     left: 0;
     position: fixed;
     right: 0;

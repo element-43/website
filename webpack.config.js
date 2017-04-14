@@ -54,6 +54,7 @@ module.exports = {
         vendor: [
             // Rule of thumb: add any vendor files that are > 50kb (except lodash, that is handled by da plugin)
             'bluebird',
+            'moment',
             'react',
             'react-dom',
             'react-router'

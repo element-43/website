@@ -1,4 +1,8 @@
 module.exports = {
+    cookieKeys: {
+        enabled: 'catch_22'
+    },
+
     endpoints: {
         base: '/api',
         teapot: '/teapot'

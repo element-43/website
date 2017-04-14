@@ -10,6 +10,7 @@ import { getHelmet } from '../../utilities/application.util';
 
 // Components.
 import Button from '../../components/Button/Button';
+import SocialButton from '../../components/SocialButton/SocialButton';
 
 class HomePage extends Component {
     render() {
@@ -18,14 +19,17 @@ class HomePage extends Component {
                 { getHelmet(strings.document.title + ' | ' + strings.page.home.title) }
                 <Button
                     label={ strings.page.about.title }
-                    onClick={ () => this.props.location.push(defaults.routes.about) } />
+                    onClick={ () => this.props.history.push(defaults.routes.about) } />
+                <SocialButton
+                    href="https://twitter.com/kieranroneill"
+                    type="twitter" />
             </main>
         );
     }
 }
 
 HomePage.propTypes = {
-    location: PropTypes.object
+    history: PropTypes.object
 };
 
 export default HomePage;

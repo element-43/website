@@ -1,3 +1,39 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
+// States.
+import { ApplicationState, SessionState } from '../src/states/index';
+
+const mockStore = configureMockStore([thunk]);
+const state = {
+    application: ApplicationState,
+    session: SessionState
+};
+
+/**
+ * Returns props that mocks the router and connected components.
+ * @return a mocked props object
+ */
+export function getDefaultProps() {
+    const store = getMockStore(state);
+
+    return {
+        dispatch: stub(),
+        history: {
+            push: stub()
+        },
+        location: {
+            query: {}
+        },
+        store: store,
+        ...state
+    };
+}
+
+export function getMockStore() {
+    return mockStore(state);
+}
+
 /**
  * Convenience method that returns a a partially
  * implemented supertest request, based on the
@@ -45,19 +81,4 @@ export function requestByMethod(method, url, body = {}) {
     }
 
     return request;
-}
-
-/**
- * Returns props that mocks the router and connected components.
- * @return a mocked props object
- */
-export function getDefaultProps() {
-    return {
-        location: {
-            query: {}
-        },
-        router: {
-            push: stub()
-        }
-    };
 }
