@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { Provider } from 'react-redux';
 
 // Store.
 import configureStore from './store';
@@ -15,6 +16,8 @@ import App from './containers/App/App';
 const store = configureStore();
 
 ReactDom.render(
-    <App store={ store } />,
+    <Provider store={ store }>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );

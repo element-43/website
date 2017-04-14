@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 // States.
-import { ApplicationState, SessionState } from '../src/states/index';
+import { ApplicationState, SessionState } from '../src/public/states/index';
 
 const mockStore = configureMockStore([thunk]);
 const state = {

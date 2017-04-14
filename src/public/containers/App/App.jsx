@@ -12,6 +12,7 @@ import { getHelmet } from '../../utilities/application.util';
 import Async from '../../components/Async/Async';
 import GoogleAnalytics from '../../components/GoogleAnalytics/GoogleAnalytics';
 //import Header from '../../components/Header/Header';
+import KonamiCode from '../../components/KonamiCode/KonamiCode';
 import ScrollTop from '../../components/ScrollToTop/ScrollToTop';
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
             <div className="app">
                 { getHelmet(strings.document.title) }
                 <GoogleAnalytics />
+                <KonamiCode />
                 <ScrollTop />
                 {/*<Header />*/}
                 <Switch>

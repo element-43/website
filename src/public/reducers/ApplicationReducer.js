@@ -10,10 +10,17 @@ function ApplicationReducer(state = initialState, action) {
     let terminal;
 
     switch (action.type) {
-        case ApplicationActions.TOGGLE_TERMINAL:
+        case ApplicationActions.CLOSE_TERMINAL:
             terminal = _.clone(state.terminal);
 
-            terminal.isOpen = !terminal.isOpen;
+            terminal.isOpen = false;
+
+            return _.assign({}, state, { terminal: terminal });
+
+        case ApplicationActions.OPEN_TERMINAL:
+            terminal = _.clone(state.terminal);
+
+            terminal.isOpen = true;
 
             return _.assign({}, state, { terminal: terminal });
 

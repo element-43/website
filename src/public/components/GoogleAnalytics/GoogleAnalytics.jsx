@@ -13,7 +13,7 @@ class ScrollToTop extends Component {
     trackPage() {
         // Send page tracking to the omnipotent Google, but only in production.
         if(process.env.NODE_ENV === 'production' && window.ga) {
-            window.ga('send', 'pageview', location.pathname);
+            window.ga('send', 'pageview', window.location.pathname);
         }
     }
 
