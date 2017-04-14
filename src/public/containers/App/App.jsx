@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ import GoogleAnalytics from '../../components/GoogleAnalytics/GoogleAnalytics';
 //import Header from '../../components/Header/Header';
 import KonamiCode from '../../components/KonamiCode/KonamiCode';
 import ScrollTop from '../../components/ScrollToTop/ScrollToTop';
+import Terminal from '../../components/Terminal/Terminal';
 
 const App = () => {
     /* eslint-disable max-len */
@@ -49,6 +51,7 @@ const App = () => {
                         from="*"
                         to={ defaults.routes.notFound } />
                 </Switch>
+                <Terminal />
             </div>
         </Router>
     );

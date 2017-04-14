@@ -57,7 +57,8 @@ module.exports = {
             'moment',
             'react',
             'react-dom',
-            'react-router'
+            'react-router',
+            'velocity-animate'
         ]
     },
     module: {

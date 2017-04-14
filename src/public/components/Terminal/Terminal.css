@@ -1,0 +1,41 @@
+.terminal {
+    composes: black-background-color from "../../stylesheets/modules/colours.scss";
+    composes: white-color from "../../stylesheets/modules/colours.scss";
+    bottom: -4.5rem;
+    height: 2.5rem;
+    left: 0;
+    padding: 1rem;
+    position: fixed;
+    right: 0;
+}
+
+.inner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.inner:before {
+    content: ">";
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
+    line-height: 2.5rem;
+}
+
+.input {
+    composes: white-color from "../../stylesheets/modules/colours.scss";
+    background-color: transparent;
+    border: none;
+    bottom: 0;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
+    height: 100%;
+    left: 0;
+    line-height: 2.5rem;
+    margin-left: 1.5rem;
+    outline: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
