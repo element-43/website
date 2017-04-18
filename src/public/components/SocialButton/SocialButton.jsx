@@ -6,11 +6,10 @@ import CSSModules from 'react-css-modules';
 import styles from './SocialButton.css';
 
 class SocialButton extends Component {
-    /* eslint-disable max-len */
     render() {
         return (
             <a
-                className="fa fa-4x fa-twitter"
+                className={ 'fa fa-4x fa-' + this.props.type }
                 href={ this.props.href }
                 styleName="link"
                 target="_blank">
@@ -21,7 +20,6 @@ class SocialButton extends Component {
             </a>
         );
     }
-    /* eslint-enable max-len */
 }
 
 SocialButton.propTypes = {

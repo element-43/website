@@ -32,7 +32,7 @@ describe('utilities/application', () => {
 
             expect(_.find(props.meta, ['name', 'twitter:description']).content).to.equal(strings.document.description);
             expect(_.find(props.meta, ['name', 'twitter:title']).content).to.equal(strings.document.title);
-            expect(_.find(props.meta, ['name', 'twitter:site']).content).to.equal(defaults.social.twitter);
+            expect(_.find(props.meta, ['name', 'twitter:site']).content).to.equal(defaults.twitter.handle);
 
             expect(_.find(props.meta, ['name', 'og:description']).content).to.equal(strings.document.description);
             expect(_.find(props.meta, ['name', 'og:title']).content).to.equal(strings.document.title);

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import CSSModules from 'react-css-modules';
 
 // Config.
 import defaults from '../../../../config/defaults';
@@ -10,9 +11,15 @@ import { getHelmet } from '../../utilities/application.util';
 
 // Components.
 import Button from '../../components/Button/Button';
-import SocialButton from '../../components/SocialButton/SocialButton';
+
+// Styles.
+import styles from './HomePage.css';
 
 class HomePage extends Component {
+    onMouseOver() {
+
+    }
+
     render() {
         return (
             <main>
@@ -20,9 +27,6 @@ class HomePage extends Component {
                 <Button
                     label={ strings.page.about.title }
                     onClick={ () => this.props.history.push(defaults.routes.about) } />
-                <SocialButton
-                    href="https://twitter.com/kieranroneill"
-                    type="twitter" />
             </main>
         );
     }
@@ -32,4 +36,4 @@ HomePage.propTypes = {
     history: PropTypes.object
 };
 
-export default HomePage;
+export default CSSModules(HomePage, styles);

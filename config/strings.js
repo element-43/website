@@ -15,6 +15,10 @@ module.exports = {
             title: 'Blog'
         },
 
+        contact: {
+            title: 'Contact'
+        },
+
         error: {
             title: 'Something is not right...'
         },
@@ -27,8 +31,8 @@ module.exports = {
             title: 'Lost, brah?'
         },
 
-        clients: {
-            title: 'Clients'
+        portfolio: {
+            title: 'Portfolio'
         }
     }
 };

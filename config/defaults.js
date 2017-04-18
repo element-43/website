@@ -17,18 +17,25 @@ module.exports = {
         appVersion: 'X-App-Version'
     },
 
+    links: {
+        gitHub: 'https://github.com/kieranroneill',
+        linkedIn: 'https://www.linkedin.com/in/kieranroneill',
+        twitter: 'https://twitter.com/kieranroneill'
+    },
+
     port: 1337,
 
     routes: {
         about: '/about',
         blog: '/blog',
-        clients: '/clients',
+        contact: '/contact',
         error: '/game-over',
         home: '/home',
-        notFound: '/lost-marbles'
+        notFound: '/lost-marbles',
+        portfolio: '/portfolio'
     },
 
-    social: {
-        twitter: '@kieranroneill'
+    twitter: {
+        handle: '@kieranroneill'
     }
 };

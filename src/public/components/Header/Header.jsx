@@ -7,6 +7,10 @@ import { Link } from 'react-router-dom';
 import defaults from '../../../../config/defaults';
 import strings from '../../../../config/strings';
 
+// Components.
+
+import SocialButton from '../../components/SocialButton/SocialButton';
+
 // Styles.
 import styles from './Header.css';
 
@@ -27,8 +31,12 @@ class Header extends Component {
                 path: defaults.routes.blog
             },
             {
-                title: strings.page.clients.title,
-                path: defaults.routes.clients
+                title: strings.page.portfolio.title,
+                path: defaults.routes.portfolio
+            },
+            {
+                title: strings.page.contact.title,
+                path: defaults.routes.contact
             }
         ];
     }
@@ -46,9 +54,7 @@ class Header extends Component {
     render() {
         return (
             <header styleName="header">
-                <div
-                    className="container"
-                    styleName="headerInner">
+                <div styleName="headerInner">
                     <div styleName="brand">
                         <Link
                             styleName="logo"
@@ -56,11 +62,17 @@ class Header extends Component {
                             <img src={ logoImageWhite } />
                         </Link>
 
-                        {/*<div styleName="social">*/}
-                            {/*<a href={}>*/}
-                                {/*<img  />*/}
-                            {/*</a>*/}
-                        {/*</div>*/}
+                        <div styleName="social">
+                            <SocialButton
+                                href={ defaults.links.twitter }
+                                type="twitter" />
+                            <SocialButton
+                                href={ defaults.links.linkedIn }
+                                type="linkedin" />
+                            <SocialButton
+                                href={ defaults.links.gitHub }
+                                type="github" />
+                        </div>
                     </div>
                     <ul styleName="menu">
                         { _.map(this.navigation, this.createMenuItem) }

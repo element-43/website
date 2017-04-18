@@ -1,17 +1,11 @@
 .header {
-    composes: black-background-color from "../../stylesheets/modules/colours.scss";
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 9999;
+    composes: primary-500-purple-background-color from "../../stylesheets/modules/colours.scss";
+    padding: 2rem 3rem;
 }
 
 .headerInner {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin: 1rem auto;
     position: relative;
 }
 
@@ -19,34 +13,50 @@
 .brand {
     align-items: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
 }
 
 .logo {
     display: block;
     height: 4rem;
+    margin-bottom: 1rem;
 }
 
 .logo > img {
     max-height: 100%;
 }
 
+.social {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
 /* Nav menu */
 .menu {
     align-items: center;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     list-style-type: none;
     margin: 0;
+    padding: 0;
     width: 100%;
 }
 
 .item {
     cursor: pointer;
+    margin-bottom: 0.5rem;
 }
 
 .item > a {
+    color: #fff;
+    font-size: 1.3rem;
     display: block;
+    line-height: 2rem;
     text-decoration: none;
+    transition: all 300ms ease-in-out;
+}
+
+.item:hover > a {
+    color: #2ecc71;
 }

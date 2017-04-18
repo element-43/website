@@ -6,14 +6,14 @@ import strings from '../../../../config/strings';
 // Utilities.
 import { getHelmet } from '../../utilities/application.util';
 
-class ClientsPage extends Component {
+class PortfolioPage extends Component {
     render() {
         return (
             <main>
-                { getHelmet(strings.document.title + ' | ' + strings.page.clients.title) }
+                { getHelmet(strings.document.title + ' | ' + strings.page.portfolio.title) }
             </main>
         );
     }
 }
 
-export default ClientsPage;
+export default PortfolioPage;

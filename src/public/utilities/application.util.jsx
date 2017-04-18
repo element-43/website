@@ -27,7 +27,7 @@ export function getHelmet(title, image, isBlog = false) {
             <meta name="twitter:description" content={ strings.document.description } />
             <meta name="twitter:image" content={ image } />
             <meta name="twitter:title" content={ title } />
-            <meta name="twitter:site" content={ defaults.social.twitter } />
+            <meta name="twitter:site" content={ defaults.twitter.handle } />
 
             <meta name="og:description" content={ strings.document.description } />
             <meta name="og:image" content={ image } />

@@ -55,12 +55,16 @@ class Terminal extends Component {
                     this.props.history.push(defaults.routes.blog);
 
                     break;
-                case defaults.routes.clients:
-                    this.props.history.push(defaults.routes.clients);
+                case defaults.routes.contact:
+                    this.props.history.push(defaults.routes.contact);
 
                     break;
                 case defaults.routes.home:
                     this.props.history.push('/');
+
+                    break;
+                case defaults.routes.portfolio:
+                    this.props.history.push(defaults.routes.portfolio);
 
                     break;
                 case '/quit':
