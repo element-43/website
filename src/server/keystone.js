@@ -8,17 +8,17 @@ import strings from '../../config/strings';
 import app from './app';
 
 keystone.init({
-    // Project settings.
+    // Project.
     'name': strings.document.title,
     'brand': strings.document.title,
 
     // Web server.
     'port': defaults.port,
 
+    // Database.
     'auto update': true,
     'mongo': process.env.MONGO_URI,
     'updates': 'updates',
-
     'session': false,
     'auth': true,
     'user model': 'User',
@@ -26,5 +26,11 @@ keystone.init({
 });
 
 keystone.import('models');
+
 keystone.set('routes', app);
+keystone.set('nav', {
+    users: 'users',
+    content: ['posts', 'post-categories']
+});
+
 keystone.start();
