@@ -1,15 +1,15 @@
 import keystone from 'keystone';
 
-const PostCategory = new keystone.List('PostCategory', {
+const PostCategoryModel = new keystone.List('PostCategory', {
     map: { name: 'title' },
     defaultSort: '-createdAt'
 });
 
-PostCategory.add({
+PostCategoryModel.add({
     title: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
 });
 
-PostCategory.register();
+PostCategoryModel.register();
 
-export default PostCategory;
+export default PostCategoryModel;

@@ -1,1 +1,1 @@
-export * as HeaderMiddleware from './header.middleware';
+export * as HeaderMiddleware from './HeaderMiddleware';

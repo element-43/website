@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import * as HeaderMiddleware from './header.middleware';
+import { addResponseHeaders, addStaticResponseHeaders } from './HeaderMiddleware';
 
 import packageJson from '../../../package.json';
 
@@ -19,7 +19,7 @@ describe('middlewares/header', () => {
 
     describe('addResponseHeaders()', function() {
         it('should add a new "x-powered-by" header', function() {
-            HeaderMiddleware.addResponseHeaders({}, this.response, this.nextSpy);
+            addResponseHeaders({}, this.response, this.nextSpy);
 
             expect(this.response.getHeader(defaults.headers.poweredBy)).to.equal('Unicorns');
             expect(this.response.getHeader(defaults.headers.appVersion)).to.equal(packageJson.version);
@@ -30,7 +30,7 @@ describe('middlewares/header', () => {
 
     describe('addStaticResponseHeaders()', function() {
         it('should add a new "x-powered-by" header', function() {
-            HeaderMiddleware.addStaticResponseHeaders(this.response);
+            addStaticResponseHeaders(this.response);
 
             expect(this.response.getHeader(defaults.headers.poweredBy)).to.equal('Unicorns');
         });

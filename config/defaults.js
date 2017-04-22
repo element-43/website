@@ -4,9 +4,11 @@ module.exports = {
     },
 
     endpoints: {
-        api: '/api',
-        post: '/post',
-        postCategory: '/post-category',
+        api: {
+            base: '/api',
+            post: '/post',
+            postCategory: '/post-category',
+        },
         teapot: '/teapot'
     },
 
@@ -25,7 +27,7 @@ module.exports = {
         twitter: 'https://twitter.com/kieranroneill'
     },
 
-    port: 1337,
+    port: 8080,
 
     routes: {
         about: '/about',

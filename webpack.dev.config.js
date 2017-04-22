@@ -7,10 +7,13 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackNotifierPlugin = require('webpack-notifier');
 
+const defaults = require('./config/defaults');
 const strings = require('./config/strings');
 
 const distPath = path.join(__dirname, 'dist', 'public');
 const srcPath = path.join(__dirname, 'src', 'public');
+const port = 1337;
+const localhost = 'http://localhost';
 const uriLimit = 50000;
 
 module.exports = {
@@ -20,8 +23,20 @@ module.exports = {
 
     // Development specific.
     devtool: 'source-map',
+    devServer: {
+        contentBase: distPath,
+        historyApiFallback: true,
+        port: port,
+        proxy: {
+            '/api': {
+                target: localhost + ':' + defaults.port, // Proxy back to the backend.
+                secure: false
+            }
+        }
+    },
     entry: [
-        'webpack-hot-middleware/client',
+        'webpack-dev-server/client?' + localhost + ':' + port,
+        'webpack/hot/only-dev-server',
         path.resolve(srcPath, 'index.jsx')
     ],
     module: {

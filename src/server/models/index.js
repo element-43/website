@@ -1,3 +1,3 @@
-export { default as Post } from './Post';
-export { default as PostCategory } from './PostCategory';
-export { default as User } from './User';
+export { default as PostModel } from './PostModel';
+export { default as PostCategoryModel } from './PostCategoryModel';
+export { default as UserModel } from './UserModel';

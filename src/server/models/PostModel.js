@@ -2,13 +2,13 @@ import keystone from 'keystone';
 
 const Types = keystone.Field.Types;
 
-const Post = new keystone.List('Post', {
+const PostModel = new keystone.List('Post', {
     autokey: { path: 'slug', from: 'title', unique: true },
     map: { name: 'title' },
     defaultSort: '-createdAt'
 });
 
-Post.add({
+PostModel.add({
     title: { type: String, required: true },
     state: { type: Types.Select, options: 'draft, published, archived', default: 'draft' },
     author: { type: Types.Relationship, ref: 'User' },
@@ -18,7 +18,7 @@ Post.add({
     publishedAt: Date
 });
 
-Post.defaultColumns = 'title, state|15%, author, publishedAt|15%';
-Post.register();
+PostModel.defaultColumns = 'title, state|15%, author, publishedAt|15%';
+PostModel.register();
 
-export default Post;
+export default PostModel;

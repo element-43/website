@@ -1,9 +1,9 @@
-import * as ErrorUtil from './error.util';
+import { createRequestError } from './ErrorUtil';
 
 describe('utilities/errors', () => {
     describe('createRequestError()', function() {
         it('should throw throw the default error if nothing is defined', function() {
-            const error = ErrorUtil.createRequestError();
+            const error = createRequestError();
 
             expect(error).to.have.property('status');
             expect(error.status)
@@ -22,7 +22,7 @@ describe('utilities/errors', () => {
         });
 
         it('should throw a bad request error if the status code is not a valid request error code', function() {
-            const error = ErrorUtil.createRequestError(123);
+            const error = createRequestError(123);
 
             expect(error).to.have.property('status');
             expect(error.status)
@@ -32,7 +32,7 @@ describe('utilities/errors', () => {
 
         it('should throw an error with the correct parameters', function() {
             const message = 'An error occurred while displaying the previous error';
-            const error = ErrorUtil.createRequestError(httpCodes.UNAUTHORIZED, [message]);
+            const error = createRequestError(httpCodes.UNAUTHORIZED, [message]);
 
             expect(error).to.have.property('status');
             expect(error.status)

@@ -2,15 +2,15 @@ import keystone from 'keystone';
 
 const Types = keystone.Field.Types;
 
-const User = new keystone.List('User');
+const UserModel = new keystone.List('User');
 
-User.add({
+UserModel.add({
     name: { type: Types.Name, required: true, index: true },
     email: { type: Types.Email, initial: true, required: true, index: true },
     password: { type: Types.Password, initial: true },
     canAccessKeystone: { type: Boolean, initial: true }
 });
 
-User.register();
+UserModel.register();
 
-export default User;
+export default UserModel;

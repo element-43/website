@@ -10,7 +10,7 @@ app:
   links:
     - db
   ports:
-    - "1337"
+    - "8080"
   environment:
     - NODE_ENV=production
     - COOKIE_SECRET=super_secret
