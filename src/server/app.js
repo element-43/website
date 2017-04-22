@@ -8,8 +8,14 @@ import helmet from 'helmet';
 import httpCodes from 'http-codes';
 import path from 'path';
 
+// Config.
+import defaults from '../../config/defaults';
+
 // Utilities.
 import { HeaderMiddleware } from './middlewares/index';
+
+// Routes.
+import createRoutes from './api/router';
 
 const app = express();
 //const port = (process.env.NODE_ENV === 'test' ? ExpressUtil.randomPort() : defaults.port); // Use a random port when testing.
@@ -78,6 +84,10 @@ app.use(express.static(staticPath, { setHeaders: HeaderMiddleware.addStaticRespo
 // Routes.
 //====================================================
 
+// API routes.
+app.use(defaults.endpoints.api, createRoutes(express));
+
+// Use client-side routing.
 app.get('*', indexRouter);
 
 //====================================================

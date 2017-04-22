@@ -25,12 +25,16 @@ keystone.init({
     'cookie secret': process.env.COOKIE_SECRET
 });
 
-keystone.import('models');
+keystone.import('models'); // Register the models.
 
+// Set the separate express app.
 keystone.set('routes', app);
+
+// Set the navigation of the CMS.
 keystone.set('nav', {
     users: 'users',
     content: ['posts', 'post-categories']
 });
 
+// Ready, steady... GO!!
 keystone.start();

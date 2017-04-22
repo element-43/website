@@ -4,7 +4,9 @@ module.exports = {
     },
 
     endpoints: {
-        base: '/api',
+        api: '/api',
+        post: '/post',
+        postCategory: '/post-category',
         teapot: '/teapot'
     },
 
