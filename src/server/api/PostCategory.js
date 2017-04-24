@@ -11,7 +11,7 @@ export default class PostCategory extends Base {
 
     registerRoutes() {
         this.router
-            .route(defaults.endpoints.postCategory)
+            .route(defaults.endpoints.api.postCategory)
             .get((request, response) => {
                 response.json({
                     name: 'lol2'

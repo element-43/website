@@ -11,7 +11,7 @@ export default class Post extends Base {
 
     registerRoutes() {
         this.router
-            .route(defaults.endpoints.post)
+            .route(defaults.endpoints.api.post)
             .get((request, response) => {
                 response.json({
                     author: 'lol1'

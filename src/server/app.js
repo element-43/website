@@ -46,7 +46,7 @@ app.use(express.static(staticPath, { setHeaders: HeaderMiddleware.addStaticRespo
 //====================================================
 
 // API routes.
-app.use(defaults.endpoints.api, createRoutes(express));
+app.use(defaults.endpoints.api.base, createRoutes(express));
 
 // Use client-side routing.
 app.get('*', (request, response) => response.sendFile(path.resolve(staticPath, 'index.html')));

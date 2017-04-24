@@ -1,2 +1,2 @@
 export * as ErrorUtil from './ErrorUtil';
-export * as ExpressUtil from './express.util';
+export * as ExpressUtil from './ExpressUtil';
