@@ -29,7 +29,7 @@
     "start": "(cp -n .env.example .env || true) && concurrently \"npm run start:server\" \"npm run start:client\"",
     "start:client": "webpack-dev-server --config webpack.dev.config.js --progress",
     "start:server": "nodemon src/server/keystone",
-    "test": "NODE_ENV=test istanbul cover _mocha -- './src/{public,server}/**/*.{spec,test}.{js,jsx}'",
+    "test": "NODE_ENV=test istanbul cover _mocha -- './src/{public,server}/**/*.{spec,test}.{js,jsx}' './test/integration/**/*.spec.js'",
     "test:integration": "NODE_ENV=test mocha './test/integration/**/*.spec.js'",
     "test:unit": "mocha './src/{public,server}/**/*.{spec,test}.{js,jsx}'",
     "webpack": "webpack"

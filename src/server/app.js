@@ -18,7 +18,6 @@ import { HeaderMiddleware } from './middlewares/index';
 import createRoutes from './api/router';
 
 const app = express();
-//const port = (process.env.NODE_ENV === 'test' ? ExpressUtil.randomPort() : defaults.port); // Use a random port when testing.
 const rootPath = path.resolve(__dirname, '..', '..');
 const staticPath = path.resolve(rootPath, 'dist', 'public');
 

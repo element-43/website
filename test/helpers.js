@@ -44,7 +44,7 @@ export function getMockStore() {
  * @returns a supertest request.
  */
 export function requestByMethod(method, url, body = {}) {
-    let request = supertest(server.app);
+    let request = supertest(app);
 
     switch(method) {
         case 'DELETE':

@@ -12,19 +12,20 @@ import supertest from 'supertest';
 
 import 'ignore-styles';
 
+// Config.
 import defaults from '../config/defaults';
 import strings from '../config/strings';
-import errors from '../config/errors.json';
+import errors from '../config/errors';
 
-let server;
+import { randomPort } from '../src/server/utilities/ExpressUtil';
 
-// Only load on integration tests.
-if(process.env.NODE_ENV === 'test') {
-    server = require('../src/server/app');
-}
+// Server.
+import app from '../src/server/app';
 
 // Use bluebird promises.
 sinonAsPromised(Promise);
+
+app.listen(randomPort()); // Start the server with a random port.
 
 // General globals.
 global.assert = assert;
@@ -41,7 +42,7 @@ global.stub = stub;
 global.httpCodes = httpCodes;
 global.httpMocks = httpMocks;
 global.request = request;
-global.server = server;
+global.app = app;
 global.supertest = supertest;
 
 // Client globals.

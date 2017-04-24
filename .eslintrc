@@ -18,7 +18,7 @@
     "Promise": true,
     "React": true,
     "request": true,
-    "server": true,
+    "app": true,
     "shallow": true,
     "spy": true,
     "strings": true,
