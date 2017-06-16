@@ -15,7 +15,7 @@ import styles from './Terminal.css';
 import { ApplicationActionCreators } from '../../action-creators/index';
 
 // Utilities.
-import { cssModulesOptions } from '../../utilities/styles.util';
+import { cssModulesOptions } from '../../utilities/StylesUtil';
 
 class Terminal extends Component {
     constructor() {

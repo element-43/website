@@ -40,7 +40,7 @@ function main() {
     local container_definition_template
 
     # Get the container environment's container configuration.
-    container_definition_template=$(cat ./config/aws/container-definition.json | ${JQ} .)
+    container_definition_template=$(cat ./container-definition.json | ${JQ} .)
 
     AWS_ECS_CONTAINER_DEFINITION=$(printf "$container_definition_template" ${AWS_ECR_WEBSERVER_IMAGE} ${AWS_ECR_APP_IMAGE})
 

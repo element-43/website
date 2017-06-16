@@ -1,6 +1,11 @@
 import _ from 'lodash';
 
-import { getHelmet } from './application.util';
+// Config.
+import defaults from '../../../config/defaults';
+import strings from '../../../config/strings';
+
+// Module.
+import { getHelmet } from './ApplicationUtil';
 
 describe('utilities/application', () => {
     describe('getHelmet()', () => {

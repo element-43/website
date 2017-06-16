@@ -1,8 +1,12 @@
 import _ from 'lodash';
+import httpMocks from 'node-mocks-http';
 
-import { addResponseHeaders, addStaticResponseHeaders } from './HeaderMiddleware';
-
+// Config.
+import defaults from '../../../config/defaults';
 import packageJson from '../../../package.json';
+
+// Module.
+import { addResponseHeaders, addStaticResponseHeaders } from './HeaderMiddleware';
 
 describe('middlewares/header', () => {
     beforeEach(function() {

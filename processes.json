@@ -3,7 +3,7 @@
     {
       "merge_logs": true,
       "name": "app",
-      "script": "dist/lib/keystone.js",
+      "script": "dist/server/keystone.js",
       "out_file": "/tmp/server.log",
       "log_date_format": "DD/MM/YYYY HH:mm:ss"
     }

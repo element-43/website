@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
     cookieKeys: {
         enabled: 'catch_22'
@@ -27,7 +29,10 @@ module.exports = {
         twitter: 'https://twitter.com/kieranroneill'
     },
 
-    port: 8080,
+    ports: {
+        development: 1337,
+        production: 8080
+    },
 
     routes: {
         about: '/about',

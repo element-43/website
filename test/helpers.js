@@ -1,4 +1,6 @@
 import configureMockStore from 'redux-mock-store';
+import { JSDOM } from 'jsdom';
+import supertest from 'supertest';
 import thunk from 'redux-thunk';
 
 // States.
@@ -9,6 +11,21 @@ const state = {
     application: ApplicationState,
     session: SessionState
 };
+
+/**
+ * Creates a JSDOM object.
+ * @returns {JSDOM} a mocked DOM object.
+ */
+export function createDom() {
+    let html = '<!DOCTYPE html>';
+
+    html += '<html>';
+    html += '<body>';
+    html += '</body>';
+    html += '</html>';
+
+    return new JSDOM(html);
+}
 
 /**
  * Returns props that mocks the router and connected components.
@@ -48,31 +65,26 @@ export function requestByMethod(method, url, body = {}) {
 
     switch(method) {
         case 'DELETE':
-            request = request
-                .delete(url)
+            request = request.delete(url)
                 .send(body);
 
             break;
         case 'GET':
-            request = request
-                .get(url);
+            request = request.get(url);
 
             break;
         case 'PATCH':
-            request = request
-                .patch(url)
+            request = request.patch(url)
                 .send(body);
 
             break;
         case 'POST':
-            request = request
-                .post(url)
+            request = request.post(url)
                 .send(body);
 
             break;
         case 'PUT':
-            request = request
-                .put(url)
+            request = request.put(url)
                 .send(body);
 
             break;

@@ -1,3 +1,6 @@
+import httpCodes from 'http-codes';
+
+// Module.
 import { createRequestError } from './ErrorUtil';
 
 describe('utilities/errors', () => {

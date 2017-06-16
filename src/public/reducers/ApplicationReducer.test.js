@@ -1,8 +1,13 @@
 import _ from 'lodash';
 
-import ApplicationReducer from './ApplicationReducer';
+// Actions.
 import { ApplicationActions } from '../actions/index';
+
+// States.
 import { ApplicationState as initialState } from '../states/index';
+
+// Module.
+import ApplicationReducer from './ApplicationReducer';
 
 describe('config reducers', () => {
     beforeEach(function() {

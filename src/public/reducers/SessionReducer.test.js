@@ -1,9 +1,17 @@
 import _ from 'lodash';
 import cookie from 'react-cookie';
 
-import SessionReducer from './SessionReducer';
+// Config.
+import defaults from '../../../config/defaults';
+
+// Actions.
 import { SessionActions } from '../actions/index';
+
+// States.
 import { SessionState as initialState } from '../states/index';
+
+// Module.
+import SessionReducer from './SessionReducer';
 
 describe('config reducers', () => {
     beforeEach(function() {

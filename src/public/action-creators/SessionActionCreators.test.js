@@ -1,4 +1,7 @@
+// Action creators.
 import * as SessionActionCreators from './SessionActionCreators';
+
+// Actions.
 import { SessionActions } from '../actions/index';
 
 describe('session actions', () => {

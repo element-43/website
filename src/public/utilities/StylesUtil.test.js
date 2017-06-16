@@ -1,4 +1,4 @@
-import { combineStyles } from './styles.util';
+import { combineStyles } from './StylesUtil';
 
 describe('utilities/styles', () => {
     const testCSSModule = {

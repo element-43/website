@@ -1,2 +1,2 @@
-export * as applicationUtil from './application.util';
-export * as stylesUtil from './styles.util';
+export * as ApplicationUtil from './ApplicationUtil';
+export * as StylesUtil from './StylesUtil';

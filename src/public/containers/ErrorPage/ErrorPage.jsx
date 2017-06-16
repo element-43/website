@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import strings from '../../../../config/strings';
 
 // Utilities.
-import { getHelmet } from '../../utilities/application.util';
+import { getHelmet } from '../../utilities/ApplicationUtil';
 
 class ErrorPage extends Component {
     render() {

@@ -1,6 +1,6 @@
 files:
   include:
-    - 'public/src/**/*.s+(a|c)ss'
+    - '/src/public/**/*.s+(a|c)ss'
 rules:
   # Disallows.
   no-css-comments: 0

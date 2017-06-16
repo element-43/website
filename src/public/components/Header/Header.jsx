@@ -8,7 +8,6 @@ import defaults from '../../../../config/defaults';
 import strings from '../../../../config/strings';
 
 // Components.
-
 import SocialButton from '../../components/SocialButton/SocialButton';
 
 // Styles.

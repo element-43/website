@@ -1,6 +1,11 @@
-import { requestByMethod } from '../helpers';
+import httpCodes from 'http-codes';
 
+// Config.
+import defaults from '../../config/defaults';
 import packageJson from '../../package.json';
+
+// Helpers.
+import { requestByMethod } from '../../test/helpers';
 
 describe('server', () => {
     const route = '/';

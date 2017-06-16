@@ -2,15 +2,14 @@ machine:
   timezone:
     Europe/London
   node:
-    # LTS (as of 12/04/2017)
-    version: 6.10.2
+    # LTS (as of 16/06/2017)
+    version: 6.11.0
   services:
       - docker
   environment:
     # Set Yarn version and PATH.
-    YARN_VERSION: 0.20.3
+    YARN_VERSION: 0.22.0
     PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
-    MONGO_URI: mongodb://localhost/test
 
 dependencies:
   pre:
@@ -25,8 +24,6 @@ dependencies:
     - ~/.cache/yarn
   override:
     - yarn install
-    # Build website.
-    - yarn run build
 #  post:
 #    # Build the docker images ready for delivery!
 #    - docker build -t $AWS_ECR_WEBSERVER_ID.dkr.ecr.AWS_REGION.amazonaws.com/webserver:$CIRCLE_SHA1 ./nginx
@@ -39,8 +36,6 @@ test:
   post:
     # Save JUnit style test data for the test summary section.
     - mkdir -p $CIRCLE_TEST_REPORTS/junit && cp test-results.xml $CIRCLE_TEST_REPORTS/junit
-    # Save webpack stats as an artifact.
-    - mkdir -p $CIRCLE_ARTIFACTS/stats && cp -r ./stats/* $CIRCLE_ARTIFACTS/stats
     # Save coverage reports as an artifact.
     - mkdir -p $CIRCLE_ARTIFACTS/coverage && cp -r ./coverage/* $CIRCLE_ARTIFACTS/coverage
     # Send coverage reports to Codecov.

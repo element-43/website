@@ -7,7 +7,7 @@ import defaults from '../../../../config/defaults';
 import strings from '../../../../config/strings';
 
 // Utilities.
-import { getHelmet } from '../../utilities/application.util';
+import { getHelmet } from '../../utilities/ApplicationUtil';
 
 // Components.
 import Button from '../../components/Button/Button';

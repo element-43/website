@@ -14,7 +14,7 @@ import strings from '../../../config/strings';
  * @return {XML} the <Helmet> node.
  */
 export function getHelmet(title, image, isBlog = false) {
-    const url = location.protocol + '//' + location.host + location.pathname;
+    const url = window.location.protocol + '//' + window.location.host + window.location.pathname;
 
     title = (_.isEmpty(title) ? strings.document.title : title);
     image = (_.isEmpty(image) ? '' : image);

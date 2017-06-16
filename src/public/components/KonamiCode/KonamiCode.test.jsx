@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import React from 'react';
 
 // ActionCreators.
 import { ApplicationActionCreators } from '../../action-creators/index';

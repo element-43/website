@@ -6,7 +6,7 @@ import defaults from '../../../../config/defaults';
 import strings from '../../../../config/strings';
 
 // Utilities.
-import { getHelmet } from '../../utilities/application.util';
+import { getHelmet } from '../../utilities/ApplicationUtil';
 
 //Components.
 import Async from '../../components/Async/Async';
@@ -16,10 +16,10 @@ import KonamiCode from '../../components/KonamiCode/KonamiCode';
 import ScrollTop from '../../components/ScrollToTop/ScrollToTop';
 import Terminal from '../../components/Terminal/Terminal';
 
-const App = () => {
+const App = props => {
     /* eslint-disable max-len */
     return (
-        <Router>
+        <Router { ...props }>
             <div className="app">
                 { getHelmet(strings.document.title) }
                 <GoogleAnalytics />
