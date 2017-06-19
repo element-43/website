@@ -91,11 +91,6 @@ module.exports = {
             logo: path.resolve(srcPath, 'favicon.png'),
             title: strings.document.title
         }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'), // Default to development.
-            }
-        }),
         new webpack.LoaderOptionsPlugin({
             options: {
                 postcss: () => [

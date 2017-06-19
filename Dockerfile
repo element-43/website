@@ -9,7 +9,6 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # Update and install dependencies
 RUN apt-get update --fix-missing
 RUN apt-get install -y curl
-RUN apt-get install -y build-essential libssl-dev
 RUN apt-get install -qq -y bzip2
 
 ENV NVM_DIR /usr/local/nvm
@@ -17,7 +16,6 @@ ENV NODE_VERSION 6.11.0
 
 # Environment variables used in app.
 ENV COOKIE_SECRET $COOKIE_SECRET
-ENV MONGO_URI mongodb://db:27017/element-43
 
 # Install node & npm with nvm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash \

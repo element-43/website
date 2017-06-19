@@ -13,11 +13,11 @@ keystone.init({
     'brand': strings.document.title,
 
     // Web server.
-    'port': defaults.port,
+    'port': defaults.ports.production,
 
     // Database.
     'auto update': true,
-    'mongo': process.env.MONGO_URI,
+    'mongo': 'mongodb://db:27017', //process.env.MONGO_URI,
     'updates': 'updates',
     'session': false,
     'auth': true,

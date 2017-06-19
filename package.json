@@ -2,7 +2,7 @@
   "name": "element-43-website",
   "private": true,
   "version": "0.1.0",
-  "description": "Template for a KeystoneJS application using React for server-side rendering.",
+  "description": "Website for Element 43.",
   "main": "src/server/keystone.js",
   "author": {
     "name": "Kieran O'Neill",

@@ -84,6 +84,11 @@ module.exports = {
             template: path.resolve(srcPath, 'index.hbs'),
             minify: false
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development'),
+            }
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new WebpackNotifierPlugin({
             title: 'UNICORN POWER_UP!!!',

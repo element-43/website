@@ -5,7 +5,8 @@
 ## Usage
 
 * Ensure [Docker](https://www.docker.com/community-edition#/download) is installed and running.
-* Build and run the docker image: `docker-compose up`
+* Build docker images: `docker-compose build`
+* Start running the docker instances: `docker-compose up`
 * Navigate to [http://localhost](http://localhost)
 
 ## Development
@@ -41,6 +42,7 @@ Once the tests have completed, coverage reports can be found in the `coverage/` 
 2. Create 2 ECR repositories:
     * `webserver` this is where the Nginx image will be uploaded.
     * `app` this is where the Node.JS image will be uploaded.
+    * `db` this is where the MongoDB instance lives.
 
 ### 2. CircleCI
 
@@ -56,4 +58,3 @@ To setup CircleCI, the following environment variables are needed for deployment
 | `AWS_SECRET_ACCESS_KEY` | The secret access key for the AWS IAM user |
 | `CODECOV_KEY` | Codecov API key, used to upload coverage reports |
 | `COOKIE_SECRET` | Random GUID for cookies |
-| `MONGO_URI` | Path to a MongoDB instance |
