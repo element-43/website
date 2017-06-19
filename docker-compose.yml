@@ -13,6 +13,7 @@ app:
     - "8080"
   environment:
     - COOKIE_SECRET=super_secret
+    - MONGO_URI=mongodb://db:27017
 
 db:
   image: mongo:latest
