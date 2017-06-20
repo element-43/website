@@ -17,6 +17,8 @@ ENV NODE_ENV production
 ENV COOKIE_SECRET $COOKIE_SECRET
 ENV MONGO_URI $MONGO_URI
 
+RUN echo $MONGO_URI
+
 # Install node & npm with nvm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash \
     && source $NVM_DIR/nvm.sh \
