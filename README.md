@@ -58,3 +58,4 @@ To setup CircleCI, the following environment variables are needed for deployment
 | `AWS_SECRET_ACCESS_KEY` | The secret access key for the AWS IAM user |
 | `CODECOV_KEY` | Codecov API key, used to upload coverage reports |
 | `COOKIE_SECRET` | Random GUID for cookies |
+| `MONGO_URI` | The MongoDB connection URI, this should include the username/password and database name. |
