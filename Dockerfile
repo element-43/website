@@ -3,6 +3,10 @@ FROM ubuntu:16.10
 
 MAINTAINER Kieran O\'Neill
 
+# Build arguments passed into build.
+ARG COOKIE_SECRET
+ARG MONGO_URI
+
 # Use bash shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
