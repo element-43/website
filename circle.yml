@@ -24,15 +24,14 @@ dependencies:
     - ~/.cache/yarn
   override:
     - yarn install
-  post:
-    # Build the docker images ready for delivery!
-    - docker build -t $AWS_ECR_WEBSERVER_ID.dkr.ecr.AWS_REGION.amazonaws.com/element43-web:$CIRCLE_SHA1 ./nginx
-    - docker build -t $AWS_ECR_APP_ID.dkr.ecr.AWS_REGION.amazonaws.com/element43-app:$CIRCLE_SHA1 --build-arg COOKIE_SECRET=${COOKIE_SECRET} --build-arg MONGO_URI=${MONGO_URI} .
+
+compile:
+  override:
+    - yarn run build
 
 test:
   override:
     - yarn run lint
-    - yarn run build
     - yarn test
   post:
     # Save JUnit style test data for the test summary section.
@@ -46,4 +45,8 @@ deployment:
   development:
     branch: master
     commands:
+      # Build the docker images ready for delivery!
+      - docker build -t $AWS_ECR_WEBSERVER_ID.dkr.ecr.$AWS_REGION.amazonaws.com/element43-web:latest ./nginx
+      - docker build -t $AWS_ECR_APP_ID.dkr.ecr.$AWS_REGION.amazonaws.com/element43-app:latest --build-arg COOKIE_SECRET=${COOKIE_SECRET} --build-arg MONGO_URI=${MONGO_URI} .
+      # Deploy to AWS.
       - ./bin/deploy.sh

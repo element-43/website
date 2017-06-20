@@ -25,8 +25,8 @@ JQ="jq --raw-output --exit-status"
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 AWS_ECS_SERVICE_NAME="element-43-service"
 AWS_ECS_FAMILY_NAME="element-43-family"
-AWS_ECR_WEBSERVER_IMAGE=${AWS_ECR_WEBSERVER_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/element43-web:${CIRCLE_SHA1}
-AWS_ECR_APP_IMAGE=${AWS_ECR_APP_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/element43-app:${CIRCLE_SHA1}
+AWS_ECR_WEBSERVER_IMAGE=${AWS_ECR_WEBSERVER_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/element43-web:latest
+AWS_ECR_APP_IMAGE=${AWS_ECR_APP_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/element43-app:latest
 
 # Import the utility scripts.
 source "$SCRIPT_DIR/_configure_aws_cli.sh"
@@ -40,7 +40,7 @@ function main() {
     local container_definition_template
 
     # Get the container environment's container configuration.
-    container_definition_template=$(cat ./container-definition.json | ${JQ} .)
+    container_definition_template=$(cat ./bin/container-definition.json | ${JQ} .)
 
     AWS_ECS_CONTAINER_DEFINITION=$(printf "$container_definition_template" ${AWS_ECR_WEBSERVER_IMAGE} ${AWS_ECR_APP_IMAGE})
 
