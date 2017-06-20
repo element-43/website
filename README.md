@@ -40,9 +40,8 @@ Once the tests have completed, coverage reports can be found in the `coverage/` 
 2. Go to the IAM service and create a Role as type `AmazonEC2ContainerServiceforEC2Role`.
 3. Go to the ECS service and create a new cluster with 1 EC2 instance and set the IAM role to the role previously created.
 2. Create 2 ECR repositories:
-    * `webserver` this is where the Nginx image will be uploaded.
-    * `app` this is where the Node.JS image will be uploaded.
-    * `db` this is where the MongoDB instance lives.
+    * `element43-web` this is where the Nginx image will be uploaded.
+    * `element43-app` this is where the Node.JS image will be uploaded.
 
 ### 2. CircleCI
 
@@ -51,8 +50,8 @@ To setup CircleCI, the following environment variables are needed for deployment
 | Name | Description |
 | :--- | :--- |
 | `AWS_ACCESS_KEY_ID` | The access key ID for the AWS IAM user |
-| `AWS_ECR_APP_ID` | The ID prefixed to the app ECR repository, e.g. `XXXXXXX.dkr.ecr.eu-west-2.amazonaws.com/app` |
-| `AWS_ECR_WEBSERVER_ID` | The ID prefixed to the webserver ECR repository, e.g. `XXXXXXX.dkr.ecr.eu-west-2.amazonaws.com/webserver` |
+| `AWS_ECR_APP_ID` | The ID prefixed to the app ECR repository, e.g. `XXXXXXX.dkr.ecr.eu-west-2.amazonaws.com/element43-app` |
+| `AWS_ECR_WEBSERVER_ID` | The ID prefixed to the webserver ECR repository, e.g. `XXXXXXX.dkr.ecr.eu-west-2.amazonaws.com/element43-web` |
 | `AWS_ECS_CLUSTER_NAME` | The name of the cluster |
 | `AWS_REGION` | The region of the EC2 instance |
 | `AWS_SECRET_ACCESS_KEY` | The secret access key for the AWS IAM user |
