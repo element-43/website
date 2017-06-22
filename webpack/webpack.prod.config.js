@@ -1,6 +1,5 @@
 'use strict';
 
-const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
@@ -83,7 +82,6 @@ module.exports = {
     },
 
     plugins: commonPlugins.concat([
-        //new CleanPlugin('dist', { root: path.join(__dirname, '..') }),
         new ExtractTextPlugin({
             filename: 'styles.[hash].css',
             allChunks: true
