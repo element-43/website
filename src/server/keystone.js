@@ -19,7 +19,7 @@ keystone.init({
     'auto update': true,
     'mongo': process.env.MONGO_URI,
     'updates': 'updates',
-    'session': false,
+    'session store': 'connect-mongo',
     'auth': true,
     'user model': 'User',
     'cookie secret': process.env.COOKIE_SECRET
@@ -30,7 +30,6 @@ keystone.import('models'); // Register the models.
 // Set the separate express app.
 keystone.set('routes', app);
 
-// Set the navigation of the CMS.
 keystone.set('nav', {
     users: 'users',
     content: ['posts', 'post-categories']

@@ -83,7 +83,7 @@ module.exports = {
     },
 
     plugins: commonPlugins.concat([
-        new CleanPlugin('dist', { root: path.join(__dirname, '..') }),
+        //new CleanPlugin('dist', { root: path.join(__dirname, '..') }),
         new ExtractTextPlugin({
             filename: 'styles.[hash].css',
             allChunks: true

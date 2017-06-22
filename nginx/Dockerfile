@@ -2,11 +2,11 @@ FROM nginx
 
 MAINTAINER Kieran O\'Neill
 
+# Remove default configuration.
+RUN rm -rf /etc/nginx
+
 # Copy configuration file.
 COPY nginx.conf /etc/nginx/nginx.conf
-
-# Mount SSL
-VOLUME ["/etc/nginx/ssl", "/etc/nginx/psw"]
 
 # Stop container stopping - "daemon off;"
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
