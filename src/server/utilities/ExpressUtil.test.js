@@ -1,12 +1,27 @@
-import { randomPort } from './ExpressUtil';
+// Config.
+import errors from '../../common/errors';
 
-describe('utilities/express', () => {
-    describe('randomPort()', function() {
-        it('should provide a port that is between 49152–65535', function() {
-            const port = randomPort();
+// Module.
+import { getExpressValidationErrors } from './ExpressUtil';
 
-            expect(port).to.be.at.least(49152);
-            expect(port).to.be.at.most(65535);
+describe('utilities/ExpressUtil', () => {
+    describe('getExpressValidationErrors()', () => {
+        it('should return an empty array if input is undefined', () => {
+            expect(getExpressValidationErrors()).to.have.be.empty;
+        });
+
+        it('should return an empty array if the input is an empty array', () => {
+            expect(getExpressValidationErrors([])).to.have.be.empty;
+        });
+
+        it('should return the error messages', () => {
+            const expressErrors = [{
+                param: 'email',
+                msg: errors.emailInvalid,
+                value: 'not an email address, silly!'
+            }];
+
+            expect(getExpressValidationErrors(expressErrors)).to.contains(errors.emailInvalid);
         });
     });
 });

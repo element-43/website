@@ -1,0 +1,84 @@
+[
+  {
+    "name": "proxy",
+    "essential": true,
+    "image": "jwilder/nginx-proxy",
+    "memory": 128,
+    "mountPoints": [
+      {
+        "containerPath": "/tmp/docker.sock",
+        "sourceVolume": "DockerSocket",
+        "readOnly": true
+      },
+      {
+        "containerPath": "/etc/nginx/vhost.d",
+        "sourceVolume": "VirtualHostsConfig"
+      },
+      {
+        "containerPath": "/usr/share/nginx/html",
+        "sourceVolume": "NginxRoot"
+      },
+      {
+        "containerPath": "/etc/nginx/certs",
+        "sourceVolume": "SSLCerts",
+        "readOnly": true
+      }
+    ],
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      },
+      {
+        "containerPort": 443,
+        "hostPort": 443
+      }
+    ]
+  },
+  {
+    "name": "ssl",
+    "essential": false,
+    "image": "jrcs/letsencrypt-nginx-proxy-companion",
+    "memory": 128,
+    "mountPoints": [
+      {
+        "containerPath": "/var/run/docker.sock",
+        "sourceVolume": "DockerSocket",
+        "readOnly": true
+      },
+      {
+        "containerPath": "/etc/nginx/certs",
+        "sourceVolume": "SSLCerts"
+      }
+    ],
+    "volumesFrom": [
+      {
+        "sourceContainer": "proxy"
+      }
+    ]
+  },
+  {
+    "name": "app",
+    "essential": true,
+    "image": "%s",
+    "memoryReservation": 256,
+    "environment": [
+      {
+        "name": "VIRTUAL_PORT",
+        "value": "%s"
+      },
+      {
+        "name": "LETSENCRYPT_HOST",
+        "value": "element43.xyz,www.element43.xyz"
+      },
+      {
+        "name": "LETSENCRYPT_EMAIL",
+        "value": "kieran.oneill@element43.xyz"
+      },
+      {
+        "name": "VIRTUAL_HOST",
+        "value": "element43.xyz,www.element43.xyz"
+      }
+    ]
+  }
+]

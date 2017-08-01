@@ -1,53 +1,55 @@
 process.env.NODE_ENV = (process.env.NODE_ENV || 'development');
 
 import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 import express from 'express';
+import expressValidator from 'express-validator';
 import helmet from 'helmet';
+import { Server } from 'http';
 import httpCodes from 'http-codes';
 import path from 'path';
 
-// Config.
-import defaults from '../../config/defaults';
-
 // Middleware.
-import { HeaderMiddleware } from './middlewares/index';
+import { setResponseHeaders, setStaticResponseHeaders } from './middlewares/HeaderMiddleware';
 
-// Routes.
-import createRoutes from './api/router';
+// API.
+import { PostRoute } from './api/index';
 
 const app = express();
 const rootPath = path.resolve(__dirname, '..', '..');
-const staticPath = path.resolve(rootPath, 'dist', 'public');
+const server = Server(app);
+const staticPath = path.resolve(rootPath, 'dist', 'client');
 
 //====================================================
 // Configuration.
 //====================================================
 
-dotenv.config({ path: path.resolve(rootPath, '.env') });
+config({ path: path.resolve(rootPath, '.env') });
 
 //====================================================
 // Middleware.
 //====================================================
 
 app.use(helmet());
-app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(HeaderMiddleware.addResponseHeaders);
+app.use(expressValidator());
+app.use(setResponseHeaders);
 
 // Serve static assets.
-app.use(express.static(staticPath, { setHeaders: HeaderMiddleware.addStaticResponseHeaders }));
+app.use(express.static(staticPath, { setHeaders: setStaticResponseHeaders }));
+
+//====================================================
+// API.
+//====================================================
+
+PostRoute.create(app);
 
 //====================================================
 // Routes.
 //====================================================
 
-// API routes.
-app.use(defaults.endpoints.api.base, createRoutes(express));
-
-// Use client-side routing.
+// Route all other requests back to the client HTML.
 app.get('*', (request, response) => response.sendFile(path.resolve(staticPath, 'index.html')));
 
 //====================================================
@@ -56,10 +58,22 @@ app.get('*', (request, response) => response.sendFile(path.resolve(staticPath, '
 
 app.use((error, request, response, next) => {
     if(error) {
-        return response.status(error.status || httpCodes.INTERNAL_SERVER_ERROR).json({ errors: error.errors });
+        return response.status(error.status || httpCodes.INTERNAL_SERVER).json({ errors: error.errors });
     }
 
     next();
 });
 
+//====================================================
+// Start server.
+//====================================================
+
+server.listen(process.env.APP_PORT, () => {
+    /* eslint-disable no-console */
+    console.log('The unicorns gallop away on port ' + server.address().port);
+    /* eslint-enable no-console */
+});
+
+// Export for testing.
 export default app;
+

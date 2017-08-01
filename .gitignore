@@ -52,20 +52,19 @@ gen
 
 ### Test
 coverage/
+.nyc_output/
 test-results.xml
 
 ### Build
 dist/
+volumes/
 
 ### Dependencies
 **node_modules/
 
-### Webpack
-stats/
-
 ### Misc
 .env
-tmp/
+stats/
 .yarnclean
 yarn.lock
 yarn-error.log

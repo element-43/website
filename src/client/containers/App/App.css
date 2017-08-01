@@ -1,0 +1,8 @@
+.app {
+    composes: primary-font-regular from "../../stylesheets/modules/typography.scss";
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+}

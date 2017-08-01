@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "es6": true,
     "mocha": true,
     "node": true
   },
@@ -9,7 +10,7 @@
     "app": true,
     "assert": true,
     "expect": true,
-    "mock": true,
+    "match": true,
     "mount": true,
     "shallow": true,
     "spy": true,
@@ -32,7 +33,7 @@
     "indent": ["error", 4, { "SwitchCase": 1 }],
     "linebreak-style": ["error", "unix"],
     "no-unused-vars": ["error"],
-    "max-len": ["error", 125, { "ignoreComments": true }],
+    "max-len": ["error", 140, { "ignoreComments": true }],
     "quote-props": ["error", "consistent-as-needed"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"]

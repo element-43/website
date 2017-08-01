@@ -3,9 +3,9 @@ FROM ubuntu:16.10
 
 MAINTAINER Kieran O\'Neill
 
-# Build arguments passed into build.
-ARG COOKIE_SECRET
-ARG MONGO_URI
+# Declare the build arguments passed in.
+ARG PORT
+ARG NODE_ENV
 
 # Use bash shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -15,11 +15,10 @@ RUN apt-get update --fix-missing
 RUN apt-get install -y curl
 RUN apt-get install -qq -y bzip2
 
+ENV PORT $PORT
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 6.11.0
-ENV NODE_ENV production
-ENV COOKIE_SECRET $COOKIE_SECRET
-ENV MONGO_URI $MONGO_URI
+ENV NODE_ENV $NODE_ENV
 
 # Install node & npm with nvm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash \
@@ -33,24 +32,28 @@ ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 # Install global modules.
-RUN npm install pm2 yarn -g
+RUN npm install pm2 yarn@0.22.0 -g
 
 # Install dependencies using yarn.
 ADD package.json /tmp/package.json
-RUN cd /tmp && yarn install
+RUN cd /tmp && yarn install --production=false
+
+# Create directories and copy node_modules.
 RUN mkdir -p /usr/app \
     && cd /usr/app \
     && ln -s /tmp/node_modules
 
-# Create app directory.
+# Set working directory.
 WORKDIR /usr/app
+
+# Copy source files.
 ADD . /usr/app
 
 # Build app.
 RUN yarn run build
 
 # Open up the port
-EXPOSE 8080
+EXPOSE $PORT
 
 # Fly my pretties!!
-CMD ["pm2", "start", "processes.json", "--no-daemon"]
+CMD ["sh", "-c", "pm2 start processes.config.js --no-daemon"]

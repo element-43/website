@@ -3,9 +3,9 @@
 ##
 # Attempts to first update the service, but if no service exists, it attempts to create a new service.
 #
-# @param string $1  the task revision/version (Full ARN)
+# @param string $1  the ARN of the task definition (full ARN).
 # @param string $2  the name of the AWS cluster.
-# @param string $3  the name of the ECS service (Inside the cluster)
+# @param string $3  the name of the ECS service (inside the cluster).
 # @reads string $JQ to handle json responses.
 ##
 function update_ecs_service() {
@@ -24,13 +24,14 @@ function update_ecs_service() {
 ##
 # Push/Update the task definition to ECS and set the newly created task revision full arn ($CURRENT_TASK_REVISION)
 #
-# @param string $1                      the container definition (JSON)
-# @param string $2                      the family name of the tasks.
+# @param string $1                      the family, i.e. the task definition name.
+# @param string $2                      the container definitions (JSON).
+# @param string $2                      the volumes (JSON).
 # @reads string $JQ                     to handle json responses.
-# @sets string $CURRENT_TASK_REVISION   the task revision/version (Full ARN)
+# @sets string $CURRENT_TASK_REVISION   the ARN of the task definition (full ARN).
 ##
 function update_task_definition() {
-    if CURRENT_TASK_REVISION=$(aws ecs register-task-definition --container-definitions "$1" --family $2 | ${JQ} '.taskDefinition.taskDefinitionArn'); then
+    if CURRENT_TASK_REVISION=$(aws ecs register-task-definition --family $1 --container-definitions "$2" --volumes "$3" | ${JQ} '.taskDefinition.taskDefinitionArn'); then
         echo -e "\n$(date "+%Y-%m-%d %H:%M:%S") Successfully registered task definition :\n\tfamily: $2\n\tRevision : $CURRENT_TASK_REVISION\n"
         return 0
     fi

@@ -1,15 +1,15 @@
-import configureMockStore from 'redux-mock-store';
 import { JSDOM } from 'jsdom';
-import supertest from 'supertest';
+import _ from 'lodash';
+import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import supertest from 'supertest';
 
 // States.
-import { ApplicationState, SessionState } from '../src/public/states/index';
+import { ApplicationState } from '../src/client/states/index';
 
 const mockStore = configureMockStore([thunk]);
 const state = {
-    application: ApplicationState,
-    session: SessionState
+    application: ApplicationState
 };
 
 /**
@@ -52,6 +52,23 @@ export function getMockStore() {
 }
 
 /**
+ * Returns all the routes that have been registered on an Express app.
+ * @param app an Express app.
+ * @returns {Array} all the routes registered.
+ */
+export function getRoutes(app) {
+    if(!app._router) { // No routes.
+        return [];
+    }
+
+    return _.chain(app._router.stack)
+        .filter(middleware => middleware.route)
+        .map(middleware => middleware.route.path)
+        .uniq()
+        .value();
+}
+
+/**
  * Convenience method that returns a a partially
  * implemented supertest request, based on the
  * type of HTTP request method.
@@ -65,26 +82,31 @@ export function requestByMethod(method, url, body = {}) {
 
     switch(method) {
         case 'DELETE':
-            request = request.delete(url)
+            request = request
+                .delete(url)
                 .send(body);
 
             break;
         case 'GET':
-            request = request.get(url);
+            request = request
+                .get(url);
 
             break;
         case 'PATCH':
-            request = request.patch(url)
+            request = request
+                .patch(url)
                 .send(body);
 
             break;
         case 'POST':
-            request = request.post(url)
+            request = request
+                .post(url)
                 .send(body);
 
             break;
         case 'PUT':
-            request = request.put(url)
+            request = request
+                .put(url)
                 .send(body);
 
             break;

@@ -1,15 +1,14 @@
 machine:
   timezone:
     Europe/London
-  node:
-    # LTS (as of 16/06/2017)
-    version: 6.11.0
-  services:
-      - docker
   environment:
-    # Set Yarn version and PATH.
     YARN_VERSION: 0.22.0
     PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+  node:
+    # LTS (as of 14/06/2017)
+    version: 6.11.0
+  services:
+    - docker
 
 dependencies:
   pre:
@@ -25,10 +24,6 @@ dependencies:
   override:
     - yarn install
 
-compile:
-  override:
-    - yarn run build
-
 test:
   override:
     - yarn run lint
@@ -42,11 +37,10 @@ test:
     - bash <(curl -s https://codecov.io/bash) -t $CODECOV_KEY
 
 deployment:
-  development:
+  master:
     branch: master
     commands:
       # Build the docker images ready for delivery!
-      - docker build -t $AWS_ECR_WEBSERVER_ID.dkr.ecr.$AWS_REGION.amazonaws.com/element43-web:latest ./nginx
-      - docker build -t $AWS_ECR_APP_ID.dkr.ecr.$AWS_REGION.amazonaws.com/element43-app:latest --build-arg COOKIE_SECRET=${COOKIE_SECRET} --build-arg MONGO_URI=${MONGO_URI} .
+      - docker build -t $AWS_ECR_APP_REPO:latest --build-arg NODE_ENV=production --build-arg PORT=$APP_PORT .
       # Deploy to AWS.
       - ./bin/deploy.sh

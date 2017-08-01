@@ -1,38 +1,37 @@
-'use strict';
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const webpack = require('webpack');
-const WebpackNotifierPlugin = require('webpack-notifier');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { resolve } from 'path';
+import webpack from 'webpack';
+import WebpackNotifierPlugin from 'webpack-notifier';
 
 // Config.
-const defaults = require('../config/defaults');
-const strings = require('../config/strings');
+import { defaults, strings } from '../src/common/index';
 
 // Common config.
-const { commonLoaders, commonPlugins, devtool, distPath, resolve, srcPath } = require('./common.config');
+import { commonLoaders, commonPlugins, commonResolve, devtool, distPath, srcPath } from './common.config';
 
+const port = 1337;
 const localhost = 'http://localhost';
 
-module.exports = {
+export default {
     devServer: {
         contentBase: distPath,
         historyApiFallback: true,
-        port: defaults.ports.development,
+        port: port,
         proxy: {
             // Proxy all api calls to the running server.
-            '/api': {
-                target: localhost + ':' + defaults.ports.production,
+            [defaults.endpoints.api.base]: {
+                target: `${localhost}:${process.env.APP_PORT}`,
                 secure: false
             }
         }
     },
+
     devtool: devtool,
 
     entry: [
-        'webpack-dev-server/client?' + localhost + ':' + defaults.ports.development,
+        `webpack-dev-server/client?${localhost}:${port}`,
         'webpack/hot/only-dev-server',
-        path.resolve(srcPath, 'index.jsx')
+        resolve(srcPath, 'index.jsx')
     ],
 
     module: {
@@ -81,16 +80,16 @@ module.exports = {
             title: strings.document.title,
             isDevelopment: true,
             inject: 'body',
-            template: path.resolve(srcPath, 'index.hbs'),
+            template: resolve(srcPath, 'index.hbs'),
             minify: false
         }),
         new webpack.HotModuleReplacementPlugin(),
         new WebpackNotifierPlugin({
             title: 'UNICORN POWER_UP!!!',
-            contentImage: path.resolve(__dirname, 'unicorn.png'),
+            contentImage: resolve(__dirname, 'unicorn.png'),
             alwaysNotify: true
         })
     ]),
 
-    resolve: resolve
+    resolve: commonResolve
 };

@@ -9,15 +9,13 @@ import 'ignore-styles';
 // Helpers.
 import { createDom } from './helpers';
 
-// Utilities.
-import { randomPort } from '../src/server/utilities/ExpressUtil';
-
 // Server.
 import app from '../src/server/app';
 
 const { window } = createDom();
 
-app.listen(randomPort()); // Start the server with a random port.
+// Configure window object.
+window.Promise = Promise;
 
 // General globals.
 global.assert = assert;

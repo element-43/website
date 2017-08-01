@@ -1,16 +1,16 @@
-'use strict';
-
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const webpack = require('webpack');
-const webpackCombineLoaders = require('webpack-combine-loaders');
+import CleanPlugin from 'clean-webpack-plugin';
+import ExtractTextPlugin, { extract } from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { join, resolve } from 'path';
+import VisualizerPlugin from 'webpack-visualizer-plugin';
+import webpack from 'webpack';
+import webpackCombineLoaders from 'webpack-combine-loaders';
 
 // Config.
-const strings = require('../config/strings');
+import { strings } from '../src/common/index';
 
 // Common config.
-const { commonLoaders, commonPlugins, devtool, distPath, resolve, srcPath } = require('./common.config');
+import { commonLoaders, commonPlugins, commonResolve, devtool, distPath, srcPath } from './common.config';
 
 const cssLoader = webpackCombineLoaders([
     {
@@ -37,17 +37,19 @@ const sassLoader = webpackCombineLoaders([
     { loader: 'sass-loader' }
 ]);
 
-module.exports = {
+export default {
     devtool: devtool,
 
     entry: {
-        main: path.resolve(srcPath, 'index.jsx'),
+        main: resolve(srcPath, 'index.jsx'),
         vendor: [
             // Rule of thumb: add any vendor files that are > 50kb
+            'bluebird',
+            'lodash',
             'moment',
             'react',
             'react-dom',
-            'react-router-dom'
+            'velocity-animate'
         ]
     },
 
@@ -60,14 +62,14 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
+                use: extract({
                     fallback: 'style-loader',
                     use: cssLoader
                 })
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
+                use: extract({
                     fallback: 'style-loader',
                     use: sassLoader
                 })
@@ -82,6 +84,10 @@ module.exports = {
     },
 
     plugins: commonPlugins.concat([
+        new CleanPlugin(['dist'], {
+            exclude: ['server'],
+            root: join(__dirname, '..')
+        }),
         new ExtractTextPlugin({
             filename: 'styles.[hash].css',
             allChunks: true
@@ -89,7 +95,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: strings.document.title,
             inject: 'body',
-            template: path.resolve(srcPath, 'index.hbs'),
+            template: resolve(srcPath, 'index.hbs'),
             minify: {
                 collapseWhitespace: true,
                 removeComments: true,
@@ -112,8 +118,11 @@ module.exports = {
             },
             sourceMap: true,
             mangle: true
-        })
+        }),
+        new VisualizerPlugin({
+            filename: '../../stats/stats.html'
+        }),
     ]),
 
-    resolve: resolve
+    resolve: commonResolve
 };

@@ -2,41 +2,46 @@ import _ from 'lodash';
 import httpMocks from 'node-mocks-http';
 
 // Config.
-import defaults from '../../../config/defaults';
+import { defaults, strings } from '../../common/index';
 import packageJson from '../../../package.json';
 
 // Module.
-import { addResponseHeaders, addStaticResponseHeaders } from './HeaderMiddleware';
+import { setResponseHeaders, setStaticResponseHeaders } from './HeaderMiddleware';
 
-describe('middlewares/header', () => {
-    beforeEach(function() {
-        this.response = httpMocks.createResponse();
+describe('middlewares/HeaderMiddleware', () => {
+    const scope = {
+        response: null,
+        nextSpy: null
+    };
 
-        this.nextSpy = spy();
+    beforeEach(() => {
+        scope.response = httpMocks.createResponse();
+
+        scope.nextSpy = spy();
     });
 
-    afterEach(function() {
-        this.response = _.noop();
+    afterEach(() => {
+        scope.response = _.noop();
 
-        this.nextSpy.reset();
+        scope.nextSpy.reset();
     });
 
-    describe('addResponseHeaders()', function() {
-        it('should add a new "x-powered-by" header', function() {
-            addResponseHeaders({}, this.response, this.nextSpy);
+    context('setResponseHeaders()', () => {
+        it('should add a new "x-driven-by" header', () => {
+            setResponseHeaders({}, scope.response, scope.nextSpy);
 
-            expect(this.response.getHeader(defaults.headers.poweredBy)).to.equal('Unicorns');
+            expect(scope.response.getHeader(defaults.headers.drivenBy)).to.equal(strings.unicorns);
             expect(this.response.getHeader(defaults.headers.appVersion)).to.equal(packageJson.version);
 
-            assert.calledWith(this.nextSpy);
+            assert.calledWith(scope.nextSpy);
         });
     });
 
-    describe('addStaticResponseHeaders()', function() {
-        it('should add a new "x-powered-by" header', function() {
-            addStaticResponseHeaders(this.response);
+    context('setStaticResponseHeaders()', () => {
+        it('should add a new "x-driven-by" header', () => {
+            setStaticResponseHeaders(scope.response);
 
-            expect(this.response.getHeader(defaults.headers.poweredBy)).to.equal('Unicorns');
+            expect(scope.response.getHeader(defaults.headers.drivenBy)).to.equal(strings.unicorns);
         });
     });
 });

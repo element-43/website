@@ -3,9 +3,9 @@ import httpCodes from 'http-codes';
 // Module.
 import { createRequestError } from './ErrorUtil';
 
-describe('utilities/errors', () => {
-    describe('createRequestError()', function() {
-        it('should throw throw the default error if nothing is defined', function() {
+describe('utilities/ErrorUtil', () => {
+    describe('createRequestError()', () => {
+        it('should throw the default error if nothing is defined', () => {
             const error = createRequestError();
 
             expect(error).to.have.property('status');
@@ -24,7 +24,7 @@ describe('utilities/errors', () => {
                 .to.be.empty;
         });
 
-        it('should throw a bad request error if the status code is not a valid request error code', function() {
+        it('should throw a bad request error if the status code is not a valid request error code', () => {
             const error = createRequestError(123);
 
             expect(error).to.have.property('status');
@@ -33,7 +33,7 @@ describe('utilities/errors', () => {
                 .to.equal(httpCodes.BAD_REQUEST);
         });
 
-        it('should throw an error with the correct parameters', function() {
+        it('should throw an error with the correct parameters', () => {
             const message = 'An error occurred while displaying the previous error';
             const error = createRequestError(httpCodes.UNAUTHORIZED, [message]);
 

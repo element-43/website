@@ -17,7 +17,7 @@ class RequestError extends Error {
  * @param message the message to provide the standard Error class.
  * @return {RequestError} a valid RequestError.
  */
-export function createRequestError(status, errors, message) {
+export function createRequestError(status, errors, message = '') {
     if(!status || status < 400 || status >= 600) {
         status = httpCodes.BAD_REQUEST;
     }
