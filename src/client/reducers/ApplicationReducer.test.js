@@ -44,7 +44,7 @@ describe('application reducers', () => {
         it('should close the terminal if it is open', () => {
             let state;
 
-            this.initialState.terminal.isOpen = true;
+            scope.initialState.terminal.isOpen = true;
 
             state = ApplicationReducer(scope.initialState, { type: ApplicationActions.CLOSE_TERMINAL });
 

@@ -1,7 +1,7 @@
 import httpCodes from 'http-codes';
 
 // Config.
-import { defaults, strings } from '../../common/index';
+import { defaults, strings } from '../common/index';
 
 // Helpers.
 import { getRoutes, requestByMethod } from '../../test/helpers';
@@ -41,7 +41,7 @@ describe('server/app', () => {
         it('should contain the specified routes', () => {
             const routes = getRoutes(app);
 
-            expect(routes).to.include(apiRoute.replace('{+endpoint}', defaults.endpoints.api.slack));
+            expect(routes).to.include(apiRoute.replace('{+endpoint}', defaults.endpoints.api.post));
         });
     });
 });

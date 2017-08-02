@@ -31,7 +31,7 @@ describe('middlewares/HeaderMiddleware', () => {
             setResponseHeaders({}, scope.response, scope.nextSpy);
 
             expect(scope.response.getHeader(defaults.headers.drivenBy)).to.equal(strings.unicorns);
-            expect(this.response.getHeader(defaults.headers.appVersion)).to.equal(packageJson.version);
+            expect(scope.response.getHeader(defaults.headers.appVersion)).to.equal(packageJson.version);
 
             assert.calledWith(scope.nextSpy);
         });

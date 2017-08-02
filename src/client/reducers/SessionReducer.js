@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import moment from 'moment';
-import cookie from 'react-cookie';
+import { save } from 'react-cookies';
 
 // Config.
 import { defaults } from '../../common/index';
@@ -15,7 +15,7 @@ function SessionReducer(state = initialState, action) {
     switch (action.type) {
         case SessionActions.SET_ENABLED_COOKIE:
             // Save the cookies to the browser.
-            cookie.save(defaults.cookieKeys.enabled, true, {
+            save(defaults.cookieKeys.enabled, true, {
                 path: '/',
                 expires: moment().add(1, 'y').toDate() // Today's date + 1 year.
             });
