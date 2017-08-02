@@ -41,6 +41,6 @@ deployment:
     branch: master
     commands:
       # Build the docker images ready for delivery!
-      - docker build -t $AWS_ECR_APP_REPO:latest --build-arg NODE_ENV=production --build-arg PORT=$APP_PORT .
+      - docker build -t $AWS_ECR_APP_REPO:latest --build-arg CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN} --build-arg CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID} --build-arg NODE_ENV=production --build-arg PORT=$APP_PORT  .
       # Deploy to AWS.
       - ./bin/deploy.sh

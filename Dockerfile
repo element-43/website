@@ -4,8 +4,10 @@ FROM ubuntu:16.10
 MAINTAINER Kieran O\'Neill
 
 # Declare the build arguments passed in.
-ARG PORT
+ARG CONTENTFUL_ACCESS_TOKEN
+ARG CONTENTFUL_SPACE_ID
 ARG NODE_ENV
+ARG PORT
 
 # Use bash shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -15,10 +17,12 @@ RUN apt-get update --fix-missing
 RUN apt-get install -y curl
 RUN apt-get install -qq -y bzip2
 
-ENV PORT $PORT
-ENV NVM_DIR /usr/local/nvm
+ENV CONTENTFUL_ACCESS_TOKEN $CONTENTFUL_ACCESS_TOKEN
+ENV CONTENTFUL_SPACE_ID $CONTENTFUL_SPACE_ID
 ENV NODE_VERSION 6.11.0
 ENV NODE_ENV $NODE_ENV
+ENV NVM_DIR /usr/local/nvm
+ENV PORT $PORT
 
 # Install node & npm with nvm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash \

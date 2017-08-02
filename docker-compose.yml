@@ -17,7 +17,7 @@ services:
   ssl:
     restart: always
     image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: letsencrypt
+    container_name: ssl
     volumes_from:
       - proxy
     volumes:
@@ -29,8 +29,10 @@ services:
     build:
       context: .
       args:
-        PORT: ${APP_PORT}
+        CONTENTFUL_ACCESS_TOKEN: ${CONTENTFUL_ACCESS_TOKEN}
+        CONTENTFUL_SPACE_ID: ${CONTENTFUL_SPACE_ID}
         NODE_ENV: production
+        PORT: ${APP_PORT}
     environment:
       - VIRTUAL_HOST=element43.xyz,www.element43.xyz
       - VIRTUAL_PORT=${APP_PORT}

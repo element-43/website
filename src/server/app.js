@@ -68,7 +68,7 @@ app.use((error, request, response, next) => {
 // Start server.
 //====================================================
 
-server.listen(process.env.APP_PORT, () => {
+server.listen(process.env.PORT, () => {
     /* eslint-disable no-console */
     console.log('The unicorns gallop away on port ' + server.address().port);
     /* eslint-enable no-console */

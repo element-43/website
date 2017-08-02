@@ -85,7 +85,7 @@ export default {
 
     plugins: commonPlugins.concat([
         new CleanPlugin(['dist'], {
-            exclude: ['server'],
+            exclude: ['common', 'server'],
             root: join(__dirname, '..')
         }),
         new ExtractTextPlugin({

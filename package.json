@@ -19,8 +19,9 @@
   },
   "scripts": {
     "babel": "babel",
-    "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
+    "build": "concurrently \"npm run build:server\" \"npm run build:common\" \"npm run build:client\"",
     "build:client": "node -r babel-register node_modules/.bin/webpack --config webpack/webpack.prod.config.js --progress",
+    "build:common": "babel src/common -d dist/common",
     "build:server": "babel src/server -d dist/server --ignore test.js",
     "concurrently": "concurrently",
     "eslint": "eslint",
