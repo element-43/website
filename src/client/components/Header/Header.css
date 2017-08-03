@@ -13,20 +13,20 @@
     position: relative;
 }
 
-.navigation {
+.brand {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.brand {
+.logo {
     display: block;
     margin: 0 0 1rem;
 }
 
-/* Menu */
-.menu {
+/* Navigation */
+.nav {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@
 }
 
 .item {
-    color: #fff;
+    composes: white-color from "../../stylesheets/modules/colours.scss";
     font-size: 1.7rem;
     line-height: 2.3rem;
 }

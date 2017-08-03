@@ -22,31 +22,31 @@ class Header extends Component {
         menu: PropTypes.array.isRequired
     };
 
-    createMenuItems() {
-        return _.map(this.props.menu, (item, index) => (
+    createMenuItem(item, index) {
+        return (
             <Link
                 key={ index }
                 styleName="item"
                 to={ item.path }>
                 { item.title }
             </Link>
-        ));
+        );
     }
 
     render() {
         return (
             <header styleName="header">
                 <div styleName="inner">
-                    <div styleName="navigation">
+                    <div styleName="brand">
                         <Link
-                            styleName="brand"
+                            styleName="logo"
                             to="/">
                             <Logo
                                 colour="white"
                                 height={ 4 } />
                         </Link>
-                        <nav styleName="menu">
-                            { this.createMenuItems() }
+                        <nav styleName="nav">
+                            { _.map(this.props.menu, this.createMenuItem) }
                         </nav>
                     </div>
                     <div styleName="social">

@@ -30,6 +30,28 @@ describe('application reducers', () => {
         });
     });
 
+    context('opening/closing the menu', () => {
+        it('should open the menu if it is closed', () => {
+            let state;
+
+            scope.initialState.header.isMenuOpen = false;
+
+            state = ApplicationReducer(scope.initialState, { type: ApplicationActions.OPEN_MENU });
+
+            expect(state.header.isMenuOpen).to.be.true;
+        });
+
+        it('should close the menu if it is open', () => {
+            let state;
+
+            scope.initialState.header.isMenuOpen = true;
+
+            state = ApplicationReducer(scope.initialState, { type: ApplicationActions.CLOSE_MENU });
+
+            expect(state.header.isMenuOpen).to.be.false;
+        });
+    });
+
     context('opening/closing the terminal', () => {
         it('should open the terminal if it is closed', () => {
             let state;

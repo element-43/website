@@ -1,15 +1,54 @@
 .header {
-    padding: 2rem 0;
     width: 100%;
 }
 
 .inner {
-    align-items: center;
     display: flex;
+    padding: 3rem 0;
+}
+
+.brand {
+    align-items: center;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.brand {
+.logo {
     display: block;
+}
+
+/* Menu overlay */
+.overlay {
+    composes: primary-500-purple-background-color from "../../stylesheets/modules/colours.scss";
+    height: 0;
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    width: 0;
+    z-index: 9999;
+}
+
+.overlay .inner {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Navigation */
+.nav {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+    padding: 0;
+    width: 100%;
+}
+
+.item {
+    composes: white-color from "../../stylesheets/modules/colours.scss";
+    cursor: pointer;
+    font-size: 3rem;
+    line-height: 4rem;
 }
