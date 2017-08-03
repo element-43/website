@@ -1,62 +1,51 @@
 .header {
     composes: primary-500-purple-background-color from "../../stylesheets/modules/colours.scss";
-    padding: 2rem 3rem;
+    max-width: 25rem;
+    padding: 2rem 0 0;
+    width: 25%;
 }
 
 .inner {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
     position: relative;
 }
 
-/* Brand */
-.brand {
+.navigation {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.logo {
+.brand {
     display: block;
-    height: 4rem;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
 }
 
-.logo > img {
-    max-height: 100%;
-}
-
-.social {
-    display: flex;
-    margin-bottom: 1rem;
-}
-
-/* Nav menu */
+/* Menu */
 .menu {
     align-items: center;
     display: flex;
     flex-direction: column;
-    list-style-type: none;
-    margin: 0;
+    margin: 0 0 1rem;
     padding: 0;
     width: 100%;
 }
 
 .item {
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-}
-
-.item > a {
     color: #fff;
-    font-size: 1.3rem;
-    display: block;
-    line-height: 2rem;
-    text-decoration: none;
-    transition: all 300ms ease-in-out;
+    font-size: 1.7rem;
+    line-height: 2.3rem;
 }
 
-.item:hover > a {
-    color: #2ecc71;
+/* Social icons */
+.social {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 0 1rem;
 }

@@ -43,3 +43,15 @@ p {
     font-weight: 400;
     margin: 0;
 }
+
+a {
+    color: $primary-500-purple;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+        color: $secondary-500-green;
+    }
+}

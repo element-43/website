@@ -56,6 +56,7 @@
     "react-dom": "^15.6.0",
     "react-helmet": "^5.1.3",
     "react-redux": "^5.0.5",
+    "react-responsive": "^1.3.4",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.2",
     "velocity-animate": "^1.5.0"

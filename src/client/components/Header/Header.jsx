@@ -1,84 +1,69 @@
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import CSSModules from 'react-css-modules';
 import { Link } from 'react-router-dom';
 
 // Config.
-import { defaults, strings } from '../../../common/index';
+import { defaults } from '../../../common/index';
+
+// Utilities.
+import { cssModulesOptions } from '../../utilities/StylesUtil';
 
 // Components.
+import Logo from '../../components/Logo/Logo';
 import SocialButton from '../../components/SocialButton/SocialButton';
 
 // Styles.
 import styles from './Header.css';
 
-// Images.
-import logoImageWhite from '../../images/logo-white.png';
-
 class Header extends Component {
-    constructor() {
-        super();
+    static propTypes = {
+        menu: PropTypes.array.isRequired
+    };
 
-        this.navigation = [
-            {
-                title: strings.pages.about.title,
-                path: defaults.routes.about
-            },
-            {
-                title: strings.pages.blog.title,
-                path: defaults.routes.blog
-            },
-            {
-                title: strings.pages.portfolio.title,
-                path: defaults.routes.portfolio
-            },
-            {
-                title: strings.pages.contact.title,
-                path: defaults.routes.contact
-            }
-        ];
-    }
-
-    createMenuItem(item, index) {
-        return (
-            <li
+    createMenuItems() {
+        return _.map(this.props.menu, (item, index) => (
+            <Link
                 key={ index }
-                styleName="item">
-                <Link to={ item.path }>{ item.title }</Link>
-            </li>
-        );
+                styleName="item"
+                to={ item.path }>
+                { item.title }
+            </Link>
+        ));
     }
 
     render() {
         return (
             <header styleName="header">
                 <div styleName="inner">
-                    <div styleName="brand">
+                    <div styleName="navigation">
                         <Link
-                            styleName="logo"
+                            styleName="brand"
                             to="/">
-                            <img src={ logoImageWhite } />
+                            <Logo
+                                colour="white"
+                                height={ 4 } />
                         </Link>
-
-                        <div styleName="social">
-                            <SocialButton
-                                href={ defaults.links.twitter }
-                                type="twitter" />
-                            <SocialButton
-                                href={ defaults.links.linkedIn }
-                                type="linkedin" />
-                            <SocialButton
-                                href={ defaults.links.gitHub }
-                                type="github" />
-                        </div>
+                        <nav styleName="menu">
+                            { this.createMenuItems() }
+                        </nav>
                     </div>
-                    <ul styleName="menu">
-                        { _.map(this.navigation, this.createMenuItem) }
-                    </ul>
+                    <div styleName="social">
+                        <SocialButton
+                            href={ defaults.links.twitter }
+                            type="twitter" />
+                        <SocialButton
+                            href={ defaults.links.linkedIn }
+                            type="linkedin" />
+                        <SocialButton
+                            href={ defaults.links.gitHub }
+                            type="github" />
+                    </div>
                 </div>
             </header>
         );
     }
 }
 
-export default CSSModules(Header, styles);
+export default CSSModules(Header, styles, cssModulesOptions);
