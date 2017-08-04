@@ -30,7 +30,7 @@ describe('<SvgIcon />', () => {
             const instance = shallow(<SvgIcon { ...scope.props }><div /></SvgIcon>)
                 .instance();
 
-            expect(instance.props.colour).to.equal(blackColour);
+            expect(instance.props.colour).to.equal(whiteColour);
             expect(instance.props.size).to.equal(2.5);
         });
 
@@ -38,7 +38,7 @@ describe('<SvgIcon />', () => {
             const size = 5;
             let wrapper;
 
-            _.assign(scope.props, { colour: whiteColour, size });
+            _.assign(scope.props, { colour: blackColour, size });
 
             wrapper = shallow(<SvgIcon { ...scope.props }><div /></SvgIcon>);
 
