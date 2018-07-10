@@ -1,0 +1,644 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/Page/components/MobileHeader <MobileHeader /> snapshots should match the snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MobileHeader
+    closeMenu={[Function]}
+    history={
+      MockHistory {
+        "action": "POP",
+        "block": [MockFunction],
+        "createHref": [MockFunction],
+        "go": [MockFunction],
+        "goBack": [MockFunction],
+        "goForward": [MockFunction],
+        "length": 2,
+        "listen": [MockFunction],
+        "location": MockLocation {
+          "hash": "",
+          "key": "",
+          "pathname": "/",
+          "search": "",
+          "state": Object {},
+        },
+        "push": [MockFunction],
+        "replace": [MockFunction],
+      }
+    }
+    layout={
+      Object {
+        "asteroids": Object {
+          "isOpen": false,
+        },
+        "header": Object {
+          "isMenuOpen": false,
+        },
+        "terminal": Object {
+          "isOpen": false,
+        },
+      }
+    }
+    location={
+      MockLocation {
+        "hash": "",
+        "key": "",
+        "pathname": "/",
+        "search": "",
+        "state": Object {},
+      }
+    }
+    match={
+      Object {
+        "isExact": true,
+        "params": Object {},
+        "path": "/",
+        "url": "/",
+      }
+    }
+    menu={
+      Array [
+        Object {
+          "path": "/fancy",
+          "title": "Fancy app you got here",
+        },
+      ]
+    }
+    openMenu={[Function]}
+    staticContext={Object {}}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <styled.div>
+          <Styled(Link)
+            to="/"
+          >
+            <BannerLogoSvg
+              color="#673ab7"
+              hoverColor="#2ecc71"
+              size="4rem"
+            />
+          </Styled(Link)>
+          <styled.button
+            onClick={[Function]}
+          >
+            <MenuSvg
+              color="#673ab7"
+              hoverColor="#2ecc71"
+              size="3rem"
+            />
+          </styled.button>
+        </styled.div>,
+        <styled.div
+          innerRef={
+            Object {
+              "current": null,
+            }
+          }
+        >
+          <styled.div
+            innerRef={
+              Object {
+                "current": null,
+              }
+            }
+          >
+            <styled.button
+              onClick={[Function]}
+            >
+              <CrossSvg
+                color="#fff"
+                hoverColor="#2ecc71"
+                size="3rem"
+              />
+            </styled.button>
+            <styled.nav>
+              <styled.a
+                onClick={[Function]}
+              >
+                Fancy app you got here
+              </styled.a>
+            </styled.nav>
+          </styled.div>
+        </styled.div>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Styled(Link)
+              to="/"
+            >
+              <BannerLogoSvg
+                color="#673ab7"
+                hoverColor="#2ecc71"
+                size="4rem"
+              />
+            </Styled(Link)>,
+            <styled.button
+              onClick={[Function]}
+            >
+              <MenuSvg
+                color="#673ab7"
+                hoverColor="#2ecc71"
+                size="3rem"
+              />
+            </styled.button>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <BannerLogoSvg
+                color="#673ab7"
+                hoverColor="#2ecc71"
+                size="4rem"
+              />,
+              "to": "/",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "color": "#673ab7",
+                "hoverColor": "#2ecc71",
+                "size": "4rem",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <MenuSvg
+                color="#673ab7"
+                hoverColor="#2ecc71"
+                size="3rem"
+              />,
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "color": "#673ab7",
+                "hoverColor": "#2ecc71",
+                "size": "3rem",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <styled.div
+            innerRef={
+              Object {
+                "current": null,
+              }
+            }
+          >
+            <styled.button
+              onClick={[Function]}
+            >
+              <CrossSvg
+                color="#fff"
+                hoverColor="#2ecc71"
+                size="3rem"
+              />
+            </styled.button>
+            <styled.nav>
+              <styled.a
+                onClick={[Function]}
+              >
+                Fancy app you got here
+              </styled.a>
+            </styled.nav>
+          </styled.div>,
+          "innerRef": Object {
+            "current": null,
+          },
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <styled.button
+                onClick={[Function]}
+              >
+                <CrossSvg
+                  color="#fff"
+                  hoverColor="#2ecc71"
+                  size="3rem"
+                />
+              </styled.button>,
+              <styled.nav>
+                <styled.a
+                  onClick={[Function]}
+                >
+                  Fancy app you got here
+                </styled.a>
+              </styled.nav>,
+            ],
+            "innerRef": Object {
+              "current": null,
+            },
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <CrossSvg
+                  color="#fff"
+                  hoverColor="#2ecc71"
+                  size="3rem"
+                />,
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "color": "#fff",
+                  "hoverColor": "#2ecc71",
+                  "size": "3rem",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <styled.a
+                    onClick={[Function]}
+                  >
+                    Fancy app you got here
+                  </styled.a>,
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Fancy app you got here",
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": "Fancy app you got here",
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <styled.div>
+            <Styled(Link)
+              to="/"
+            >
+              <BannerLogoSvg
+                color="#673ab7"
+                hoverColor="#2ecc71"
+                size="4rem"
+              />
+            </Styled(Link)>
+            <styled.button
+              onClick={[Function]}
+            >
+              <MenuSvg
+                color="#673ab7"
+                hoverColor="#2ecc71"
+                size="3rem"
+              />
+            </styled.button>
+          </styled.div>,
+          <styled.div
+            innerRef={
+              Object {
+                "current": null,
+              }
+            }
+          >
+            <styled.div
+              innerRef={
+                Object {
+                  "current": null,
+                }
+              }
+            >
+              <styled.button
+                onClick={[Function]}
+              >
+                <CrossSvg
+                  color="#fff"
+                  hoverColor="#2ecc71"
+                  size="3rem"
+                />
+              </styled.button>
+              <styled.nav>
+                <styled.a
+                  onClick={[Function]}
+                >
+                  Fancy app you got here
+                </styled.a>
+              </styled.nav>
+            </styled.div>
+          </styled.div>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Styled(Link)
+                to="/"
+              >
+                <BannerLogoSvg
+                  color="#673ab7"
+                  hoverColor="#2ecc71"
+                  size="4rem"
+                />
+              </Styled(Link)>,
+              <styled.button
+                onClick={[Function]}
+              >
+                <MenuSvg
+                  color="#673ab7"
+                  hoverColor="#2ecc71"
+                  size="3rem"
+                />
+              </styled.button>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <BannerLogoSvg
+                  color="#673ab7"
+                  hoverColor="#2ecc71"
+                  size="4rem"
+                />,
+                "to": "/",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "color": "#673ab7",
+                  "hoverColor": "#2ecc71",
+                  "size": "4rem",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <MenuSvg
+                  color="#673ab7"
+                  hoverColor="#2ecc71"
+                  size="3rem"
+                />,
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "color": "#673ab7",
+                  "hoverColor": "#2ecc71",
+                  "size": "3rem",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <styled.div
+              innerRef={
+                Object {
+                  "current": null,
+                }
+              }
+            >
+              <styled.button
+                onClick={[Function]}
+              >
+                <CrossSvg
+                  color="#fff"
+                  hoverColor="#2ecc71"
+                  size="3rem"
+                />
+              </styled.button>
+              <styled.nav>
+                <styled.a
+                  onClick={[Function]}
+                >
+                  Fancy app you got here
+                </styled.a>
+              </styled.nav>
+            </styled.div>,
+            "innerRef": Object {
+              "current": null,
+            },
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <styled.button
+                  onClick={[Function]}
+                >
+                  <CrossSvg
+                    color="#fff"
+                    hoverColor="#2ecc71"
+                    size="3rem"
+                  />
+                </styled.button>,
+                <styled.nav>
+                  <styled.a
+                    onClick={[Function]}
+                  >
+                    Fancy app you got here
+                  </styled.a>
+                </styled.nav>,
+              ],
+              "innerRef": Object {
+                "current": null,
+              },
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <CrossSvg
+                    color="#fff"
+                    hoverColor="#2ecc71"
+                    size="3rem"
+                  />,
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "color": "#fff",
+                    "hoverColor": "#2ecc71",
+                    "size": "3rem",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [
+                    <styled.a
+                      onClick={[Function]}
+                    >
+                      Fancy app you got here
+                    </styled.a>,
+                  ],
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": "0",
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": "Fancy app you got here",
+                      "onClick": [Function],
+                    },
+                    "ref": null,
+                    "rendered": "Fancy app you got here",
+                    "type": [Function],
+                  },
+                ],
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

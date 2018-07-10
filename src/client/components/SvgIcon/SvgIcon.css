@@ -1,7 +1,0 @@
-.svg path {
-    transition: all 250ms ease-in-out;
-}
-
-.hoverable:hover path {
-    fill: #2ecc71;
-}

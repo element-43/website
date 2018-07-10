@@ -1,18 +1,16 @@
 {
-  "restartable": "rs",
-  "verbose": true,
-  "execMap": {
-    "js": "babel-node"
-  },
-  "ignore": [
-    "*.test*",
-    "src/client/"
-  ],
-  "watch": [
-    "src/server"
-  ],
   "env": {
     "NODE_ENV": "development"
   },
-  "ext": "js"
+  "exec": "ts-node --project tsconfig.api.json",
+  "ext": "ts",
+  "ignore": [
+    "*.test*",
+    "src/web/"
+  ],
+  "restartable": "rs",
+  "verbose": true,
+  "watch": [
+    "src/api"
+  ]
 }

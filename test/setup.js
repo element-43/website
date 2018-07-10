@@ -1,36 +1,14 @@
-import Promise from 'bluebird';
-import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
-import { assert, match, mock, spy, stub } from 'sinon';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-// Ignore styling modules.
-import 'ignore-styles';
+configure({ adapter: new Adapter() });
 
 // Helpers.
 import { createDom } from './helpers';
 
-// Server.
-import app from '../src/server/app';
-
 const { window } = createDom();
-
-// Configure window object.
-window.Promise = Promise;
-
-// General globals.
-global.assert = assert;
-global.expect = expect;
-global.match = match;
-global.mock = mock;
-global.spy = spy;
-global.stub = (...args) => stub.apply(this, args).usingPromise(Promise); // Use the bluebird library.
-
-// Server globals.
-global.app = app;
 
 // Client globals.
 global.document = window.document;
-global.mount = mount;
 global.navigator = { userAgent: 'node.js', appName: 'Netscape' };
-global.shallow = shallow;
 global.window = window;
