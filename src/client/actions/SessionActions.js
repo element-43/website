@@ -1,1 +1,0 @@
-export const SET_ENABLED_COOKIE = 'SET_ENABLED_COOKIE';

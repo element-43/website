@@ -1,26 +1,24 @@
-# Ubuntu LTS (16.10)
-FROM ubuntu:16.10
+# Ubuntu LTS (17.10)
+FROM ubuntu:17.10
 
 MAINTAINER Kieran O\'Neill
 
 # Declare the build arguments passed in.
-ARG CONTENTFUL_ACCESS_TOKEN
-ARG CONTENTFUL_SPACE_ID
-ARG NODE_ENV
+ARG COOKIE_SECRET
 ARG PORT
 
 # Use bash shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# Update and install dependencies
+# Update and install dependencies.
 RUN apt-get update --fix-missing
 RUN apt-get install -y curl
+RUN apt-get install -y git
 RUN apt-get install -qq -y bzip2
 
-ENV CONTENTFUL_ACCESS_TOKEN $CONTENTFUL_ACCESS_TOKEN
-ENV CONTENTFUL_SPACE_ID $CONTENTFUL_SPACE_ID
-ENV NODE_VERSION 6.11.0
-ENV NODE_ENV $NODE_ENV
+ENV COOKIE_SECRET $COOKIE_SECRET
+ENV NODE_VERSION 8.11.2
+ENV NODE_ENV production
 ENV NVM_DIR /usr/local/nvm
 ENV PORT $PORT
 
@@ -36,7 +34,7 @@ ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 # Install global modules.
-RUN npm install pm2 yarn@0.22.0 -g
+RUN npm install pm2 yarn -g
 
 # Install dependencies using yarn.
 ADD package.json /tmp/package.json
@@ -54,7 +52,7 @@ WORKDIR /usr/app
 ADD . /usr/app
 
 # Build app.
-RUN yarn run build
+RUN yarn build
 
 # Open up the port
 EXPOSE $PORT

@@ -52,19 +52,19 @@ gen
 
 ### Test
 coverage/
-.nyc_output/
-test-results.xml
+junit/
 
 ### Build
 dist/
-volumes/
 
 ### Dependencies
 **node_modules/
 
-### Misc
-.env
-stats/
+### Yarn
 .yarnclean
 yarn.lock
 yarn-error.log
+package.json.*
+
+### Misc.
+.env

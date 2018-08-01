@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     document: {
         title: 'Element 43',
         description: 'Not just an element!'
@@ -9,20 +9,12 @@ export default {
             title: 'About'
         },
 
-        blog: {
-            title: 'Blog'
-        },
-
         contact: {
             title: 'Contact'
         },
 
         error: {
             title: 'Something is not right...'
-        },
-
-        home: {
-            title: 'Home'
         },
 
         notFound: {

@@ -4,69 +4,42 @@ import webpack from 'webpack';
 import WebpackNotifierPlugin from 'webpack-notifier';
 
 // Config.
-import { defaults, strings } from '../src/common/index';
+import { endpoints, port } from '../src/common/defaults';
+import { document } from '../src/common/strings';
 
 // Common config.
-import { commonLoaders, commonPlugins, commonResolve, devtool, distPath, srcPath } from './common.config';
+import { distPath, entry, extensions, plugins, rules, srcPath } from './common.config';
 
-const port = 1337;
 const localhost = 'http://localhost';
+const webPort = 1337;
 
 export default {
     devServer: {
         contentBase: distPath,
         historyApiFallback: true,
-        port: port,
+        host: '0.0.0.0',
+        port: webPort,
         proxy: {
             // Proxy all api calls to the running server.
-            [defaults.endpoints.api.base]: {
-                target: `${localhost}:${process.env.APP_PORT}`,
-                secure: false
+            [`${endpoints.api.base}/**`]: {
+                logLevel: 'debug',
+                secure: false,
+                target: `http://[::1]:${port}`
             }
         }
     },
 
-    devtool: devtool,
+    devtool: 'source-map',
 
     entry: [
-        `webpack-dev-server/client?${localhost}:${port}`,
-        'webpack/hot/only-dev-server',
-        resolve(srcPath, 'index.jsx')
-    ],
+        `webpack-dev-server/client?${localhost}:${webPort}`,
+        'webpack/hot/only-dev-server'
+    ].concat(entry),
+
+    mode: 'development',
 
     module: {
-        rules: commonLoaders.concat([
-            {
-                test: /.jsx?$/,
-                use: ['react-hot-loader', 'babel-loader'],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    { loader: 'style-loader' },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 2,
-                            localIdentName: '[name]__[local]___[hash:base64:5]',
-                            modules: true
-                        }
-                    },
-                    { loader: 'postcss-loader' },
-                    { loader: 'sass-loader' }
-                ]
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader', query: { importLoaders: 2 } },
-                    { loader: 'postcss-loader' },
-                    { loader: 'sass-loader' }
-                ]
-            }
-        ])
+        rules
     },
 
     output: {
@@ -75,9 +48,9 @@ export default {
         publicPath: '/'
     },
 
-    plugins: commonPlugins.concat([
+    plugins: plugins.concat([
         new HtmlWebpackPlugin({
-            title: strings.document.title,
+            title: document.title,
             isDevelopment: true,
             inject: 'body',
             template: resolve(srcPath, 'index.hbs'),
@@ -91,5 +64,7 @@ export default {
         })
     ]),
 
-    resolve: commonResolve
+    resolve: {
+        extensions
+    }
 };
