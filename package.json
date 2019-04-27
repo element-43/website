@@ -114,5 +114,11 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "**/*.{js,json,jsx,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
