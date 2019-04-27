@@ -1,62 +1,48 @@
 import CleanPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { join, resolve } from 'path';
-
-// Config.
-import { document } from '../src/common/strings';
+import merge from 'webpack-merge';
 
 // Common config.
-import { distPath, entry, extensions, plugins, rules, srcPath } from './common.config';
+import common, { distPath, srcPath, title } from './common.config';
 
-export default {
-    devtool: false,
+export default merge(common, {
+  devtool: 'source-map',
 
-    entry: {
-        main: entry
+  mode: 'production',
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          // Rule of thumb: add any vendor files that are > 50kb
+          test: /axios|moment|react|react-dom|react-router-dom/,
+          chunks: 'initial',
+          name: 'vendor',
+          enforce: true,
+        },
+      },
     },
+  },
 
-    mode: 'production',
+  output: {
+    path: distPath,
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[chunkhash].js',
+  },
 
-    module: {
-        rules
-    },
-
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    // Rule of thumb: add any vendor files that are > 50kb
-                    test: /axios|moment|react|react-dom|react-router-dom/,
-                    chunks: 'initial',
-                    name: 'vendor',
-                    enforce: true
-                }
-            }
-        }
-    },
-
-    output: {
-        path: distPath,
-        filename: '[name].[hash].js',
-        chunkFilename: '[name].[chunkhash].js'
-    },
-
-    plugins: plugins.concat([
-        new CleanPlugin([distPath], { root: join(__dirname, '..') }),
-        new HtmlWebpackPlugin({
-            title: document.title,
-            inject: 'body',
-            template: resolve(srcPath, 'index.hbs'),
-            minify: {
-                collapseWhitespace: true,
-                removeComments: true,
-                minifyJS: true,
-                minifyCSS: true
-            }
-        })
-    ]),
-
-    resolve: {
-        extensions
-    }
-};
+  plugins: [
+    new CleanPlugin([distPath], { root: join(__dirname, '..') }),
+    new HtmlWebpackPlugin({
+      title,
+      inject: 'body',
+      template: resolve(srcPath, 'index.hbs'),
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyJS: true,
+        minifyCSS: true,
+      },
+    }),
+  ],
+});

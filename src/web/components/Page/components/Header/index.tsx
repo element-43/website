@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Components.
-import { MenuItem } from '../../'
+import { MenuItem } from '../../';
 import { BannerLogoSvg } from '../../../BannerLogoSvg';
 
 // Styles.
 import palette from '../../../../styles/palette';
 
 interface Props {
-    menu: MenuItem[];
+  menu: MenuItem[];
 }
 
 const Inner = styled.div`
@@ -47,32 +47,26 @@ const Wrapper = styled.header`
 `;
 
 const Header: React.SFC<Props> = (props: Props) => (
-    <Wrapper>
-        <Inner>
-            <MenuContainer>
-                <Link to="/">
-                    <BannerLogoSvg
-                        color={palette.greyScale.white}
-                        hoverColor={palette.brand.green500}
-                        size="4rem" />
-                </Link>
-                <Navigation>
-                    {
-                        props.menu.map((item: MenuItem, index: number) => (
-                            <MenuItemLink
-                                key={index}
-                                to={item.path}>
-                                {item.title}
-                            </MenuItemLink>
-                        ))
-                    }
-                </Navigation>
-            </MenuContainer>
-        </Inner>
-    </Wrapper>
+  <Wrapper>
+    <Inner>
+      <MenuContainer>
+        <Link to="/">
+          <BannerLogoSvg
+            color={palette.greyScale.white}
+            hoverColor={palette.brand.green500}
+            size="4rem"
+          />
+        </Link>
+        <Navigation>
+          {props.menu.map((item: MenuItem, index: number) => (
+            <MenuItemLink key={index} to={item.path}>
+              {item.title}
+            </MenuItemLink>
+          ))}
+        </Navigation>
+      </MenuContainer>
+    </Inner>
+  </Wrapper>
 );
 
-export {
-    Header,
-    Props
-};
+export { Header, Props };

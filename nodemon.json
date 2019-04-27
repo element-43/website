@@ -4,13 +4,8 @@
   },
   "exec": "ts-node --project tsconfig.api.json",
   "ext": "ts",
-  "ignore": [
-    "*.test*",
-    "src/web/"
-  ],
+  "ignore": ["*.test*", "src/web/"],
   "restartable": "rs",
   "verbose": true,
-  "watch": [
-    "src/api"
-  ]
+  "watch": ["src/api"]
 }

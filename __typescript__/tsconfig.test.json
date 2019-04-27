@@ -2,31 +2,18 @@
   "compilerOptions": {
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "dom",
-      "es6"
-    ],
+    "jsx": "react",
+    "lib": ["dom", "es6"],
     "module": "commonjs",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "outDir": "dist",
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "target": "es6"
   },
-  "exclude": [
-    "dist",
-    "node_modules",
-    "src/api/**/*.test.ts",
-    "src/web",
-    "test",
-    "webpack"
-  ],
-  "include": [
-    "src/api/*.ts"
-  ]
+  "exclude": ["dist", "node_modules", "test", "webpack"]
 }

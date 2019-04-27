@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
-import {
-    BrowserRouter,
-    Redirect,
-    Route,
-    Switch
-} from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { Store } from 'redux';
 import { injectGlobal } from 'styled-components';
 
@@ -20,10 +15,7 @@ import PageShell from './components/PageShell';
 import Portfolio from './pages/Portfolio';
 
 // Store.
-import {
-    ApplicationState,
-    configureStore
-} from './store';
+import { ApplicationState, configureStore } from './store';
 
 // Styles.
 import palette from './styles/palette';
@@ -94,35 +86,19 @@ injectGlobal`
 const store: Store<ApplicationState> = configureStore();
 
 const App: React.SFC = () => (
-    <Provider store={store}>
-        <BrowserRouter>
-            <PageShell>
-                <Switch>
-                    <Route
-                        exact={true}
-                        path="/"
-                        component={ Landing } />
-                    <Route
-                        exact={true}
-                        path={routes.about}
-                        component={ About } />
-                    <Route
-                        exact={true}
-                        path={routes.contact}
-                        component={ Contact } />
-                    <Route
-                        exact={true}
-                        path={routes.portfolio}
-                        component={ Portfolio } />
-                    <Redirect
-                        from="*"
-                        to="/" />
-                </Switch>
-            </PageShell>
-        </BrowserRouter>
-    </Provider>
+  <Provider store={store}>
+    <BrowserRouter>
+      <PageShell>
+        <Switch>
+          <Route exact={true} path="/" component={Landing} />
+          <Route exact={true} path={routes.about} component={About} />
+          <Route exact={true} path={routes.contact} component={Contact} />
+          <Route exact={true} path={routes.portfolio} component={Portfolio} />
+          <Redirect from="*" to="/" />
+        </Switch>
+      </PageShell>
+    </BrowserRouter>
+  </Provider>
 );
 
-export {
-    App,
-};
+export { App };

@@ -1,8 +1,4 @@
-import {
-    NextFunction,
-    Request,
-    Response
-} from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 // Config.
 import { headers } from '../../common/defaults';
@@ -13,7 +9,7 @@ import { unicorns } from '../../common/strings';
  * @param response the Response object.
  */
 function setDefaultHeaders(response: Response) {
-    response.set(headers.drivenBy, unicorns);
+  response.set(headers.drivenBy, unicorns);
 }
 
 /**
@@ -23,13 +19,13 @@ function setDefaultHeaders(response: Response) {
  * @param next the callback.
  */
 export function setResponseHeaders(
-    request: Request,
-    response: Response,
-    next: NextFunction
+  request: Request,
+  response: Response,
+  next: NextFunction
 ) {
-    setDefaultHeaders(response);
+  setDefaultHeaders(response);
 
-    next();
+  next();
 }
 
 /**
@@ -37,6 +33,5 @@ export function setResponseHeaders(
  * @param response the Response.
  */
 export function setStaticResponseHeaders(response: Response) {
-    setDefaultHeaders(response);
+  setDefaultHeaders(response);
 }
-

@@ -5,7 +5,7 @@ import { JSDOM } from 'jsdom';
  * @returns {JSDOM} a mocked DOM object.
  */
 export function createDom() {
-    return new JSDOM(`
+  return new JSDOM(`
         <!DOCTYPE html>
         <html>
             <body>

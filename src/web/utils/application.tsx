@@ -10,27 +10,29 @@ import { document } from '../../common/strings';
  * @return {Element} the <Helmet> node.
  */
 export function getHelmet(title?: string): JSX.Element {
-    const url: string = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
-    const image: string = `${url}assets/images/home_image.jpg`;
+  const url: string = `${window.location.protocol}//${window.location.host}${
+    window.location.pathname
+  }`;
+  const image: string = `${url}assets/images/home_image.jpg`;
 
-    title = (!title ? document.title : title);
+  title = !title ? document.title : title;
 
-    return (
-        <Helmet>
-            <title>{ title }</title>
-            <meta name="description" content={ document.description } />
+  return (
+    <Helmet>
+      <title>{title}</title>
+      <meta name="description" content={document.description} />
 
-            <meta name="twitter:description" content={ document.description } />
-            <meta name="twitter:image" content={ image } />
-            <meta name="twitter:title" content={ title } />
+      <meta name="twitter:description" content={document.description} />
+      <meta name="twitter:image" content={image} />
+      <meta name="twitter:title" content={title} />
 
-            <meta name="og:description" content={ document.description } />
-            <meta name="og:image" content={ image } />
-            <meta name="og:title" content={ title } />
-            <meta name="og:type" content={ 'website' } />
-            <meta name="og:url" content={ url } />
-        </Helmet>
-    );
+      <meta name="og:description" content={document.description} />
+      <meta name="og:image" content={image} />
+      <meta name="og:title" content={title} />
+      <meta name="og:type" content={'website'} />
+      <meta name="og:url" content={url} />
+    </Helmet>
+  );
 }
 
 /**
@@ -38,14 +40,14 @@ export function getHelmet(title?: string): JSX.Element {
  * @return {boolean} true if localStorage is available, false otherwise.
  */
 export function isLocalStorageAvailable(): boolean {
-    const testKey: string = '__storage_test';
+  const testKey: string = '__storage_test';
 
-    try {
-        window.localStorage.setItem(testKey, testKey);
-        window.localStorage.removeItem(testKey);
+  try {
+    window.localStorage.setItem(testKey, testKey);
+    window.localStorage.removeItem(testKey);
 
-        return true;
-    } catch(e) {
-        return false;
-    }
+    return true;
+  } catch (e) {
+    return false;
+  }
 }

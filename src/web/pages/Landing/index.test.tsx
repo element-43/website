@@ -9,27 +9,27 @@ import { Landing } from './';
 import { MockRouteComponentProps } from '../../../../test/mocks/reactRouterMock';
 
 interface Scope {
-    props: RouteComponentProps<{}>;
-    wrapper: ShallowWrapper;
+  props: RouteComponentProps<{}>;
+  wrapper: ShallowWrapper;
 }
 
 describe('/pages/Landing', () => {
-    let scope: Scope;
+  let scope: Scope;
 
-    beforeEach(() => {
-        const props: RouteComponentProps<{}> = {
-            ...new MockRouteComponentProps(),
-        };
+  beforeEach(() => {
+    const props: RouteComponentProps<{}> = {
+      ...new MockRouteComponentProps(),
+    };
 
-        scope = {
-            props,
-            wrapper: shallow(<Landing { ...props } />),
-        };
+    scope = {
+      props,
+      wrapper: shallow(<Landing {...props} />),
+    };
+  });
+
+  describe('<Landing /> snapshots', () => {
+    it('should match the snapshot', () => {
+      expect(scope.wrapper).toMatchSnapshot();
     });
-
-    describe('<Landing /> snapshots', () => {
-        it('should match the snapshot', () => {
-            expect(scope.wrapper).toMatchSnapshot();
-        });
-    });
+  });
 });

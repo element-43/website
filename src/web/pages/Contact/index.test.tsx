@@ -9,27 +9,27 @@ import { Contact } from './';
 import { MockRouteComponentProps } from '../../../../test/mocks/reactRouterMock';
 
 interface Scope {
-    props: RouteComponentProps<{}>;
-    wrapper: ShallowWrapper;
+  props: RouteComponentProps<{}>;
+  wrapper: ShallowWrapper;
 }
 
 describe('/pages/Contact', () => {
-    let scope: Scope;
+  let scope: Scope;
 
-    beforeEach(() => {
-        const props: RouteComponentProps<{}> = {
-            ...new MockRouteComponentProps(),
-        };
+  beforeEach(() => {
+    const props: RouteComponentProps<{}> = {
+      ...new MockRouteComponentProps(),
+    };
 
-        scope = {
-            props,
-            wrapper: shallow(<Contact { ...props } />),
-        };
+    scope = {
+      props,
+      wrapper: shallow(<Contact {...props} />),
+    };
+  });
+
+  describe('<Contact /> snapshots', () => {
+    it('should match the snapshot', () => {
+      expect(scope.wrapper).toMatchSnapshot();
     });
-
-    describe('<Contact /> snapshots', () => {
-        it('should match the snapshot', () => {
-            expect(scope.wrapper).toMatchSnapshot();
-        });
-    });
+  });
 });

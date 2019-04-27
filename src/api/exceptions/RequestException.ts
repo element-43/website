@@ -2,11 +2,11 @@
 import BaseException from './BaseException';
 
 export default class RequestException extends BaseException {
-    public status: number;
+  public status: number;
 
-    constructor(status: number, errors: Array<string>) {
-        super(errors);
+  constructor(status: number, errors: Array<string>) {
+    super(errors);
 
-        this.status = status;
-    }
+    this.status = status;
+  }
 }

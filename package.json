@@ -19,13 +19,14 @@
   },
   "scripts": {
     "build": "yarn build:api && yarn build:web",
-    "build:api": "rm -rf dist/api dist/common && tsc --project tsconfig.api.json",
-    "build:web": "node -r babel-register node_modules/.bin/webpack --config webpack/webpack.config.js --progress",
+    "build:api": "rm -rf dist/api dist/common && tsc --project __typescript__/tsconfig.api.json",
+    "build:web": "node -r @babel/register node_modules/.bin/webpack --config webpack/webpack.config.js --progress",
     "lint": "eslint --ext .js .",
     "postinstall": "(cp -n .env.example .env || true)",
+    "prettier": "prettier --config ./.prettierrc --write \"**/*.{js,json,jsx,ts,tsx}\"",
     "start": "cross-env NODE_ENV=\"development\" concurrently \"yarn start:api\" \"yarn start:web\"",
     "start:api": "nodemon src/api/index",
-    "start:web": "node -r babel-register node_modules/.bin/webpack-dev-server --config webpack/webpack.dev.config.js --progress",
+    "start:web": "node -r @babel/register node_modules/.bin/webpack-dev-server --config webpack/webpack.dev.config.js --progress",
     "test": "cross-env JEST_JUNIT_OUTPUT=\"junit/test-results.xml\" jest --config=test/jest.config.js"
   },
   "dependencies": {
@@ -50,6 +51,9 @@
     "velocity-animate": "^1.5.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
     "@types/body-parser": "^1.17.0",
     "@types/cookie-parser": "^1.4.1",
     "@types/dotenv": "^4.0.3",
@@ -70,12 +74,9 @@
     "@types/supertest": "^2.0.4",
     "@types/velocity-animate": "^1.2.32",
     "autoprefixer": "^8.5.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
-    "babel-jest": "^23.0.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.4.2",
     "clean-webpack-plugin": "^0.1.16",
     "concurrently": "^3.5.1",
     "cross-env": "^5.1.5",
@@ -87,13 +88,15 @@
     "handlebars": "^4.0.10",
     "handlebars-loader": "^1.5.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^2.1.0",
     "jest": "^22.4.4",
     "jest-junit": "^4.0.0",
     "jsdom": "^11.0.0",
+    "lint-staged": "^8.1.5",
     "node-mocks-http": "^1.7.0",
     "nodemon": "^1.17.5",
     "postcss-loader": "^2.1.5",
-    "sinon": "^5.0.7",
+    "prettier": "^1.17.0",
     "style-loader": "^0.21.0",
     "supertest": "^3.1.0",
     "ts-jest": "^22.4.6",
@@ -101,9 +104,15 @@
     "ts-node": "^6.1.0",
     "typescript": "^2.9.1",
     "url-loader": "^1.0.1",
-    "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.3",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.2.1",
     "webpack-notifier": "^1.5.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

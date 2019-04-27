@@ -2,11 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": [
-      "dom",
-      "es6"
-    ],
+    "lib": ["dom", "es6"],
     "module": "commonjs",
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -22,9 +18,10 @@
   "exclude": [
     "dist",
     "node_modules",
-    "src/api",
-    "src/web/**/*.test.ts",
+    "src/api/**/*.test.ts",
+    "src/web",
     "test",
     "webpack"
-  ]
+  ],
+  "include": ["src/api/*.ts"]
 }

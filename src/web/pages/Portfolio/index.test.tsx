@@ -9,27 +9,27 @@ import { Portfolio } from './';
 import { MockRouteComponentProps } from '../../../../test/mocks/reactRouterMock';
 
 interface Scope {
-    props: RouteComponentProps<Portfolio>;
-    wrapper: ShallowWrapper;
+  props: RouteComponentProps<Portfolio>;
+  wrapper: ShallowWrapper;
 }
 
 describe('/pages/Portfolio', () => {
-    let scope: Scope;
+  let scope: Scope;
 
-    beforeEach(() => {
-        const props: RouteComponentProps<Portfolio> = {
-            ...new MockRouteComponentProps(),
-        };
+  beforeEach(() => {
+    const props: RouteComponentProps<Portfolio> = {
+      ...new MockRouteComponentProps(),
+    };
 
-        scope = {
-            props,
-            wrapper: shallow(<Portfolio { ...props } />),
-        };
+    scope = {
+      props,
+      wrapper: shallow(<Portfolio {...props} />),
+    };
+  });
+
+  describe('<Portfolio /> snapshots', () => {
+    it('should match the snapshot', () => {
+      expect(scope.wrapper).toMatchSnapshot();
     });
-
-    describe('<Portfolio /> snapshots', () => {
-        it('should match the snapshot', () => {
-            expect(scope.wrapper).toMatchSnapshot();
-        });
-    });
+  });
 });

@@ -13,29 +13,26 @@ import ScrollToTop from '../ScrollToTop';
 import Terminal from '../Terminal';
 
 interface Props {
-    children: React.ReactNode;
-    layout: LayoutState;
+  children: React.ReactNode;
+  layout: LayoutState;
 }
 
 const PageShell: React.SFC<Props> = (props: Props) => (
-    <>
-        <GoogleAnalytics />
-        <KonamiCode />
-        <ScrollToTop />
-        {props.layout.asteroids.isOpen && <AsteroidsGame />}
-        <Terminal />
-        {props.children}
-    </>
+  <>
+    <GoogleAnalytics />
+    <KonamiCode />
+    <ScrollToTop />
+    {props.layout.asteroids.isOpen && <AsteroidsGame />}
+    <Terminal />
+    {props.children}
+  </>
 );
 
 const mapStateToProps = (state: ApplicationState) => {
-    return {
-        layout: state.layout,
-    }
+  return {
+    layout: state.layout,
+  };
 };
 
 export default connect(mapStateToProps)(PageShell);
-export {
-    PageShell,
-    Props,
-};
+export { PageShell, Props };

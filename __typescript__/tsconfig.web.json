@@ -3,15 +3,13 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": [
-      "dom",
-      "es6"
-    ],
+    "lib": ["dom", "es6"],
     "module": "commonjs",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
+    "outDir": "dist",
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
@@ -21,6 +19,8 @@
   "exclude": [
     "dist",
     "node_modules",
+    "src/api",
+    "src/web/**/*.test.ts",
     "test",
     "webpack"
   ]

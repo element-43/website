@@ -1,71 +1,70 @@
-import { Action } from 'redux';
-
 //====================================================
-// States.
+// Actions.
 //====================================================
 
-export interface LayoutState {
-    asteroids: AsteroidsConfig;
-    header: HeaderConfig;
-    terminal: TerminalConfig;
+export interface CloseAsteroidsAction {
+  type: LayoutActionTypes.CloseAsteriods;
 }
 
-export interface AsteroidsConfig {
-    isOpen: boolean;
+export interface CloseMenuAction {
+  type: LayoutActionTypes.CloseMenu;
 }
 
-export interface HeaderConfig {
-    isMenuOpen: boolean;
+export interface CloseTerminalAction {
+  type: LayoutActionTypes.CloseTerminal;
 }
 
-export interface TerminalConfig {
-    isOpen: boolean;
+export interface OpenAsteroidsAction {
+  type: LayoutActionTypes.OpenAsteroids;
 }
+
+export interface OpenMenuAction {
+  type: LayoutActionTypes.OpenMenu;
+}
+
+export interface OpenTerminalAction {
+  type: LayoutActionTypes.OpenTerminal;
+}
+
+export type LayoutActions =
+  | CloseAsteroidsAction
+  | CloseMenuAction
+  | CloseTerminalAction
+  | OpenAsteroidsAction
+  | OpenMenuAction
+  | OpenTerminalAction;
 
 //====================================================
 // Action types.
 //====================================================
 
 export enum LayoutActionTypes {
-    CloseAsteriods = '@layout/CLOSE_ASTEROIDS',
-    CloseMenu = '@layout/CLOSE_MENU',
-    CloseTerminal = '@layout/CLOSE_TERMINAL',
-    OpenAsteroids = '@layout/OPEN_ASTEROIDS',
-    OpenMenu = '@layout/OPEN_MENU',
-    OpenTerminal = '@layout/OPEN_TERMINAL',
+  CloseAsteriods = '@layout/CLOSE_ASTEROIDS',
+  CloseMenu = '@layout/CLOSE_MENU',
+  CloseTerminal = '@layout/CLOSE_TERMINAL',
+  OpenAsteroids = '@layout/OPEN_ASTEROIDS',
+  OpenMenu = '@layout/OPEN_MENU',
+  OpenTerminal = '@layout/OPEN_TERMINAL',
 }
 
 //====================================================
-// Actions.
+// States.
 //====================================================
 
-export interface CloseAsteroidsAction extends Action {
-    type: LayoutActionTypes.CloseAsteriods;
+export interface LayoutState {
+  asteroids: AsteroidsConfig;
+  header: HeaderConfig;
+  terminal: TerminalConfig;
 }
 
-export interface CloseMenuAction extends Action {
-    type: LayoutActionTypes.CloseMenu;
+export interface AsteroidsConfig {
+  isOpen: boolean;
 }
 
-export interface CloseTerminalAction extends Action {
-    type: LayoutActionTypes.CloseTerminal;
+export interface HeaderConfig {
+  isMenuOpen: boolean;
 }
 
-export interface OpenAsteroidsAction extends Action {
-    type: LayoutActionTypes.OpenAsteroids;
+export interface TerminalConfig {
+  isOpen: boolean;
 }
-
-export interface OpenMenuAction extends Action {
-    type: LayoutActionTypes.OpenMenu;
-}
-
-export interface OpenTerminalAction extends Action {
-    type: LayoutActionTypes.OpenTerminal;
-}
-
-export type LayoutActions = CloseAsteroidsAction
-    | CloseMenuAction
-    | CloseTerminalAction
-    | OpenAsteroidsAction
-    | OpenMenuAction
-    | OpenTerminalAction;

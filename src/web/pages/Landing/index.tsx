@@ -5,20 +5,18 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Page } from '../../components/Page';
 
 class Landing extends React.Component<RouteComponentProps<{}>> {
-    constructor(props: RouteComponentProps<{}>) {
-        super(props);
-    }
+  constructor(props: RouteComponentProps<{}>) {
+    super(props);
+  }
 
-    render()  {
-        return (
-            <Page>
-                <h1>Hello human!</h1>
-            </Page>
-        );
-    }
+  render() {
+    return (
+      <Page>
+        <h1>Hello human!</h1>
+      </Page>
+    );
+  }
 }
 
 export default Landing;
-export {
-    Landing
-};
+export { Landing };
