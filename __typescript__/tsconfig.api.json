@@ -1,27 +1,12 @@
 {
-  "compilerOptions": {
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "es6"],
-    "module": "commonjs",
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "outDir": "dist",
-    "sourceMap": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "target": "es6"
-  },
+  "extends": "./tsconfig.json",
   "exclude": [
-    "dist",
-    "node_modules",
-    "src/api/**/*.test.ts",
-    "src/web",
-    "test",
-    "webpack"
+    "../dist",
+    "../node_modules",
+    "../src/api/**/*.test.ts",
+    "../src/web",
+    "../__test__",
+    "../__webpack__"
   ],
-  "include": ["src/api/*.ts"]
+  "include": ["../src/api/*.ts"]
 }

@@ -1,15 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
 
-// Config.
-import { headers } from '../../common/defaults';
-import { unicorns } from '../../common/strings';
+// Enums.
+import { HeadersEnum } from '../../common/enums';
+
+// Strings.
+import { Headers } from '../../common/strings';
 
 /**
  * Convenience function that sets the default headers.
  * @param response the Response object.
  */
 function setDefaultHeaders(response: Response) {
-  response.set(headers.drivenBy, unicorns);
+  response.set(HeadersEnum.XDrivenBy, Headers.POWERED_BY);
 }
 
 /**

@@ -1,3 +1,9 @@
+// Enums.
+import { RoutesEnum } from '../../../common/enums';
+
+// Reducer.
+import reducer from './reducer';
+
 // Types.
 import {
   CloseAsteroidsAction,
@@ -5,13 +11,15 @@ import {
   CloseTerminalAction,
   LayoutActionTypes,
   LayoutState,
+  MenuItem,
   OpenAsteroidsAction,
   OpenMenuAction,
   OpenTerminalAction,
+  SetMenuItemAction,
 } from './types';
 
-// Reducer.
-import reducer from './reducer';
+// Utils.
+import { getInitialState } from './utils';
 
 interface Scope {
   initialState: LayoutState;
@@ -22,17 +30,7 @@ describe('store/layout/reducer', () => {
 
   beforeEach(() => {
     scope = {
-      initialState: {
-        asteroids: {
-          isOpen: false,
-        },
-        header: {
-          isMenuOpen: false,
-        },
-        terminal: {
-          isOpen: false,
-        },
-      },
+      initialState: getInitialState(),
     };
   });
 
@@ -41,9 +39,9 @@ describe('store/layout/reducer', () => {
       type: LayoutActionTypes.CloseAsteriods,
     };
 
-    scope.initialState.asteroids.isOpen = true;
+    scope.initialState.asteroids.open = true;
 
-    expect(reducer(scope.initialState, action).asteroids.isOpen).toBe(false);
+    expect(reducer(scope.initialState, action).asteroids.open).toBe(false);
   });
 
   it('should close the menu', () => {
@@ -51,9 +49,9 @@ describe('store/layout/reducer', () => {
       type: LayoutActionTypes.CloseMenu,
     };
 
-    scope.initialState.header.isMenuOpen = true;
+    scope.initialState.menu.open = true;
 
-    expect(reducer(scope.initialState, action).header.isMenuOpen).toBe(false);
+    expect(reducer(scope.initialState, action).menu.open).toBe(false);
   });
 
   it('should close the terminal', () => {
@@ -61,9 +59,9 @@ describe('store/layout/reducer', () => {
       type: LayoutActionTypes.CloseTerminal,
     };
 
-    scope.initialState.terminal.isOpen = true;
+    scope.initialState.terminal.open = true;
 
-    expect(reducer(scope.initialState, action).terminal.isOpen).toBe(false);
+    expect(reducer(scope.initialState, action).terminal.open).toBe(false);
   });
 
   it('should open the asteroids game', () => {
@@ -71,9 +69,9 @@ describe('store/layout/reducer', () => {
       type: LayoutActionTypes.OpenAsteroids,
     };
 
-    scope.initialState.asteroids.isOpen = false;
+    scope.initialState.asteroids.open = false;
 
-    expect(reducer(scope.initialState, action).asteroids.isOpen).toBe(true);
+    expect(reducer(scope.initialState, action).asteroids.open).toBe(true);
   });
 
   it('should open the menu', () => {
@@ -81,9 +79,9 @@ describe('store/layout/reducer', () => {
       type: LayoutActionTypes.OpenMenu,
     };
 
-    scope.initialState.header.isMenuOpen = false;
+    scope.initialState.menu.open = false;
 
-    expect(reducer(scope.initialState, action).header.isMenuOpen).toBe(true);
+    expect(reducer(scope.initialState, action).menu.open).toBe(true);
   });
 
   it('should open the terminal', () => {
@@ -91,8 +89,33 @@ describe('store/layout/reducer', () => {
       type: LayoutActionTypes.OpenTerminal,
     };
 
-    scope.initialState.terminal.isOpen = false;
+    scope.initialState.terminal.open = false;
 
-    expect(reducer(scope.initialState, action).terminal.isOpen).toBe(true);
+    expect(reducer(scope.initialState, action).terminal.open).toBe(true);
+  });
+
+  describe('LayoutActionTypes.SetMenuItem', () => {
+    it('should set the menu item to active if the route exists', () => {
+      const action: SetMenuItemAction = {
+        route: RoutesEnum.About,
+        type: LayoutActionTypes.SetMenuItem,
+      };
+      const state: LayoutState = reducer(scope.initialState, action);
+
+      expect(
+        state.menu.items.find(
+          (value: MenuItem) => value.route === RoutesEnum.About
+        ).active
+      ).toBe(true);
+    });
+
+    it('should not set any items', () => {
+      const action: SetMenuItemAction = {
+        type: LayoutActionTypes.SetMenuItem,
+      };
+      const state: LayoutState = reducer(scope.initialState, action);
+
+      expect(state.menu.items).toEqual(scope.initialState.menu.items);
+    });
   });
 });

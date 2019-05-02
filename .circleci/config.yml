@@ -97,7 +97,7 @@ jobs:
       - run:
           name: 3...2...1...Deploy!!
           command: |
-            ssh -v -o StrictHostKeyChecking=no $DROPLET_USER@$DROPLET_IP "cd ~/element-43-website; COOKIE_SECRET=$COOKIE_SECRET HOST=$HOST LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL PORT=$PORT ./bin/deploy.sh"
+            ssh -v -o StrictHostKeyChecking=no $DROPLET_USER@$DROPLET_IP "cd ~/element-43-website; COOKIE_SECRET=$COOKIE_SECRET HOST=$HOST LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL PORT=$PORT ./scripts/deploy.sh"
 
 workflows:
   version: 2

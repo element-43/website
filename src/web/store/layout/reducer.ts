@@ -3,87 +3,96 @@ import { Reducer } from 'redux';
 // Types.
 import {
   AsteroidsConfig,
-  HeaderConfig,
+  MenuConfig,
+  MenuItem,
   LayoutActionTypes,
   LayoutState,
   LayoutActions,
   TerminalConfig,
 } from './types';
 
-const initialState: LayoutState = {
-  asteroids: {
-    isOpen: false,
-  },
-  header: {
-    isMenuOpen: false,
-  },
-  terminal: {
-    isOpen: false,
-  },
-};
+// Utils.
+import { getInitialState } from './utils';
 
 const reducer: Reducer<LayoutState, LayoutActions> = (
-  state: LayoutState = initialState,
+  state: LayoutState = getInitialState(),
   action: LayoutActions
 ) => {
   let asteroids: AsteroidsConfig;
-  let header: HeaderConfig;
+  let menu: MenuConfig;
   let terminal: TerminalConfig;
 
   switch (action.type) {
     case LayoutActionTypes.CloseAsteriods:
-      asteroids = initialState.asteroids;
+      asteroids = state.asteroids;
 
-      asteroids.isOpen = false;
+      asteroids.open = false;
 
       return {
         ...state,
         asteroids,
       };
     case LayoutActionTypes.CloseMenu:
-      header = initialState.header;
+      menu = state.menu;
 
-      header.isMenuOpen = false;
+      menu.open = false;
 
       return {
         ...state,
-        header,
+        menu,
       };
     case LayoutActionTypes.CloseTerminal:
-      terminal = initialState.terminal;
+      terminal = state.terminal;
 
-      terminal.isOpen = false;
+      terminal.open = false;
 
       return {
         ...state,
         terminal,
       };
     case LayoutActionTypes.OpenAsteroids:
-      asteroids = initialState.asteroids;
+      asteroids = state.asteroids;
 
-      asteroids.isOpen = true;
+      asteroids.open = true;
 
       return {
         ...state,
         asteroids,
       };
     case LayoutActionTypes.OpenMenu:
-      header = initialState.header;
+      menu = state.menu;
 
-      header.isMenuOpen = true;
+      menu.open = true;
 
       return {
         ...state,
-        header,
+        menu,
       };
     case LayoutActionTypes.OpenTerminal:
-      terminal = initialState.terminal;
+      terminal = state.terminal;
 
-      terminal.isOpen = true;
+      terminal.open = true;
 
       return {
         ...state,
         terminal,
+      };
+    case LayoutActionTypes.SetMenuItem:
+      menu = state.menu;
+
+      menu.items.map((value: MenuItem) => ({
+        ...value,
+        active: value.route === action.route,
+      }));
+
+      return {
+        ...state,
+        menu,
+      };
+    case LayoutActionTypes.SetTitle:
+      return {
+        ...state,
+        title: action.title,
       };
     default:
       return state;
