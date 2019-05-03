@@ -4,9 +4,6 @@ import webpack from 'webpack';
 import merge from 'webpack-merge';
 import WebpackNotifierPlugin from 'webpack-notifier';
 
-// Config.
-import { endpoints, port } from '../src/common/defaults';
-
 // Common config.
 import common, { distPath, srcPath, title } from './common.config';
 
@@ -21,10 +18,10 @@ export default merge(common, {
     port: webPort,
     proxy: {
       // Proxy all api calls to the running server.
-      [`${endpoints.api.base}/**`]: {
+      ['/api/**']: {
         logLevel: 'debug',
         secure: false,
-        target: `http://[::1]:${port}`,
+        target: `http://[::1]:${process.env.PORT}`,
       },
     },
   },

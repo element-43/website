@@ -10,7 +10,7 @@ export interface Props {
   viewBox: string;
 }
 
-export const StyledSvg = styled<Props, 'svg'>('svg')`
+export const StyledSvg = styled.svg<Props>`
   height: ${(props) => props.size || '1rem'};
 
   ${(props) =>
@@ -24,8 +24,8 @@ export const StyledSvg = styled<Props, 'svg'>('svg')`
   `}
 
   path {
-    fill: ${(props) => props.color || palette.greyScale.black};
-    ${(props) =>
+    fill: ${(props: Props) => props.color || palette.greyScale.black};
+    ${(props: Props) =>
       props.hoverColor &&
       `
         transition: fill 0.3s ease-in-out;

@@ -1,12 +1,14 @@
 import { Request, Response } from 'express';
 import { IM_A_TEAPOT } from 'http-status-codes';
 
-// Config.
-import { endpoints } from '../../common/defaults';
-import { teapotError } from '../../common/errors';
+// Enums.
+import { EndpointsEnum, HttpMethodEnum } from '../../common/enums';
 
 // Routes.
-import BaseRoute, { Method } from './BaseRoute';
+import BaseRoute from './BaseRoute';
+
+// Strings.
+import { Errors } from '../../common/strings';
 
 class TeapotRoute extends BaseRoute {
   constructor() {
@@ -15,14 +17,14 @@ class TeapotRoute extends BaseRoute {
     this.routes = [
       {
         callback: this.getTeapot.bind(this),
-        method: Method.Get,
-        route: `${endpoints.api.teapot}`,
+        method: HttpMethodEnum.Get,
+        route: `${EndpointsEnum.Teapot}`,
       },
     ];
   }
 
   private async getTeapot(request: Request, response: Response): Promise<void> {
-    response.status(IM_A_TEAPOT).send(teapotError);
+    response.status(IM_A_TEAPOT).send(Errors.TeapotError);
   }
 }
 

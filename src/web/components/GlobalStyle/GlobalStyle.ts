@@ -1,9 +1,13 @@
-import { createGlobalStyle, GlobalStyleComponent } from 'styled-components';
+import {
+  createGlobalStyle,
+  DefaultTheme,
+  GlobalStyleComponent,
+} from 'styled-components';
 
 // Styles.
 import palette from '../../styles/palette';
 
-const GlobalStyle: GlobalStyleComponent<{}, void> = createGlobalStyle`
+const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
   @font-face {
     font-family: "VT323";
     font-style: normal;

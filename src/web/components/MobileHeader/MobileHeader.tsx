@@ -191,8 +191,8 @@ export class MobileHeader extends React.PureComponent<Props> {
             />
           </IconButtonContainer>
         </MenuIconContainer>
-        <Overlay innerRef={this.overlayRef as any}>
-          <NavigationContainer innerRef={this.navigationContainerRef as any}>
+        <Overlay ref={this.overlayRef}>
+          <NavigationContainer ref={this.navigationContainerRef}>
             <IconButtonContainer onClick={() => this.closeMenu()}>
               <CrossSvg
                 color={palette.greyScale.white}

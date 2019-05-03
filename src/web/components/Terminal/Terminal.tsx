@@ -159,13 +159,13 @@ export class Terminal extends React.PureComponent<Props, State> {
 
   public render(): React.ReactElement<Terminal> {
     return (
-      <Wrapper innerRef={this.terminalRef as any}>
+      <Wrapper ref={this.terminalRef}>
         <InputContainer>
           <Input
             autoComplete="off"
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
-            innerRef={this.inputRef as any}
+            ref={this.inputRef}
             type="text"
             value={this.state.value}
           />

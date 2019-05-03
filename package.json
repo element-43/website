@@ -26,7 +26,7 @@
     "prettier": "prettier --config ./.prettierrc --write \"**/*.{js,json,jsx,ts,tsx}\"",
     "start": "cross-env NODE_ENV=\"development\" concurrently \"yarn start:api\" \"yarn start:web\"",
     "start:api": "nodemon \"src/api/index\"",
-    "start:web": "node -r @babel/register node_modules/.bin/webpack-dev-server --config \"__webpack__/webpack.dev.config.js\" --progress",
+    "start:web": "node -r dotenv/config -r @babel/register node_modules/.bin/webpack-dev-server --config \"__webpack__/webpack.dev.config.js\" --progress",
     "test": "cross-env JEST_JUNIT_OUTPUT=\"junit/test-results.xml\" jest --config=\"__test__/jest.config.js\""
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "react-helmet": "^5.2.0",
     "react-redux": "^7.0.3",
     "react-responsive": "^4.1.0",
+    "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.0",
     "styled-components": "^4.2.0",
@@ -71,7 +72,7 @@
     "@types/react-redux": "^7.0.8",
     "@types/react-responsive": "^3.0.1",
     "@types/react-router-dom": "^4.3.2",
-    "@types/sinon": "^5.0.1",
+    "@types/styled-components": "^4.1.14",
     "@types/supertest": "^2.0.4",
     "@types/velocity-animate": "^1.2.32",
     "autoprefixer": "^8.5.0",
@@ -100,6 +101,7 @@
     "prettier": "^1.17.0",
     "style-loader": "^0.21.0",
     "supertest": "^3.1.0",
+    "tasksfile": "^5.1.0",
     "ts-jest": "^22.4.6",
     "ts-loader": "^4.3.1",
     "ts-node": "^6.1.0",

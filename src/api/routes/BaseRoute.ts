@@ -2,23 +2,18 @@ import { Express, NextFunction, Request, Response } from 'express';
 import { ValidationChain } from 'express-validator/check';
 import { BAD_REQUEST, INTERNAL_SERVER_ERROR } from 'http-status-codes';
 
-// Config.
-import { endpoints } from '../../common/defaults';
-import { serverError } from '../../common/errors';
+// Enums.
+import { EndpointsEnum, HttpMethodEnum } from '../../common/enums';
 
 // Exceptions.
 import RequestException from '../exceptions/RequestException';
 
-export enum Method {
-  Delete = 'DELETE',
-  Get = 'GET',
-  Patch = 'PATCH',
-  Post = 'POST',
-}
+// Strings.
+import { Errors } from '../../common/strings';
 
 export interface RouteDeclaration {
   callback: (request: Request, response: Response, next: NextFunction) => void;
-  method: Method;
+  method: HttpMethodEnum;
   route: string;
   validators?: Array<ValidationChain>;
 }
@@ -39,7 +34,9 @@ class BaseRoute {
       return next(error);
     }
 
-    return next(new RequestException(INTERNAL_SERVER_ERROR, [serverError]));
+    return next(
+      new RequestException(INTERNAL_SERVER_ERROR, [Errors.ServerError])
+    );
   }
 
   protected handleValidationError(next: NextFunction, errors: any[]): void {
@@ -58,7 +55,7 @@ class BaseRoute {
   public registerRoutes(app: Express): void {
     this.routes.forEach((value: RouteDeclaration) => {
       app[(value.method as string).toLowerCase()](
-        `${endpoints.api.base}${value.route}`,
+        `${EndpointsEnum.Base}${value.route}`,
         value.validators || [],
         value.callback
       );
