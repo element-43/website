@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   min-height: 100vh;
   width: 100%;
 
-  ${media.mobileOnly`
+  ${media.mobile`
     flex-direction: column;
     justify-content: flex-start;
   `}

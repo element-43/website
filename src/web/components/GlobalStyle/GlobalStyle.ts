@@ -28,7 +28,7 @@ const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
     flex-direction: column;
     min-height: 100%;
   }
-  
+
   h1,
   h2,
   h3,
@@ -39,35 +39,35 @@ const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
     font-weight: 400;
     margin: 0;
   }
-    
+
   h1 {
     font-size: 3.2rem;
   }
-    
+
   h2 {
     font-size: 2.5rem;
   }
-    
+
   h3 {
     font-size: 1.8rem;
   }
-    
+
   h4 {
     font-size: 1.3rem;
   }
-    
+
   a,
   p {
     font-size: 1rem;
   }
-    
+
   a {
     color: ${palette.brand.purple500};
     cursor: pointer;
     display: block;
     text-decoration: none;
     transition: all 300ms ease-in-out;
-        
+
     &:hover {
       color: ${palette.brand.green500};
     }

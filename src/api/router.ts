@@ -23,7 +23,7 @@ export function webRoutes(app: Express): void {
 }
 
 export function apiRoutes(app: Express): void {
-  const routes: Array<Route> = [new TeapotRoute()];
+  const routes: Route[] = [new TeapotRoute()];
 
   // Set up api routes.
   routes.forEach((route: Route) => route.registerRoutes(app));

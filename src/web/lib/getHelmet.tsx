@@ -13,9 +13,7 @@ export default function(
   title: string = Titles.DEFAULT
 ): React.ReactElement<Helmet> {
   const description: string = 'Not just an element!';
-  const url: string = `${window.location.protocol}//${window.location.host}${
-    window.location.pathname
-  }`;
+  const url: string = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
   const image: string = `${url}assets/images/home_image.jpg`;
 
   return (
