@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 
 // Strings.
-import { Titles } from '../../common/strings';
+import { Titles } from '../../common/constants';
 
 /**
  * Creates a <Helmet> node that is used by react-helmet to change the meta data in the head of the DOM.

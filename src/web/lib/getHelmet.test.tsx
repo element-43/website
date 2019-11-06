@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import { HelmetProps } from 'react-helmet';
 
 // Config.
-import { Titles } from '../../common/strings';
+import { Titles } from '../../common/constants';
 
 // Module.
 import getHelmet from './getHelmet';

@@ -2,7 +2,7 @@
 import { RoutesEnum } from '../../../common/enums';
 
 // Strings.
-import { Titles } from '../../../common/strings';
+import { Titles } from '../../../common/constants';
 
 // Types.
 import { LayoutState } from './types';
