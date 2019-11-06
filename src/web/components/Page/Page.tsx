@@ -14,7 +14,7 @@ import palette from '../../styles/palette';
 import typography from '../../styles/typography';
 
 // Types.
-import { ApplicationState } from '../../store';
+import { IApplicationState } from '../../store';
 
 // Utils.
 import getHelmet from '../../lib/getHelmet';
@@ -37,12 +37,12 @@ const Wrapper = styled.div`
   `}
 `;
 
-export interface Props {
+export interface IProps {
   children: React.ReactNode;
   title: string;
 }
 
-export const Page: React.FC<Props> = (props: Props) => (
+export const Page: React.FC<IProps> = (props: IProps) => (
   <Wrapper>
     {getHelmet(props.title)}
     <MobileLayout>
@@ -55,7 +55,7 @@ export const Page: React.FC<Props> = (props: Props) => (
   </Wrapper>
 );
 
-const mapStateToProps = (state: ApplicationState) => {
+const mapStateToProps = (state: IApplicationState) => {
   return {
     title: state.layout.title,
   };

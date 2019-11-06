@@ -3,13 +3,13 @@ import * as React from 'react';
 // Components.
 import { StyledSvg } from '../StyledSvg';
 
-export interface Props {
+export interface IProps {
   color?: string;
   hoverColor?: string;
   size?: string;
 }
 
-export const BannerLogoSvg: React.FC<Props> = (props: Props) => (
+export const BannerLogoSvg: React.FC<IProps> = (props: IProps) => (
   <StyledSvg
     color={props.color}
     hoverColor={props.hoverColor}

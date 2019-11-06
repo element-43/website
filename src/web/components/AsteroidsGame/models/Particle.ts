@@ -1,7 +1,7 @@
 // Types.
-import { Entity } from '../types';
+import { IEntity } from '../types';
 
-class Particle implements Entity {
+class Particle implements IEntity {
   public angle: number;
   public radius: number;
   public x: number;

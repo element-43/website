@@ -2,9 +2,9 @@
 import { FPS, SHIP_BLINK_DURATION, SHIP_SIZE } from '../constants';
 
 // Types.
-import { Entity } from '../types';
+import { IEntity } from '../types';
 
-interface Laser {
+interface ILaser {
   x: number;
   y: number;
   xv: number;
@@ -13,23 +13,23 @@ interface Laser {
   explodeTime: number;
 }
 
-interface Thrust {
+interface IThrust {
   x: number;
   y: number;
 }
 
-class Ship implements Entity {
+class Ship implements IEntity {
   public angle: number;
   public blinkNum: number;
   public blinkTime: number;
   public canShoot: boolean;
   public dead: boolean;
   public explodeTime: number;
-  public lasers: Laser[];
+  public lasers: ILaser[];
   public radius: number;
   public rotation: number;
   public thrusting: boolean;
-  public thrust: Thrust;
+  public thrust: IThrust;
   public x: number;
   public y: number;
 
@@ -73,4 +73,4 @@ class Ship implements Entity {
   }
 }
 
-export { Laser, Ship, Thrust };
+export { ILaser, Ship, IThrust };

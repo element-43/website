@@ -18,12 +18,12 @@ import { MenuSvg } from '../MenuSvg';
 import palette from '../../styles/palette';
 
 // Types.
-import { ApplicationState } from '../../store';
+import { IApplicationState } from '../../store';
 import {
-  CloseMenuAction,
-  MenuConfig,
-  MenuItem,
-  OpenMenuAction,
+  ICloseMenuAction,
+  IMenuConfig,
+  IMenuItem,
+  IOpenMenuAction,
 } from '../../store/layout/types';
 import { PushAction } from '../../store/router/types';
 
@@ -80,14 +80,14 @@ const Wrapper = styled.header`
   width: 100%;
 `;
 
-export interface Props {
-  closeMenu: ActionCreator<CloseMenuAction>;
-  menu: MenuConfig;
-  openMenu: ActionCreator<OpenMenuAction>;
+export interface IProps {
+  closeMenu: ActionCreator<ICloseMenuAction>;
+  menu: IMenuConfig;
+  openMenu: ActionCreator<IOpenMenuAction>;
   push: ActionCreator<PushAction>;
 }
 
-export class MobileHeader extends React.PureComponent<Props> {
+export class MobileHeader extends React.PureComponent<IProps> {
   private readonly navigationContainerRef: React.RefObject<HTMLDivElement>;
   private readonly overlayRef: React.RefObject<HTMLDivElement>;
 
@@ -100,7 +100,7 @@ export class MobileHeader extends React.PureComponent<Props> {
     this.closeMenu();
   };
 
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super(props);
 
     this.navigationContainerRef = React.createRef();
@@ -201,7 +201,7 @@ export class MobileHeader extends React.PureComponent<Props> {
               />
             </IconButtonContainer>
             <Navigation>
-              {menu.items.map((item: MenuItem, index: number) => (
+              {menu.items.map((item: IMenuItem, index: number) => (
                 <MenuItemLink
                   key={`mobile-header__menu-item-${index}`}
                   onClick={this.onMenuItemClick(item.route)}
@@ -222,7 +222,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   openMenu: bindActionCreators(openMenu, dispatch),
   push: bindActionCreators(push, dispatch),
 });
-const mapStateToProps = (state: ApplicationState) => {
+const mapStateToProps = (state: IApplicationState) => {
   return {
     menu: state.layout.menu,
   };

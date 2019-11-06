@@ -1,11 +1,11 @@
 import * as React from 'react';
 import MediaQuery from 'react-responsive';
 
-export interface Props {
+export interface IProps {
   children: React.ReactNode;
 }
 
-export const MobileLayout: React.SFC<Props> = (props: Props) => (
+export const MobileLayout: React.FC<IProps> = (props: IProps) => (
   <MediaQuery maxWidth={1110}>{props.children}</MediaQuery>
 );
 

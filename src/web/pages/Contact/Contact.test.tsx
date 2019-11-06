@@ -8,13 +8,13 @@ import { Contact } from './Contact';
 // Mocks.
 import { MockRouteComponentProps } from '../../../../__mocks__/reactRouterMock';
 
-interface Scope {
+interface IScope {
   props: RouteComponentProps<{}>;
   wrapper: ShallowWrapper;
 }
 
 describe('/pages/Contact', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
     const props: RouteComponentProps<{}> = {

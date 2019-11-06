@@ -5,9 +5,9 @@ import { RoutesEnum } from '../../../common/enums/api';
 import { Titles } from '../../../common/constants';
 
 // Types.
-import { LayoutState } from './types';
+import { ILayoutState } from './types';
 
-export function getInitialState(): LayoutState {
+export function getInitialState(): ILayoutState {
   return {
     asteroids: {
       open: false,

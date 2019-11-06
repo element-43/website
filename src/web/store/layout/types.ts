@@ -5,49 +5,49 @@ import { RoutesEnum } from '../../../common/enums/api';
 // Actions.
 // ====================================================
 
-export interface CloseAsteroidsAction {
+export interface ICloseAsteroidsAction {
   type: LayoutActionTypes.CloseAsteriods;
 }
 
-export interface CloseMenuAction {
+export interface ICloseMenuAction {
   type: LayoutActionTypes.CloseMenu;
 }
 
-export interface CloseTerminalAction {
+export interface ICloseTerminalAction {
   type: LayoutActionTypes.CloseTerminal;
 }
 
-export interface OpenAsteroidsAction {
+export interface IOpenAsteroidsAction {
   type: LayoutActionTypes.OpenAsteroids;
 }
 
-export interface OpenMenuAction {
+export interface IOpenMenuAction {
   type: LayoutActionTypes.OpenMenu;
 }
 
-export interface OpenTerminalAction {
+export interface IOpenTerminalAction {
   type: LayoutActionTypes.OpenTerminal;
 }
 
-export interface SetMenuItemAction {
+export interface ISetMenuItemAction {
   route?: MenuRoutes;
   type: LayoutActionTypes.SetMenuItem;
 }
 
-export interface SetTitleAction {
+export interface ISetTitleAction {
   title: string;
   type: LayoutActionTypes.SetTitle;
 }
 
 export type LayoutActions =
-  | CloseAsteroidsAction
-  | CloseMenuAction
-  | CloseTerminalAction
-  | OpenAsteroidsAction
-  | OpenMenuAction
-  | OpenTerminalAction
-  | SetMenuItemAction
-  | SetTitleAction;
+  | ICloseAsteroidsAction
+  | ICloseMenuAction
+  | ICloseTerminalAction
+  | IOpenAsteroidsAction
+  | IOpenMenuAction
+  | IOpenTerminalAction
+  | ISetMenuItemAction
+  | ISetTitleAction;
 
 // ====================================================
 // Action types.
@@ -68,23 +68,23 @@ export enum LayoutActionTypes {
 // Types.
 // ====================================================
 
-export interface LayoutState {
-  asteroids: AsteroidsConfig;
-  menu: MenuConfig;
-  terminal: TerminalConfig;
+export interface ILayoutState {
+  asteroids: IAsteroidsConfig;
+  menu: IMenuConfig;
+  terminal: ITerminalConfig;
   title: string;
 }
 
-export interface AsteroidsConfig {
+export interface IAsteroidsConfig {
   open: boolean;
 }
 
-export interface MenuConfig {
-  items: MenuItem[];
+export interface IMenuConfig {
+  items: IMenuItem[];
   open: boolean;
 }
 
-export interface MenuItem {
+export interface IMenuItem {
   active: boolean;
   route: MenuRoutes;
   title: string;
@@ -96,6 +96,6 @@ export type MenuRoutes =
   | RoutesEnum.Home
   | RoutesEnum.Portfolio;
 
-export interface TerminalConfig {
+export interface ITerminalConfig {
   open: boolean;
 }

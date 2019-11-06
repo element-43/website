@@ -19,11 +19,11 @@ import { Home } from './pages/Home';
 import { Portfolio } from './pages/Portfolio';
 
 // Store.
-import { ApplicationState, configureStore } from './store';
+import { configureStore, IApplicationState } from './store';
 
 const history: History = createBrowserHistory();
 const Router = ConnectedReactRouter.ConnectedRouter;
-const store: Store<ApplicationState> = configureStore(history);
+const store: Store<IApplicationState> = configureStore(history);
 
 export const App: React.FC = () => (
   <Provider store={store}>

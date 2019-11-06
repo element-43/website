@@ -5,18 +5,18 @@ import * as React from 'react';
 import palette from '../../styles/palette';
 
 // Components.
-import { Props, StyledSvg } from './StyledSvg';
+import { IProps, StyledSvg } from './StyledSvg';
 
-interface Scope {
+interface IScope {
   props: Props;
   wrapper: ShallowWrapper;
 }
 
 describe('<StyledSvg />>', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
-    const props: Props = {
+    const props: IProps = {
       viewBox: '0 0 0 0',
     };
 

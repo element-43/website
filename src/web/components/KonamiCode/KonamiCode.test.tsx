@@ -2,18 +2,18 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 // Components.
-import { KonamiCode, Props } from './KonamiCode';
+import { IProps, KonamiCode } from './KonamiCode';
 
-interface Scope {
-  props: Props;
+interface IScope {
+  props: IProps;
   wrapper: ShallowWrapper;
 }
 
 describe('src/components/KonamiCode', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
-    const props: Props = {
+    const props: IProps = {
       openAsteroids: jest.fn(),
     };
 
