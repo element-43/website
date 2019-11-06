@@ -1,5 +1,5 @@
 // Enums.
-import { RoutesEnum } from '../../../common/enums';
+import { RoutesEnum } from '../../../common/enums/api';
 
 // ====================================================
 // Actions.

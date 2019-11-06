@@ -1,8 +1,8 @@
 // Enums.
-import { RoutesEnum } from '../../../common/enums';
+import { RoutesEnum } from '../../../common/enums/api';
 
 // Strings.
-import { Titles } from '../../../common/strings';
+import { Titles } from '../../../common/constants';
 
 // Types.
 import { LayoutState } from './types';

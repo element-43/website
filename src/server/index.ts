@@ -1,7 +1,10 @@
-// Express.
-import app from './app';
+import { createServer } from 'http';
 
 // Server.
-import { start } from './server';
+import { Server } from './server';
 
-start(app);
+(() => {
+  const server: Server = new Server();
+
+  createServer(server.app).listen(process.env.PORT || 8080);
+})();

@@ -13,7 +13,7 @@ import {
 import { push } from '../../store/router/actionCreators';
 
 // Enums.
-import { RoutesEnum } from '../../../common/enums';
+import { RoutesEnum } from '../../../common/enums/api';
 
 // Styles.
 import palette from '../../styles/palette';

@@ -9,7 +9,7 @@ import { setTitle } from '../../store/layout/actionCreators';
 import { Page } from '../../components/Page';
 
 // Strings.
-import { Titles } from '../../../common/strings';
+import { Titles } from '../../../common/constants';
 
 // Types.
 import { SetTitleAction } from '../../store/layout/types';
