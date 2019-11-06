@@ -10,7 +10,7 @@ import { GlobalStyle } from './components/GlobalStyle';
 import { Shell } from './components/Shell';
 
 // Enums.
-import { RoutesEnum } from '../common/enums';
+import { RoutesEnum } from '../common/enums/api';
 
 // Pages.
 import { About } from './pages/About';
