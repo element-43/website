@@ -5,11 +5,11 @@ import { render } from 'react-dom';
 import { App } from './App';
 
 export function onDOMContentLoaded() {
-    const element: HTMLElement | null = document.getElementById('root');
+  const element: HTMLElement | null = document.getElementById('app');
 
-    if (element) {
-        render(createElement(App), element);
-    }
+  if (element) {
+    render(createElement(App), element);
+  }
 }
 
 window.addEventListener('DOMContentLoaded', onDOMContentLoaded);

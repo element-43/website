@@ -1,3 +1,3 @@
 export default {
-    primaryFontFamily: '"VT323", monospace',
+  primaryFontFamily: '"VT323", monospace',
 };

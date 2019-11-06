@@ -2,89 +2,101 @@ import { Reducer } from 'redux';
 
 // Types.
 import {
-    AsteroidsConfig,
-    HeaderConfig, 
-    LayoutActionTypes, 
-    LayoutState, 
-    LayoutActions,
-    TerminalConfig
+  AsteroidsConfig,
+  LayoutActions,
+  LayoutActionTypes,
+  LayoutState,
+  MenuConfig,
+  MenuItem,
+  TerminalConfig,
 } from './types';
 
-const initialState: LayoutState = {
-    asteroids: {
-        isOpen: false,
-    },
-    header: {
-        isMenuOpen: false,
-    },
-    terminal: {
-        isOpen: false,
-    },
-};
+// Utils.
+import { getInitialState } from './utils';
 
-const reducer: Reducer<LayoutState, LayoutActions> = (state: LayoutState = initialState, action: LayoutActions) => {
-    let asteroids: AsteroidsConfig;
-    let header: HeaderConfig;
-    let terminal: TerminalConfig;
+const reducer: Reducer<LayoutState, LayoutActions> = (
+  state: LayoutState = getInitialState(),
+  action: LayoutActions
+) => {
+  let asteroids: AsteroidsConfig;
+  let menu: MenuConfig;
+  let terminal: TerminalConfig;
 
-    switch (action.type) {
-        case LayoutActionTypes.CloseAsteriods:
-            asteroids = initialState.asteroids;
+  switch (action.type) {
+    case LayoutActionTypes.CloseAsteriods:
+      asteroids = state.asteroids;
 
-            asteroids.isOpen = false;
+      asteroids.open = false;
 
-            return {
-                ...state,
-                asteroids,
-            };
-        case LayoutActionTypes.CloseMenu:
-            header = initialState.header;
+      return {
+        ...state,
+        asteroids,
+      };
+    case LayoutActionTypes.CloseMenu:
+      menu = state.menu;
 
-            header.isMenuOpen = false;
+      menu.open = false;
 
-            return {
-                ...state,
-                header,
-            };
-        case LayoutActionTypes.CloseTerminal:
-            terminal = initialState.terminal;
+      return {
+        ...state,
+        menu,
+      };
+    case LayoutActionTypes.CloseTerminal:
+      terminal = state.terminal;
 
-            terminal.isOpen = false;
+      terminal.open = false;
 
-            return {
-                ...state,
-                terminal,
-            };
-        case LayoutActionTypes.OpenAsteroids:
-            asteroids = initialState.asteroids;
+      return {
+        ...state,
+        terminal,
+      };
+    case LayoutActionTypes.OpenAsteroids:
+      asteroids = state.asteroids;
 
-            asteroids.isOpen = true;
+      asteroids.open = true;
 
-            return {
-                ...state,
-                asteroids,
-            };
-        case LayoutActionTypes.OpenMenu:
-            header = initialState.header;
+      return {
+        ...state,
+        asteroids,
+      };
+    case LayoutActionTypes.OpenMenu:
+      menu = state.menu;
 
-            header.isMenuOpen = true;
+      menu.open = true;
 
-            return {
-                ...state,
-                header,
-            };
-        case LayoutActionTypes.OpenTerminal:
-            terminal = initialState.terminal;
+      return {
+        ...state,
+        menu,
+      };
+    case LayoutActionTypes.OpenTerminal:
+      terminal = state.terminal;
 
-            terminal.isOpen = true;
+      terminal.open = true;
 
-            return {
-                ...state,
-                terminal,
-            };
-        default:
-            return state;
-    }
+      return {
+        ...state,
+        terminal,
+      };
+    case LayoutActionTypes.SetMenuItem:
+      menu = state.menu;
+
+      menu.items.map((value: MenuItem) => ({
+        ...value,
+        active: value.route === action.route,
+      }));
+
+      return {
+        ...state,
+        menu,
+      };
+    case LayoutActionTypes.SetTitle:
+      return {
+        ...state,
+        title: action.title,
+      };
+    default:
+      return state;
+  }
 };
 
 export default reducer;
