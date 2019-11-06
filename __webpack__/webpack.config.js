@@ -1,4 +1,3 @@
-import CleanPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { join, resolve } from 'path';
 import merge from 'webpack-merge';
@@ -32,7 +31,6 @@ export default merge(common, {
   },
 
   plugins: [
-    new CleanPlugin([distPath], { root: join(__dirname, '..') }),
     new HtmlWebpackPlugin({
       title,
       inject: 'body',

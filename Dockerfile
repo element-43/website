@@ -1,5 +1,5 @@
-# Ubuntu LTS (17.10)
-FROM ubuntu:17.10
+# Ubuntu LTS (18.04)
+FROM ubuntu:18.04
 
 MAINTAINER Kieran O\'Neill
 
@@ -52,7 +52,7 @@ WORKDIR /usr/app
 ADD . /usr/app
 
 # Build app.
-RUN yarn build
+RUN yarn task build
 
 # Open up the port
 EXPOSE $PORT

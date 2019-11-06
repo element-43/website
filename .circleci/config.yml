@@ -1,34 +1,25 @@
-##
-# Shorthand for the default node image.
-##
-default_node_image: &default_node_image
+version: 2.1
+executors:
+  default-node-image:
     docker:
       - image: circleci/node:8.11.2
-
     working_directory: ~/repo
-
-version: 2
 jobs:
   ################################
   # Dependencies
   ################################
-
   dependencies:
-    <<: *default_node_image
-
+    executor: default-node-image
     steps:
       - checkout
-
       # Restore cached dependencies.
       - restore_cache:
           keys:
           - node-dependencies-{{ checksum "package.json" }}
-
       # Install dependencies.
       - run:
           name: Gathering Tiberium
           command: yarn install
-
       # Save to cache.
       - save_cache:
           key: node-dependencies-{{ checksum "package.json" }}
@@ -38,58 +29,46 @@ jobs:
   ################################
   # Linting/tests
   ################################
-
   lint:
-    <<: *default_node_image
-
+    executor: default-node-image
     steps:
       - checkout
-
       # Restore cached dependencies.
       - restore_cache:
           keys:
           - node-dependencies-{{ checksum "package.json" }}
-
       # Linting.
       - run:
           name: Stop! It's linter time
-          command: yarn lint
+          command: yarn task lint
 
   unit_tests:
-    <<: *default_node_image
-
+    executor: default-node-image
     steps:
       - checkout
-
       # Restore cached dependencies.
       - restore_cache:
           keys:
           - node-dependencies-{{ checksum "package.json" }}
-
       # Tests.
       - run:
           name: Destroy your Companion Cube or the testing cannot continue
-          command: yarn test
+          command: yarn task test
           environment:
             JEST_JUNIT_OUTPUT: junit/test-results.xml
           when: always
-
       - store_test_results:
           path: junit
-
       - store_artifacts:
           path: junit
-
       - store_artifacts:
           path: coverage
-
   ################################
   # Deployment
   ################################
 
   deploy:
-    <<: *default_node_image
-
+    executor: default-node-image
     steps:
       - checkout
 
@@ -97,7 +76,7 @@ jobs:
       - run:
           name: 3...2...1...Deploy!!
           command: |
-            ssh -v -o StrictHostKeyChecking=no $DROPLET_USER@$DROPLET_IP "cd ~/element-43-website; COOKIE_SECRET=$COOKIE_SECRET HOST=$HOST LETSENCRYPT_EMAIL=$LETSENCRYPT_EMAIL PORT=$PORT ./scripts/deploy.sh"
+            ssh -v -o StrictHostKeyChecking=no $DROPLET_USER@$DROPLET_IP "cd ~/element-43-website; COOKIE_SECRET=$COOKIE_SECRET PORT=8080 ./scripts/deploy.sh"
 
 workflows:
   version: 2
@@ -119,13 +98,13 @@ workflows:
           filters:
             tags:
               only: /.*/
-#      - deploy:
-#          requires:
-#            - dependencies
-#            - lint
-#            - unit_tests
-#          filters:
-#            branches:
-#              only: master
-#            tags:
-#              ignore: /.*/
+      - deploy:
+          requires:
+            - dependencies
+            - lint
+            - unit_tests
+          filters:
+            branches:
+              only: master
+            tags:
+              ignore: /.*/
