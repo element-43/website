@@ -2,18 +2,18 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 // Components.
-import { MenuSvg, Props } from './';
+import { IProps, MenuSvg } from './';
 
-interface Scope {
-  props: Props;
+interface IScope {
+  props: IProps;
   wrapper: ShallowWrapper;
 }
 
 describe('src/components/MenuSvg', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
-    const props: Props = {};
+    const props: IProps = {};
 
     scope = {
       props,

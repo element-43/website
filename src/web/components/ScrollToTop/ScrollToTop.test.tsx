@@ -2,22 +2,22 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 // Components.
-import { Props, ScrollToTop } from './ScrollToTop';
+import { IProps, ScrollToTop } from './ScrollToTop';
 
 // Mocks.
 import { MockLocation } from '../../../../__mocks__/reactRouterMock';
 
-interface Scope {
-  props: Props;
+interface IScope {
+  props: IProps;
   scrollToSpy: jest.SpyInstance;
   wrapper: ShallowWrapper;
 }
 
 describe('src/web/components/ScrollToTop', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
-    const props: Props = {
+    const props: IProps = {
       location: new MockLocation(),
     };
 
@@ -35,7 +35,7 @@ describe('src/web/components/ScrollToTop', () => {
           ...scope.props.location,
           pathname: '/new-land',
         },
-      } as Props);
+      } as IProps);
 
       expect(scope.scrollToSpy).toBeCalled();
     });
@@ -48,14 +48,14 @@ describe('src/web/components/ScrollToTop', () => {
           ...scope.props.location,
           pathname,
         },
-      } as Props);
+      } as IProps);
       scope.scrollToSpy.mockReset();
       scope.wrapper.setProps({
         location: {
           ...scope.props.location,
           pathname,
         },
-      } as Props);
+      } as IProps);
 
       expect(scope.scrollToSpy).not.toBeCalled();
     });

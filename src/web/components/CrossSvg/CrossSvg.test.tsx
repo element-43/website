@@ -2,18 +2,18 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 // Components.
-import { CrossSvg, Props } from './CrossSvg';
+import { CrossSvg, IProps } from './CrossSvg';
 
-interface Scope {
-  props: Props;
+interface IScope {
+  props: IProps;
   wrapper: ShallowWrapper;
 }
 
 describe('<CrossSvg />>', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
-    const props: Props = {};
+    const props: IProps = {};
 
     scope = {
       props,

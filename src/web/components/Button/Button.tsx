@@ -154,13 +154,13 @@ const Square = styled.span`
   }
 `;
 
-export interface Props {
+export interface IProps {
   children: React.ReactNode;
 }
 
 export const Button: React.FC<
-  Props & React.ButtonHTMLAttributes<HTMLButtonElement>
-> = (props: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) => (
+  IProps & React.ButtonHTMLAttributes<HTMLButtonElement>
+> = (props: IProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => (
   <StyledButton {...props}>
     <Overlay className={buttonOverlayClassName}>
       <Square />

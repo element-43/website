@@ -2,7 +2,7 @@
 import { Asteroid } from './models/Asteroid';
 import { Explosion } from './models/Explosion';
 import { Particle } from './models/Particle';
-import { Laser, Ship } from './models/Ship';
+import { ILaser, Ship } from './models/Ship';
 
 // Constants.
 import {
@@ -18,7 +18,7 @@ import {
 import palette from '../../styles/palette';
 
 // Types.
-import { Entity } from './types';
+import { IEntity } from './types';
 
 export function distBetweenPoints(
   x1: number,
@@ -64,7 +64,7 @@ export function drawAsteroid(
 
 export function drawBasicShip(
   ctx: CanvasRenderingContext2D,
-  entity: Entity,
+  entity: IEntity,
   colour?: string
 ): void {
   ctx.strokeStyle = colour || palette.greyScale.white;
@@ -139,7 +139,7 @@ export function drawHighScore(
   ctx.fillText(`Highest: ${highScore}`, width / 2, SHIP_SIZE);
 }
 
-export function drawLaser(ctx: CanvasRenderingContext2D, laser: Laser): void {
+export function drawLaser(ctx: CanvasRenderingContext2D, laser: ILaser): void {
   ctx.fillStyle = palette.greyScale.white;
   ctx.beginPath();
   ctx.arc(laser.x, laser.y, SHIP_SIZE / 15, 0, Math.PI * 2, false);
@@ -263,7 +263,7 @@ export function moveAsteroids(
 }
 
 export function moveLasers(
-  lasers: Laser[],
+  lasers: ILaser[],
   height: number,
   width: number
 ): void {

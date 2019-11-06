@@ -2,18 +2,18 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 // Components.
-import { BannerLogoSvg, Props } from './BannerLogoSvg';
+import { BannerLogoSvg, IProps } from './BannerLogoSvg';
 
-interface Scope {
-  props: Props;
+interface IScope {
+  props: IProps;
   wrapper: ShallowWrapper;
 }
 
 describe('<BannerLogoSvg />', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
-    const props: Props = {};
+    const props: IProps = {};
 
     scope = {
       props,

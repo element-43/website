@@ -19,11 +19,11 @@ import { RoutesEnum } from '../../../common/enums/api';
 import palette from '../../styles/palette';
 
 // Types.
-import { ApplicationState } from '../../store';
+import { IApplicationState } from '../../store';
 import {
-  CloseAsteroidsAction,
-  CloseTerminalAction,
-  OpenAsteroidsAction,
+  ICloseAsteroidsAction,
+  ICloseTerminalAction,
+  IOpenAsteroidsAction,
 } from '../../store/layout/types';
 import { PushAction } from '../../store/router/types';
 
@@ -68,23 +68,23 @@ const Wrapper = styled.div`
   z-index: 1000;
 `;
 
-export interface Props {
-  closeAsteroids: ActionCreator<CloseAsteroidsAction>;
-  closeTerminal: ActionCreator<CloseTerminalAction>;
+export interface IProps {
+  closeAsteroids: ActionCreator<ICloseAsteroidsAction>;
+  closeTerminal: ActionCreator<ICloseTerminalAction>;
   isOpen: boolean;
-  openAsteroids: ActionCreator<OpenAsteroidsAction>;
+  openAsteroids: ActionCreator<IOpenAsteroidsAction>;
   push: ActionCreator<PushAction>;
 }
 
-export interface State {
+export interface IState {
   value: string;
 }
 
-export class Terminal extends React.PureComponent<Props, State> {
+export class Terminal extends React.PureComponent<IProps, IState> {
   private readonly inputRef: React.RefObject<HTMLInputElement>;
   private readonly terminalRef: React.RefObject<HTMLDivElement>;
 
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super(props);
 
     this.inputRef = React.createRef();
@@ -181,7 +181,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   openAsteroids: bindActionCreators(openAsteroids, dispatch),
   push: bindActionCreators(push, dispatch),
 });
-const mapStateToProps = (state: ApplicationState) => {
+const mapStateToProps = (state: IApplicationState) => {
   return {
     isOpen: state.layout.terminal.open,
   };

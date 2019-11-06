@@ -16,18 +16,18 @@ import layoutReducer from './layout/reducer';
 import routerReducer from './router/reducer';
 
 // Types.
-import { LayoutState } from './layout/types';
+import { ILayoutState } from './layout/types';
 import { RouterState } from './router/types';
 
-export interface ApplicationState {
-  layout: LayoutState;
+export interface IApplicationState {
+  layout: ILayoutState;
   router: RouterState;
 }
 
-const createReducers: (history: History) => Reducer<ApplicationState> = (
+const createReducers: (history: History) => Reducer<IApplicationState> = (
   history: History
 ) =>
-  combineReducers<ApplicationState>({
+  combineReducers<IApplicationState>({
     layout: layoutReducer,
     router: routerReducer(history),
   });
@@ -38,7 +38,7 @@ const composeEnhancers: typeof compose =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     : compose;
 
-export function configureStore(history: History): Store<ApplicationState> {
+export function configureStore(history: History): Store<IApplicationState> {
   return createStore(
     createReducers(history),
     composeEnhancers(applyMiddleware(routerMiddleware(history)))

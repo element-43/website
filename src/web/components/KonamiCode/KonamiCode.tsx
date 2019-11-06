@@ -6,13 +6,13 @@ import { ActionCreator, bindActionCreators, Dispatch } from 'redux';
 import { openAsteroids } from '../../store/layout/actionCreators';
 
 // Types.
-import { OpenAsteroidsAction } from '../../store/layout/types';
+import { IOpenAsteroidsAction } from '../../store/layout/types';
 
-export interface Props {
-  openAsteroids: ActionCreator<OpenAsteroidsAction>;
+export interface IProps {
+  openAsteroids: ActionCreator<IOpenAsteroidsAction>;
 }
 
-export interface State {
+export interface IState {
   position: number;
 }
 
@@ -29,10 +29,10 @@ const codeSequence: number[] = [
   65, // A
 ];
 
-export class KonamiCode extends React.PureComponent<Props, State> {
-  public state: State;
+export class KonamiCode extends React.PureComponent<IProps, IState> {
+  public state: IState;
 
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super(props);
 
     this.state = {

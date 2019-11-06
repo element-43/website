@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 // Store.
-import { ApplicationState } from '../../store';
+import { IApplicationState } from '../../store';
 
 // Components.
 import { AsteroidsGame } from '../AsteroidsGame';
@@ -11,12 +11,12 @@ import { KonamiCode } from '../KonamiCode';
 import { ScrollToTop } from '../ScrollToTop';
 import { Terminal } from '../Terminal';
 
-export interface Props {
+export interface IProps {
   children: React.ReactNode;
   asteroidsOpen: boolean;
 }
 
-export const Shell: React.FC<Props> = (props: Props) => (
+export const Shell: React.FC<IProps> = (props: IProps) => (
   <>
     <GoogleAnalytics />
     <KonamiCode />
@@ -27,7 +27,7 @@ export const Shell: React.FC<Props> = (props: Props) => (
   </>
 );
 
-const mapStateToProps = (state: ApplicationState) => {
+const mapStateToProps = (state: IApplicationState) => {
   return {
     asteroidsOpen: state.layout.asteroids.open,
   };

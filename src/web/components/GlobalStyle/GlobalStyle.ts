@@ -17,10 +17,9 @@ const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
       url("${require('../../fonts/VT323/VT323-Regular.woff2')}") format("woff2");
   }
 
-  html,
-  body,
-  #app {
-    width: 100%;
+  body {
+    margin: 0;
+    min-height: 100vh;
   }
 
   #app {

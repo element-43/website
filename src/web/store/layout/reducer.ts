@@ -2,25 +2,25 @@ import { Reducer } from 'redux';
 
 // Types.
 import {
-  AsteroidsConfig,
+  IAsteroidsConfig,
+  ILayoutState,
+  IMenuConfig,
+  IMenuItem,
+  ITerminalConfig,
   LayoutActions,
   LayoutActionTypes,
-  LayoutState,
-  MenuConfig,
-  MenuItem,
-  TerminalConfig,
 } from './types';
 
 // Utils.
 import { getInitialState } from './utils';
 
-const reducer: Reducer<LayoutState, LayoutActions> = (
-  state: LayoutState = getInitialState(),
+const reducer: Reducer<ILayoutState, LayoutActions> = (
+  state: ILayoutState = getInitialState(),
   action: LayoutActions
 ) => {
-  let asteroids: AsteroidsConfig;
-  let menu: MenuConfig;
-  let terminal: TerminalConfig;
+  let asteroids: IAsteroidsConfig;
+  let menu: IMenuConfig;
+  let terminal: ITerminalConfig;
 
   switch (action.type) {
     case LayoutActionTypes.CloseAsteriods:
@@ -80,7 +80,7 @@ const reducer: Reducer<LayoutState, LayoutActions> = (
     case LayoutActionTypes.SetMenuItem:
       menu = state.menu;
 
-      menu.items.map((value: MenuItem) => ({
+      menu.items.map((value: IMenuItem) => ({
         ...value,
         active: value.route === action.route,
       }));

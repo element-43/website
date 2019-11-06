@@ -2,50 +2,50 @@ import { ActionCreator } from 'redux';
 
 // Types.
 import {
-  CloseAsteroidsAction,
-  CloseMenuAction,
-  CloseTerminalAction,
+  ICloseAsteroidsAction,
+  ICloseMenuAction,
+  ICloseTerminalAction,
+  IOpenAsteroidsAction,
+  IOpenMenuAction,
+  IOpenTerminalAction,
+  ISetMenuItemAction,
+  ISetTitleAction,
   LayoutActionTypes,
   MenuRoutes,
-  OpenAsteroidsAction,
-  OpenMenuAction,
-  OpenTerminalAction,
-  SetMenuItemAction,
-  SetTitleAction,
 } from './types';
 
-export const closeAsteroids: ActionCreator<CloseAsteroidsAction> = () => ({
+export const closeAsteroids: ActionCreator<ICloseAsteroidsAction> = () => ({
   type: LayoutActionTypes.CloseAsteriods,
 });
 
-export const closeMenu: ActionCreator<CloseMenuAction> = () => ({
+export const closeMenu: ActionCreator<ICloseMenuAction> = () => ({
   type: LayoutActionTypes.CloseMenu,
 });
 
-export const closeTerminal: ActionCreator<CloseTerminalAction> = () => ({
+export const closeTerminal: ActionCreator<ICloseTerminalAction> = () => ({
   type: LayoutActionTypes.CloseTerminal,
 });
 
-export const openAsteroids: ActionCreator<OpenAsteroidsAction> = () => ({
+export const openAsteroids: ActionCreator<IOpenAsteroidsAction> = () => ({
   type: LayoutActionTypes.OpenAsteroids,
 });
 
-export const openMenu: ActionCreator<OpenMenuAction> = () => ({
+export const openMenu: ActionCreator<IOpenMenuAction> = () => ({
   type: LayoutActionTypes.OpenMenu,
 });
 
-export const openTerminal: ActionCreator<OpenTerminalAction> = () => ({
+export const openTerminal: ActionCreator<IOpenTerminalAction> = () => ({
   type: LayoutActionTypes.OpenTerminal,
 });
 
-export const setMenuItem: ActionCreator<SetMenuItemAction> = (
+export const setMenuItem: ActionCreator<ISetMenuItemAction> = (
   route?: MenuRoutes
 ) => ({
   route,
   type: LayoutActionTypes.SetMenuItem,
 });
 
-export const setTitle: ActionCreator<SetTitleAction> = (title: string) => ({
+export const setTitle: ActionCreator<ISetTitleAction> = (title: string) => ({
   title,
   type: LayoutActionTypes.SetTitle,
 });

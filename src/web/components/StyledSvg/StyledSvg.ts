@@ -3,14 +3,14 @@ import styled from 'styled-components';
 // Styles.
 import palette from '../../styles/palette';
 
-export interface Props {
+export interface IProps {
   color?: string;
   hoverColor?: string;
   size?: string;
   viewBox: string;
 }
 
-export const StyledSvg = styled.svg<Props>`
+export const StyledSvg = styled.svg<IProps>`
   height: ${(props) => props.size || '1rem'};
 
   ${(props) =>
@@ -24,8 +24,8 @@ export const StyledSvg = styled.svg<Props>`
   `}
 
   path {
-    fill: ${(props: Props) => props.color || palette.greyScale.black};
-    ${(props: Props) =>
+    fill: ${(props: IProps) => props.color || palette.greyScale.black};
+    ${(props: IProps) =>
       props.hoverColor &&
       `
         transition: fill 0.3s ease-in-out;

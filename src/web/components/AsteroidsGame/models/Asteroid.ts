@@ -2,9 +2,9 @@
 import { FPS } from '../constants';
 
 // Types.
-import { Entity } from '../types';
+import { IEntity } from '../types';
 
-class Asteroid implements Entity {
+class Asteroid implements IEntity {
   public angle: number;
   public offsets: number[];
   public radius: number;

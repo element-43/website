@@ -10,11 +10,11 @@ import { BannerLogoSvg } from '../BannerLogoSvg';
 import palette from '../../styles/palette';
 
 // Types.
-import { ApplicationState } from '../../store';
-import { MenuConfig, MenuItem } from '../../store/layout/types';
+import { IApplicationState } from '../../store';
+import { IMenuConfig, IMenuItem } from '../../store/layout/types';
 
-interface Props {
-  menu: MenuConfig;
+interface IProps {
+  menu: IMenuConfig;
 }
 
 const Inner = styled.div`
@@ -50,7 +50,7 @@ const Wrapper = styled.header`
   width: 30%;
 `;
 
-export const Header: React.FC<Props> = (props: Props) => (
+export const Header: React.FC<IProps> = (props: IProps) => (
   <Wrapper>
     <Inner>
       <MenuContainer>
@@ -62,7 +62,7 @@ export const Header: React.FC<Props> = (props: Props) => (
           />
         </Link>
         <Navigation>
-          {props.menu.items.map((item: MenuItem, index: number) => (
+          {props.menu.items.map((item: IMenuItem, index: number) => (
             <MenuItemLink key={`header__menu-item-${index}`} to={item.route}>
               {item.title}
             </MenuItemLink>
@@ -73,7 +73,7 @@ export const Header: React.FC<Props> = (props: Props) => (
   </Wrapper>
 );
 
-const mapStateToProps = (state: ApplicationState) => {
+const mapStateToProps = (state: IApplicationState) => {
   return {
     menu: state.layout.menu,
   };

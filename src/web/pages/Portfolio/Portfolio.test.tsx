@@ -8,13 +8,13 @@ import { Portfolio } from './';
 // Mocks.
 import { MockRouteComponentProps } from '../../../../__mocks__/reactRouterMock';
 
-interface Scope {
+interface IScope {
   props: RouteComponentProps<Portfolio>;
   wrapper: ShallowWrapper;
 }
 
 describe('/pages/Portfolio', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
     const props: RouteComponentProps<Portfolio> = {

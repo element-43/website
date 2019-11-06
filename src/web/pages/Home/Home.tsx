@@ -12,13 +12,13 @@ import { Page } from '../../components/Page';
 import { Titles } from '../../../common/constants';
 
 // Types.
-import { SetTitleAction } from '../../store/layout/types';
+import { ISetTitleAction } from '../../store/layout/types';
 
-export interface Props {
-  setTitle: ActionCreator<SetTitleAction>;
+export interface IProps {
+  setTitle: ActionCreator<ISetTitleAction>;
 }
 
-export class Home extends React.PureComponent<Props> {
+export class Home extends React.PureComponent<IProps> {
   public componentDidMount(): void {
     this.props.setTitle(Titles.DEFAULT);
   }

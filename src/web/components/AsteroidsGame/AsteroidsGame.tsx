@@ -46,7 +46,7 @@ import {
   moveLasers,
 } from './utils';
 
-interface Props {
+interface IProps {
   closeAsteroids: typeof closeAsteroids;
 }
 
@@ -75,7 +75,7 @@ const Wrapper = styled.div`
   z-index: 999;
 `;
 
-export class AsteroidsGame extends React.PureComponent<Props> {
+export class AsteroidsGame extends React.PureComponent<IProps> {
   private asteroids: Asteroid[];
   private readonly canvasRef: React.RefObject<HTMLCanvasElement>;
   private explosions: Explosion[];
@@ -109,7 +109,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     return asteroids;
   }
 
-  constructor(props: Props) {
+  constructor(props: IProps) {
     super(props);
 
     this.asteroids = [];

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { assert, SinonStub, stub } from 'sinon';
 
 // Components.
 import { App } from './App';
@@ -8,45 +7,41 @@ import { App } from './App';
 // Module.
 import { onDOMContentLoaded } from './index';
 
-interface Scope {
-  createElementStub: SinonStub;
-  renderStub: SinonStub;
+interface IScope {
+  createElementSpy: jest.SpyInstance;
+  renderStub: jest.SpyInstance;
 }
 
 describe('index', () => {
-  let scope: Scope;
+  let scope: IScope;
 
   beforeEach(() => {
     scope = {
-      createElementStub: stub(React, 'createElement'),
-      renderStub: stub(ReactDOM, 'render'),
+      createElementSpy: jest.spyOn(React, 'createElement'),
+      renderStub: jest.spyOn(ReactDOM, 'render'),
     };
-  });
-
-  afterEach(() => {
-    scope.createElementStub.restore();
-    scope.renderStub.restore();
   });
 
   describe('onDOMContentLoaded()', () => {
     it('should not render the <App/> component if the "#root" element does not exist', () => {
-      const getElementByIdStub: SinonStub = stub(document, 'getElementById');
+      const originalGetElementById: (elementId: string) => HTMLElement | null =
+        document.getElementById;
 
-      getElementByIdStub.returns(null);
+      document.getElementById = jest.fn();
 
       onDOMContentLoaded();
 
-      assert.notCalled(scope.createElementStub);
-      assert.notCalled(scope.renderStub);
+      expect(scope.createElementSpy).not.toBeCalled();
+      expect(scope.renderStub).not.toBeCalled();
 
-      getElementByIdStub.restore();
+      document.getElementById = originalGetElementById;
     });
 
     it('should render the <App/> component if the "#root" element exists', () => {
       onDOMContentLoaded();
 
-      assert.calledWith(scope.createElementStub, App);
-      assert.calledOnce(scope.renderStub);
+      expect(scope.createElementSpy).toBeCalledWith(App);
+      expect(scope.renderStub).toBeCalled();
     });
   });
 });
