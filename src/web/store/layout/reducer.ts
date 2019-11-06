@@ -3,11 +3,11 @@ import { Reducer } from 'redux';
 // Types.
 import {
   AsteroidsConfig,
-  MenuConfig,
-  MenuItem,
+  LayoutActions,
   LayoutActionTypes,
   LayoutState,
-  LayoutActions,
+  MenuConfig,
+  MenuItem,
   TerminalConfig,
 } from './types';
 

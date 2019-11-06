@@ -1,9 +1,9 @@
 // Enums.
 import { RoutesEnum } from '../../../common/enums';
 
-//====================================================
+// ====================================================
 // Actions.
-//====================================================
+// ====================================================
 
 export interface CloseAsteroidsAction {
   type: LayoutActionTypes.CloseAsteriods;
@@ -49,9 +49,9 @@ export type LayoutActions =
   | SetMenuItemAction
   | SetTitleAction;
 
-//====================================================
+// ====================================================
 // Action types.
-//====================================================
+// ====================================================
 
 export enum LayoutActionTypes {
   CloseAsteriods = '@layout/CLOSE_ASTEROIDS',
@@ -64,9 +64,9 @@ export enum LayoutActionTypes {
   SetMenuItem = '@layout/SET_MENU_ITEM',
 }
 
-//====================================================
+// ====================================================
 // Types.
-//====================================================
+// ====================================================
 
 export interface LayoutState {
   asteroids: AsteroidsConfig;

@@ -1,4 +1,4 @@
-import { Response, Request } from 'express';
+import { Request, Response } from 'express';
 import * as httpMocks from 'node-mocks-http';
 
 // Enums.

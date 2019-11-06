@@ -98,13 +98,13 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - deploy:
-          requires:
-            - dependencies
-            - lint
-            - unit_tests
-          filters:
-            branches:
-              only: master
-            tags:
-              ignore: /.*/
+#      - deploy:
+#          requires:
+#            - dependencies
+#            - lint
+#            - unit_tests
+#          filters:
+#            branches:
+#              only: master
+#            tags:
+#              ignore: /.*/

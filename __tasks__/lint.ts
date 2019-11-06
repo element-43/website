@@ -1,11 +1,20 @@
 import { ICLIOptions } from '@pawelgalazka/cli';
+import { IAsyncShellOptions } from '@pawelgalazka/shell';
 import { help, sh } from 'tasksfile';
 
-export function lint(options: ICLIOptions): void {
-  const fixFlag: string = options.f || options.fix ? '--fix' : '';
+const BIN_DIR: string = `node_modules/.bin`;
 
-  sh(`eslint ${fixFlag} --ext .js .`);
-  sh(`tslint ${fixFlag} --config "./tslint.json" "./src/**/*.ts?(x)"`);
+export async function lint(options: ICLIOptions): Promise<void> {
+  const fixFlag: string = options.f || options.fix ? '--fix' : '';
+  const asyncShellOptions: IAsyncShellOptions = {
+    async: true,
+  };
+
+  await sh(`${BIN_DIR}/eslint ${fixFlag} --ext .js .`, asyncShellOptions);
+  await sh(
+    `${BIN_DIR}/tslint ${fixFlag} "./src/**/*.ts?(x)"`,
+    asyncShellOptions
+  );
 }
 
 help(lint, 'Run linting for JS and TS files', {

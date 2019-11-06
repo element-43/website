@@ -52,19 +52,19 @@ class Ship implements Entity {
     this.y = y;
   }
 
-  shootLaser(): void {
+  public shootLaser(): void {
     let laserSpeed: number; // Speed of lasers in pixels per second.
 
     if (this.canShoot && this.lasers.length < 10) {
       laserSpeed = 500;
 
       this.lasers.push({
-        x: this.x + (4 / 3) * this.radius * Math.cos(this.angle),
-        y: this.y - (4 / 3) * this.radius * Math.sin(this.angle),
-        xv: (laserSpeed * Math.cos(this.angle)) / FPS,
-        yv: (-laserSpeed * Math.sin(this.angle)) / FPS,
         dist: 0,
         explodeTime: 0,
+        x: this.x + (4 / 3) * this.radius * Math.cos(this.angle),
+        xv: (laserSpeed * Math.cos(this.angle)) / FPS,
+        y: this.y - (4 / 3) * this.radius * Math.sin(this.angle),
+        yv: (-laserSpeed * Math.sin(this.angle)) / FPS,
       });
     }
 

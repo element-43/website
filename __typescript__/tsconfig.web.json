@@ -3,7 +3,7 @@
   "exclude": [
     "../dist",
     "../node_modules",
-    "../src/api",
+    "../src/server",
     "../src/web/**/*.test.ts",
     "../__test__",
     "../__webpack__"

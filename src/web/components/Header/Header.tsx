@@ -10,8 +10,8 @@ import { BannerLogoSvg } from '../BannerLogoSvg';
 import palette from '../../styles/palette';
 
 // Types.
-import { MenuConfig, MenuItem } from '../../store/layout/types';
 import { ApplicationState } from '../../store';
+import { MenuConfig, MenuItem } from '../../store/layout/types';
 
 interface Props {
   menu: MenuConfig;

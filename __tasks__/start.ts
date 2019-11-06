@@ -3,8 +3,8 @@ import { sh } from 'tasksfile';
 
 const BIN_DIR: string = `node_modules/.bin`;
 
-export async function api(): Promise<void> {
-  await sh('nodemon src/api/index', {
+export async function server(): Promise<void> {
+  await sh('nodemon src/server/index', {
     async: true,
     env: {
       NODE_ENV: 'development',
@@ -25,10 +25,10 @@ export async function web(): Promise<void> {
 }
 
 export const start: ICommandsDictionary = {
-  api,
   default: () => {
-    api();
+    server();
     web();
   },
+  server,
   web,
 };

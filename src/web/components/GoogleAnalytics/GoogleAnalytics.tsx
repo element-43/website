@@ -9,7 +9,7 @@ export class GoogleAnalytics extends React.PureComponent {
     GoogleAnalytics.trackPage();
   }
 
-  static trackPage() {
+  public static trackPage() {
     // Send page tracking to the omnipotent Google, but only in production.
     if (process.env.NODE_ENV === 'production' && window.ga) {
       window.ga('send', 'pageview', window.location.pathname);

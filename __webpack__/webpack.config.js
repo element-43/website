@@ -1,5 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { join, resolve } from 'path';
+import { resolve } from 'path';
 import merge from 'webpack-merge';
 
 // Common config.

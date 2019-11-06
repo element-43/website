@@ -6,8 +6,8 @@ import { clean } from './clean';
 
 const BIN_DIR: string = `node_modules/.bin`;
 
-export async function api(): Promise<void> {
-  await sh(`tsc --project "__typescript__/tsconfig.api.json"`, {
+export async function server(): Promise<void> {
+  await sh(`${BIN_DIR}/tsc --project "__typescript__/tsconfig.server.json"`, {
     async: true,
     env: {
       NODE_ENV: 'production',
@@ -28,11 +28,11 @@ export async function web(): Promise<void> {
 }
 
 export const build: ICommandsDictionary = {
-  api,
   default: () => {
     clean();
-    api();
+    server();
     web();
   },
+  server,
   web,
 };

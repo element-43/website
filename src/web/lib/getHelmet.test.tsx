@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import { HelmetProps } from 'react-helmet';
 import * as _ from 'lodash';
+import { HelmetProps } from 'react-helmet';
 
 // Config.
 import { Titles } from '../../common/strings';

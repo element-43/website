@@ -239,25 +239,25 @@ export function moveAsteroids(
   height: number,
   width: number
 ): void {
-  for (let i: number = 0; i < asteroids.length; i++) {
-    asteroids[i].x += asteroids[i].xv;
-    asteroids[i].y += asteroids[i].yv;
+  for (const asteroid of asteroids) {
+    asteroid.x += asteroid.xv;
+    asteroid.y += asteroid.yv;
 
     // Handle asteroid edge of screen.
-    if (asteroids[i].x < 0 - asteroids[i].radius) {
-      asteroids[i].x = width + asteroids[i].radius;
+    if (asteroid.x < 0 - asteroid.radius) {
+      asteroid.x = width + asteroid.radius;
     }
 
-    if (asteroids[i].x > width + asteroids[i].radius) {
-      asteroids[i].x = 0 - asteroids[i].radius;
+    if (asteroid.x > width + asteroid.radius) {
+      asteroid.x = 0 - asteroid.radius;
     }
 
-    if (asteroids[i].y < 0 - asteroids[i].radius) {
-      asteroids[i].y = height + asteroids[i].radius;
+    if (asteroid.y < 0 - asteroid.radius) {
+      asteroid.y = height + asteroid.radius;
     }
 
-    if (asteroids[i].y > height + asteroids[i].radius) {
-      asteroids[i].y = 0 - asteroids[i].radius;
+    if (asteroid.y > height + asteroid.radius) {
+      asteroid.y = 0 - asteroid.radius;
     }
   }
 }
@@ -275,12 +275,12 @@ export function moveLasers(
       continue;
     }
 
-    //Handle the explosion.
+    // Handle the explosion.
     if (lasers[i].explodeTime > 0) {
       lasers[i].explodeTime--;
 
       // Destroy the laser after the duration is up.
-      if (lasers[i].explodeTime == 0) {
+      if (lasers[i].explodeTime === 0) {
         lasers.splice(i, 1);
 
         continue;

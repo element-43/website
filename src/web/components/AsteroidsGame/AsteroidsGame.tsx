@@ -30,6 +30,7 @@ import {
 import palette from '../../styles/palette';
 
 // Utils.
+import isLocalStorageAvailable from '../../lib/isLocalStorageAvailable';
 import {
   distBetweenPoints,
   drawAsteroid,
@@ -44,7 +45,6 @@ import {
   moveAsteroids,
   moveLasers,
 } from './utils';
-import isLocalStorageAvailable from '../../lib/isLocalStorageAvailable';
 
 interface Props {
   closeAsteroids: typeof closeAsteroids;
@@ -88,7 +88,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
   private text: string;
   private textOpacity: number;
 
-  static createAsteroidBelt(ship: Ship, level: number): Asteroid[] {
+  public static createAsteroidBelt(ship: Ship, level: number): Asteroid[] {
     const asteroids: Asteroid[] = [];
     let x: number;
     let y: number;
@@ -129,7 +129,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     this.update = this.update.bind(this);
   }
 
-  componentDidMount(): void {
+  public componentDidMount(): void {
     document.addEventListener('keydown', this.onKeyDown);
     document.addEventListener('keyup', this.onKeyUp);
 
@@ -138,7 +138,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     this.intervalId = window.setInterval(this.update, 1000 / FPS);
   }
 
-  componentWillUnmount(): void {
+  public componentWillUnmount(): void {
     document.removeEventListener('keydown', this.onKeyDown);
     document.removeEventListener('keyup', this.onKeyUp);
 
@@ -147,7 +147,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     }
   }
 
-  destroyAsteroid(index: number): void {
+  public destroyAsteroid(index: number): void {
     const asteroid: Asteroid = this.asteroids[index];
     let newAsteroid: Asteroid;
 
@@ -211,7 +211,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     }
   }
 
-  newGame(): void {
+  public newGame(): void {
     let highScore: string | null;
 
     this.highScore = 0;
@@ -224,14 +224,14 @@ export class AsteroidsGame extends React.PureComponent<Props> {
       highScore = window.localStorage.getItem(HIGH_SCORE_KEY);
 
       if (highScore) {
-        this.highScore = parseInt(highScore);
+        this.highScore = parseInt(highScore, 10);
       }
     }
 
     this.newLevel();
   }
 
-  newLevel(): void {
+  public newLevel(): void {
     if (this.ship) {
       this.text = `Level ${this.level + 1}`;
       this.textOpacity = 1.0;
@@ -239,7 +239,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     }
   }
 
-  onKeyDown(event: DocumentEventMap['keydown']): void {
+  public onKeyDown(event: DocumentEventMap['keydown']): void {
     if (this.ship && !this.ship.dead) {
       switch (event.keyCode) {
         case 32: // Space bar (shoot laser).
@@ -262,7 +262,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     }
   }
 
-  onKeyUp(event: DocumentEventMap['keyup']): void {
+  public onKeyUp(event: DocumentEventMap['keyup']): void {
     if (this.ship && !this.ship.dead) {
       switch (event.keyCode) {
         case 32: // Space bar (allow shooting again).
@@ -285,7 +285,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     }
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     return (
       <Wrapper>
         <Container>
@@ -298,7 +298,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
     );
   }
 
-  update(): void {
+  public update(): void {
     const { current } = this.canvasRef;
     let ctx: CanvasRenderingContext2D;
     let isExploding: boolean;
@@ -311,8 +311,8 @@ export class AsteroidsGame extends React.PureComponent<Props> {
       drawSpace(ctx, current.height, current.width);
 
       // Draw asteroids.
-      for (let i: number = 0; i < this.asteroids.length; i++) {
-        drawAsteroid(ctx, this.asteroids[i]);
+      for (const asteroid of this.asteroids) {
+        drawAsteroid(ctx, asteroid);
       }
 
       // Draw ship.
@@ -328,7 +328,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
             this.ship.blinkTime--;
 
             // Reduce the blink number.
-            if (this.ship.blinkTime == 0) {
+            if (this.ship.blinkTime === 0) {
               this.ship.blinkTime = Math.ceil(SHIP_BLINK_DURATION * FPS);
               this.ship.blinkNum--;
             }
@@ -340,8 +340,8 @@ export class AsteroidsGame extends React.PureComponent<Props> {
       }
 
       // Draw lasers.
-      for (let i: number = 0; i < this.ship.lasers.length; i++) {
-        drawLaser(ctx, this.ship.lasers[i]);
+      for (const laser of this.ship.lasers) {
+        drawLaser(ctx, laser);
       }
 
       // Draw explosions.
@@ -402,7 +402,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
         for (let j: number = this.ship.lasers.length - 1; j >= 0; j--) {
           // Detect hits
           if (
-            this.ship.lasers[j].explodeTime == 0 &&
+            this.ship.lasers[j].explodeTime === 0 &&
             distBetweenPoints(
               this.asteroids[i].x,
               this.asteroids[i].y,
@@ -426,7 +426,7 @@ export class AsteroidsGame extends React.PureComponent<Props> {
       // Check for asteroid collisions (when not exploding).
       if (!isExploding) {
         // Only check when not blinking.
-        if (this.ship.blinkNum == 0) {
+        if (this.ship.blinkNum === 0) {
           for (let i: number = 0; i < this.asteroids.length; i++) {
             if (
               distBetweenPoints(

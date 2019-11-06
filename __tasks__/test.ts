@@ -1,10 +1,12 @@
 import { ICLIOptions } from '@pawelgalazka/cli';
 import { help, sh } from 'tasksfile';
 
+const BIN_DIR: string = `node_modules/.bin`;
+
 export function test(options: ICLIOptions): void {
   const updateFlag: string = options.u ? '-u' : '';
 
-  sh(`jest --config="__test__/jest.config.js" ${updateFlag}`, {
+  sh(`${BIN_DIR}/jest --config="__test__/jest.config.js" ${updateFlag}`, {
     async: false,
     env: {
       JEST_JUNIT_OUTPUT: 'junit/test-results.xml',

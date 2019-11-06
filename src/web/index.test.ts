@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { assert, stub, SinonStub } from 'sinon';
+import { assert, SinonStub, stub } from 'sinon';
 
 // Components.
 import { App } from './App';

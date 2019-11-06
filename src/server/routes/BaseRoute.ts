@@ -15,11 +15,11 @@ export interface RouteDeclaration {
   callback: (request: Request, response: Response, next: NextFunction) => void;
   method: HttpMethodEnum;
   route: string;
-  validators?: Array<ValidationChain>;
+  validators?: ValidationChain[];
 }
 
 class BaseRoute {
-  protected routes: Array<RouteDeclaration> = [];
+  protected routes: RouteDeclaration[] = [];
 
   /**
    * A curried function that simply handles the errors spat out from the promise chain.

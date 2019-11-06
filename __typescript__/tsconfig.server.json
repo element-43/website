@@ -3,10 +3,10 @@
   "exclude": [
     "../dist",
     "../node_modules",
-    "../src/api/**/*.test.ts",
+    "../src/server/**/*.test.ts",
     "../src/web",
     "../__test__",
     "../__webpack__"
   ],
-  "include": ["../src/api/*.ts"]
+  "include": ["../src/server/*.ts"]
 }
