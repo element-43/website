@@ -1,1 +1,1 @@
-export { default as MenuSvg } from './MenuSvg';
+export { default } from './MenuSvg';

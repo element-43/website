@@ -6,7 +6,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Portfolio } from './index';
 
 // Mocks.
-import { MockRouteComponentProps } from '../../../__mocks__/reactRouterMock';
+import { MockRouteComponentProps } from '../../../test/__mocks__/reactRouterMock';
 
 interface IScope {
   props: RouteComponentProps<Portfolio>;

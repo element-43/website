@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // Components.
-import { StyledSvg } from '../StyledSvg';
+import StyledSvg from '../StyledSvg';
 
 export interface IProps {
   color?: string;
@@ -9,7 +9,9 @@ export interface IProps {
   size?: string;
 }
 
-export const BannerLogoSvg: React.FC<IProps> = (props: IProps) => (
+export const BannerLogoSvg: React.FunctionComponent<IProps> = (
+  props: IProps
+) => (
   <StyledSvg
     color={props.color}
     hoverColor={props.hoverColor}

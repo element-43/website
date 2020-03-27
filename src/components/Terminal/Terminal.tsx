@@ -1,32 +1,44 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { ActionCreator, bindActionCreators, Dispatch } from 'redux';
-import styled from 'styled-components';
-import { animate } from 'velocity-animate';
+import React, { createRef, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styled, { css, keyframes } from 'styled-components';
 
-// ActionCreators.
+// Actions.
 import {
-  closeAsteroids,
-  closeTerminal,
-  openAsteroids,
-} from '../../store/layout/actionCreators';
-import { push } from '../../store/router/actionCreators';
+  closeAsteroidsAction,
+  closeTerminalAction,
+  openAsteroidsAction,
+  openTerminalAction,
+} from '../../store/layout/actions';
+import { push } from '../../store/router/actions';
 
 // Enums.
-import { RoutesEnum } from '../../enums/api';
+import { Routes } from '../../enums';
 
-// Styles.
-import palette from '../../styles/palette';
+// Hooks.
+import { usePrevious } from '../../hooks';
+
+// Theme.
+import palette from '../../theme/palette';
 
 // Types.
 import { IApplicationState } from '../../store';
-import {
-  ICloseAsteroidsAction,
-  ICloseTerminalAction,
-  IOpenAsteroidsAction,
-} from '../../store/layout/types';
-import { PushAction } from '../../store/router/types';
 
+const slideUpAnimation = keyframes`
+  from {
+    top: 0;
+  }
+  to {
+    top: -4.5rem;
+  }
+`;
+const slideDownAnimation = keyframes`
+  from {
+    top: -4.5rem;
+  }
+  to {
+    top: 0;
+  }
+`;
 const Input = styled.input`
   color: ${palette.greyScale.white};
   background-color: transparent;
@@ -37,17 +49,17 @@ const Input = styled.input`
   height: 100%;
   left: 0;
   line-height: 2.5rem;
-  margin-left: 1.5rem;
+  margin: 0 0 0 1.5rem;
   outline: 0;
   position: absolute;
   right: 0;
   top: 0;
   width: 100%;
 `;
-const InputContainer = styled.div`
-  height: 100%;
+const Inner = styled.div`
+  flex: 1;
   position: relative;
-  width: 100%;
+  margin: 0 1rem;
 
   &:before {
     content: '>';
@@ -56,138 +68,144 @@ const InputContainer = styled.div`
     line-height: 2.5rem;
   }
 `;
-const Wrapper = styled.div`
-  background-color: ${palette.greyScale.black};
-  bottom: -4.5rem;
+const Outer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+`;
+const Wrapper = styled.div<{ open: boolean; prevOpen: boolean | undefined }>`
+  background-color: ${palette.greyScale.semiTransparentBlack};
   color: ${palette.greyScale.white};
-  height: 2.5rem;
+  ${({ open }) => !open && `display: none;`}
+  height: 4.5rem;
   left: 0;
-  padding: 1rem;
   position: fixed;
   right: 0;
   z-index: 1000;
+  ${({ open, prevOpen }) => {
+    if (prevOpen !== undefined && prevOpen !== open) {
+      if (open) {
+        return css`
+          animation: 200ms forwards ${slideDownAnimation};
+          display: block;
+          top: -4.5rem;
+        `;
+      }
+
+      return css`
+        animation: 200ms forwards ${slideUpAnimation};
+        display: block;
+        top: 0;
+      `;
+    }
+
+    return '';
+  }}
 `;
 
-export interface IProps {
-  closeAsteroids: ActionCreator<ICloseAsteroidsAction>;
-  closeTerminal: ActionCreator<ICloseTerminalAction>;
-  isOpen: boolean;
-  openAsteroids: ActionCreator<IOpenAsteroidsAction>;
-  push: ActionCreator<PushAction>;
-}
+export const Terminal: React.FunctionComponent = () => {
+  const inputRef: React.RefObject<HTMLInputElement> = createRef<
+    HTMLInputElement
+  >();
+  const dispatch = useDispatch();
+  const asteroidsOpen: boolean = useSelector(
+    (state: IApplicationState) => state.layout.asteroids.open
+  );
+  const terminalOpen: boolean = useSelector(
+    (state: IApplicationState) => state.layout.terminal.open
+  );
+  const prevTerminalOpen: boolean | undefined = usePrevious<
+    boolean | undefined
+  >(terminalOpen);
+  const [value, setValue] = useState<string>('');
+  const handleAnimationEnd = () => {
+    const inputElement: HTMLInputElement | null = inputRef.current;
 
-export interface IState {
-  value: string;
-}
+    if (inputElement) {
+      if (terminalOpen) {
+        return inputElement.focus();
+      }
 
-export class Terminal extends React.PureComponent<IProps, IState> {
-  private readonly inputRef: React.RefObject<HTMLInputElement>;
-  private readonly terminalRef: React.RefObject<HTMLDivElement>;
-
-  constructor(props: IProps) {
-    super(props);
-
-    this.inputRef = React.createRef();
-    this.state = {
-      value: '',
-    };
-    this.terminalRef = React.createRef();
-
-    // Bind functions.
-    this.onChange = this.onChange.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
-  }
-
-  public componentDidUpdate(): void {
-    const { isOpen } = this.props;
-    const inputElement: HTMLInputElement | null = this.inputRef.current;
-    const terminalElement: HTMLDivElement | null = this.terminalRef.current;
-    let bottom: number;
-
-    if (terminalElement && inputElement) {
-      bottom = isOpen ? 0 : -4.5;
-
-      // Animate the terminal.
-      animate(
-        terminalElement,
-        { bottom: `${bottom}rem` },
-        { duration: 200, queue: false }
-      ).then(() => (isOpen ? inputElement.focus() : inputElement.blur()));
+      inputElement.blur();
     }
-  }
-
-  private onChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    this.setState({ value: event.target.value });
-  }
-
-  private onKeyDown(event: React.KeyboardEvent<HTMLInputElement>): void {
-    if (event.keyCode === 13) {
-      switch (this.state.value) {
+  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value !== '`') {
+      setValue(e.target.value);
+    }
+  };
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.keyCode === 13) {
+      switch (value) {
         case '/asteroids':
-          this.props.openAsteroids();
-          this.props.closeTerminal();
-
+          dispatch(
+            asteroidsOpen ? closeAsteroidsAction() : openAsteroidsAction()
+          );
+          dispatch(closeTerminalAction());
           break;
         case '/exit':
-          this.props.closeTerminal();
-
+          dispatch(closeTerminalAction());
           break;
-        case RoutesEnum.About:
-          this.props.push(RoutesEnum.About);
-
+        case Routes.About:
+          dispatch(push(Routes.About));
+          dispatch(closeTerminalAction());
           break;
-        case RoutesEnum.Contact:
-          this.props.push(RoutesEnum.Contact);
-
+        case Routes.Contact:
+          dispatch(push(Routes.Contact));
+          dispatch(closeTerminalAction());
           break;
-        case RoutesEnum.Home:
-          this.props.push('/');
-
+        case Routes.Home:
+          dispatch(push(Routes.Home));
+          dispatch(closeTerminalAction());
           break;
-        case RoutesEnum.Portfolio:
-          this.props.push(RoutesEnum.Portfolio);
-
+        case Routes.Portfolio:
+          dispatch(push(Routes.Portfolio));
+          dispatch(closeTerminalAction());
           break;
         default:
           break;
       }
 
-      // Reset the terminal.
-      this.setState({ value: '' });
+      // Clear the terminal.
+      setValue('');
     }
-  }
+  };
+  const handleKeyUp = (e: WindowEventMap['keyup']) => {
+    if (e.code === 'Backquote') {
+      dispatch(terminalOpen ? closeTerminalAction() : openTerminalAction());
+    }
+  };
 
-  public render(): React.ReactElement<Terminal> {
-    return (
-      <Wrapper ref={this.terminalRef}>
-        <InputContainer>
+  useEffect(() => {
+    window.addEventListener('keyup', handleKeyUp);
+
+    return function cleanup() {
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  });
+
+  return (
+    <Wrapper
+      open={terminalOpen}
+      onAnimationEnd={handleAnimationEnd}
+      prevOpen={prevTerminalOpen}
+    >
+      <Outer>
+        <Inner>
           <Input
             autoComplete="off"
-            onChange={this.onChange}
-            onKeyDown={this.onKeyDown}
-            ref={this.inputRef}
+            onChange={handleChange}
+            onKeyDown={handleInputKeyDown}
+            ref={inputRef}
             type="text"
-            value={this.state.value}
+            value={value}
           />
-        </InputContainer>
-      </Wrapper>
-    );
-  }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  closeAsteroids: bindActionCreators(closeAsteroids, dispatch),
-  closeTerminal: bindActionCreators(closeTerminal, dispatch),
-  openAsteroids: bindActionCreators(openAsteroids, dispatch),
-  push: bindActionCreators(push, dispatch),
-});
-const mapStateToProps = (state: IApplicationState) => {
-  return {
-    isOpen: state.layout.terminal.open,
-  };
+        </Inner>
+      </Outer>
+    </Wrapper>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Terminal);
+export default Terminal;

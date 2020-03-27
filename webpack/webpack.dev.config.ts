@@ -13,6 +13,7 @@ import * as WebpackConstants from './constants';
 const config: Configuration = merge(commonConfig, {
   devServer: {
     contentBase: WebpackConstants.DIST_PATH,
+    historyApiFallback: true,
     host: '0.0.0.0',
     port: parseInt(process.env.PORT, 10),
   },

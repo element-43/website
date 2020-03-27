@@ -1,29 +1,25 @@
-import { Location } from 'history';
-import * as React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+// Hooks.
+import { usePrevious } from '../../hooks';
 
 // Types.
 import { IApplicationState } from '../../store';
 
-export interface IProps {
-  location: Location;
-}
+export const ScrollToTop: React.FunctionComponent = () => {
+  const pathname: string = useSelector(
+    (state: IApplicationState) => state.router.location.pathname
+  );
+  const prevPathname: string | undefined = usePrevious(pathname);
 
-export class ScrollToTop extends React.PureComponent<IProps> {
-  public componentDidUpdate(prevProps: IProps): void {
-    // If it is a new location, scroll to the top.
-    if (prevProps.location.pathname !== this.props.location.pathname) {
+  useEffect(() => {
+    if (prevPathname !== pathname) {
       window.scrollTo(0, 0);
     }
-  }
+  }, [pathname]);
 
-  public render(): null {
-    return null;
-  }
-}
+  return null;
+};
 
-const mapStateToProps = (state: IApplicationState) => ({
-  location: state.router.location,
-});
-
-export default connect(mapStateToProps)(ScrollToTop);
+export default ScrollToTop;

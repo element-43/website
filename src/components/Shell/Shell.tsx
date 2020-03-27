@@ -1,36 +1,35 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 // Store.
 import { IApplicationState } from '../../store';
 
 // Components.
-import { AsteroidsGame } from '../AsteroidsGame';
-import { GoogleAnalytics } from '../GoogleAnalytics';
-import { KonamiCode } from '../KonamiCode';
-import { ScrollToTop } from '../ScrollToTop';
-import { Terminal } from '../Terminal';
+import AsteroidsGame from '../AsteroidsGame';
+import GoogleAnalytics from '../GoogleAnalytics';
+import KonamiCode from '../KonamiCode';
+import ScrollToTop from '../ScrollToTop';
+import Terminal from '../Terminal';
 
 export interface IProps {
   children: React.ReactNode;
-  asteroidsOpen: boolean;
 }
 
-export const Shell: React.FC<IProps> = (props: IProps) => (
-  <>
-    <GoogleAnalytics />
-    <KonamiCode />
-    <ScrollToTop />
-    {props.asteroidsOpen && <AsteroidsGame />}
-    <Terminal />
-    {props.children}
-  </>
-);
+export const Shell: React.FunctionComponent<IProps> = (props: IProps) => {
+  const asteroidsOpen: boolean = useSelector(
+    (state: IApplicationState) => state.layout.asteroids.open
+  );
 
-const mapStateToProps = (state: IApplicationState) => {
-  return {
-    asteroidsOpen: state.layout.asteroids.open,
-  };
+  return (
+    <>
+      <GoogleAnalytics />
+      <KonamiCode />
+      <ScrollToTop />
+      {asteroidsOpen && <AsteroidsGame />}
+      <Terminal />
+      {props.children}
+    </>
+  );
 };
 
-export default connect(mapStateToProps)(Shell);
+export default Shell;

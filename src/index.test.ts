@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 // Components.
-import { App } from './App';
+import { App } from './components/App/App';
 
 // Module.
 import { onDOMContentLoaded } from './index';

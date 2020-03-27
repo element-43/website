@@ -1,42 +1,27 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { ActionCreator, bindActionCreators, Dispatch } from 'redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 // ActionCreators.
-import { setTitle } from '../../store/layout/actionCreators';
+import { setTitleAction } from '../../store/layout/actions';
 
 // Components.
-import { Page } from '../../components/Page';
+import Page from '../../components/Page';
 
 // Strings.
 import { Titles } from '../../constants';
 
-// Types.
-import { ISetTitleAction } from '../../store/layout/types';
+export const Home: React.FC = () => {
+  const dispatch = useDispatch();
 
-export interface IProps {
-  setTitle: ActionCreator<ISetTitleAction>;
-}
+  useEffect(() => {
+    dispatch(setTitleAction(Titles.DEFAULT));
+  }, []);
 
-export class Home extends React.PureComponent<IProps> {
-  public componentDidMount(): void {
-    this.props.setTitle(Titles.DEFAULT);
-  }
+  return (
+    <Page>
+      <h1>Hello human</h1>
+    </Page>
+  );
+};
 
-  public render(): React.ReactElement<Home> {
-    return (
-      <Page>
-        <h1>Hello human</h1>
-      </Page>
-    );
-  }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setTitle: bindActionCreators(setTitle, dispatch),
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Home);
+export default Home;

@@ -1,24 +1,16 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 
-export class GoogleAnalytics extends React.PureComponent {
-  public componentDidMount(): void {
-    GoogleAnalytics.trackPage();
-  }
-
-  public componentDidUpdate(): void {
-    GoogleAnalytics.trackPage();
-  }
-
-  public static trackPage() {
+export const GoogleAnalytics: React.FunctionComponent = () => {
+  const trackPage: () => void = () => {
     // Send page tracking to the omnipotent Google, but only in production.
     if (process.env.NODE_ENV === 'production' && window.ga) {
       window.ga('send', 'pageview', window.location.pathname);
     }
-  }
+  };
 
-  public render(): null {
-    return null;
-  }
-}
+  useEffect(trackPage);
+
+  return null;
+};
 
 export default GoogleAnalytics;

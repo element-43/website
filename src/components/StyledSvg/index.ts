@@ -1,1 +1,1 @@
-export { default as StyledSvg } from './StyledSvg';
+export { default } from './StyledSvg';

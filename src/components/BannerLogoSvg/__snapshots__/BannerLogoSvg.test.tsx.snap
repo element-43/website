@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BannerLogoSvg /> <BannerLogoSvg /> snapshots should match the snapshot with optional properties 1`] = `ShallowWrapper {}`;
+
+exports[`<BannerLogoSvg /> <BannerLogoSvg /> snapshots should match the snapshot with the default properties 1`] = `ShallowWrapper {}`;

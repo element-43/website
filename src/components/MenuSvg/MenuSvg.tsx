@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 // Components.
-import { StyledSvg } from '../StyledSvg';
+import StyledSvg from '../StyledSvg';
 
 export interface IProps {
   color?: string;

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IProps, ScrollToTop } from './ScrollToTop';
 
 // Mocks.
-import { MockLocation } from '../../../__mocks__/reactRouterMock';
+import { MockLocation } from '../../../test/__mocks__/reactRouterMock';
 
 interface IScope {
   props: IProps;

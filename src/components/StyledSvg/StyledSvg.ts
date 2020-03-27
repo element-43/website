@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-// Styles.
-import palette from '../../styles/palette';
+// Theme.
+import palette from '../../theme/palette';
 
 export interface IProps {
   color?: string;

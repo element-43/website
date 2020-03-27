@@ -4,8 +4,8 @@ import {
   GlobalStyleComponent,
 } from 'styled-components';
 
-// Styles.
-import palette from '../../styles/palette';
+// Theme.
+import palette from '../../theme/palette';
 
 const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
   @font-face {

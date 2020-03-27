@@ -2,7 +2,7 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 // Config.
-import palette from '../../styles/palette';
+import palette from '../../theme/palette';
 
 // Components.
 import { IProps, StyledSvg } from './StyledSvg';

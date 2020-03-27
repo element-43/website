@@ -1,4 +1,4 @@
-export default function(length: number = 5): string {
+export default function getRandomString(length: number = 5): string {
   const possibleCharacters: string =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   let text: string = '';

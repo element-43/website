@@ -1,5 +1,5 @@
 // Enums.
-import { RoutesEnum } from '../../enums/api';
+import { Routes } from '../../enums';
 
 // Strings.
 import { Titles } from '../../constants';
@@ -16,17 +16,17 @@ export function getInitialState(): ILayoutState {
       items: [
         {
           active: false,
-          route: RoutesEnum.About,
+          route: Routes.About,
           title: Titles.ABOUT,
         },
         {
           active: false,
-          route: RoutesEnum.Portfolio,
+          route: Routes.Portfolio,
           title: Titles.PORTFOLIO,
         },
         {
           active: false,
-          route: RoutesEnum.Contact,
+          route: Routes.Contact,
           title: Titles.CONTACT,
         },
       ],

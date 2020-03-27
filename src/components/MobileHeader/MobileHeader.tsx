@@ -1,32 +1,76 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ActionCreator, bindActionCreators, Dispatch } from 'redux';
-import styled from 'styled-components';
-import { animate } from 'velocity-animate';
+import styled, { css, keyframes } from 'styled-components';
 
-// Action creators.
-import { closeMenu, openMenu } from '../../store/layout/actionCreators';
-import { push } from '../../store/router/actionCreators';
+// Actions.
+import { closeMenuAction, openMenuAction } from '../../store/layout/actions';
+import { push } from '../../store/router/actions';
 
 // Components.
-import { BannerLogoSvg } from '../BannerLogoSvg';
-import { CrossSvg } from '../CrossSvg';
-import { MenuSvg } from '../MenuSvg';
+import BannerLogoSvg from '../BannerLogoSvg';
+import CrossSvg from '../CrossSvg';
+import MenuSvg from '../MenuSvg';
 
-// Styles.
-import palette from '../../styles/palette';
+// Hooks.
+import { usePrevious } from '../../hooks';
+
+// Theme.
+import palette from '../../theme/palette';
 
 // Types.
 import { IApplicationState } from '../../store';
-import {
-  ICloseMenuAction,
-  IMenuConfig,
-  IMenuItem,
-  IOpenMenuAction,
-} from '../../store/layout/types';
-import { PushAction } from '../../store/router/types';
+import { IMenuItem } from '../../store/layout/types';
 
+interface IAnimatedProps {
+  open: boolean;
+  prevOpen: boolean | undefined;
+}
+
+const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+const fadeOutAnimation = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+const growInAnimation = keyframes`
+  from {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  to {
+    height: 0;
+    left: 50%;
+    top: 50%;
+    width: 0;
+  }
+`;
+const growOutAnimation = keyframes`
+  from {
+    height: 0;
+    left: 50%;
+    top: 50%;
+    width: 0;
+  }
+  to {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+`;
 const IconButtonContainer = styled.button`
   background: transparent;
   border: 0;
@@ -59,176 +103,126 @@ const Navigation = styled.nav`
   padding: 0;
   width: 100%;
 `;
-const NavigationContainer = styled.div`
+const NavigationContainer = styled.div<IAnimatedProps>`
   align-items: flex-end;
   display: none;
   flex-direction: column;
-  opacity: 0;
   padding: 2rem;
   position: relative;
+  ${({ open, prevOpen }) => {
+    if (prevOpen !== undefined && prevOpen !== open) {
+      if (open) {
+        return css`
+          animation: 250ms 250ms forwards ${fadeInAnimation};
+          display: flex;
+          opacity: 0;
+        `;
+      }
+
+      return css`
+        animation: 250ms forwards ${fadeOutAnimation};
+        display: flex;
+        opacity: 1;
+      `;
+    }
+
+    return '';
+  }}
 `;
-const Overlay = styled.div`
+const Overlay = styled.div<IAnimatedProps>`
   background-color: ${palette.brand.purple500};
-  height: 0;
-  left: 50%;
+  display: none;
   position: fixed;
-  top: 50%;
-  width: 0;
   z-index: 9999;
+  ${({ open, prevOpen }) => {
+    if (prevOpen !== undefined && prevOpen !== open) {
+      if (open) {
+        return css`
+          animation: 250ms forwards ${growOutAnimation};
+          display: block;
+          height: 0;
+          left: 50%;
+          top: 50%;
+          width: 0;
+        `;
+      }
+
+      return css`
+        animation: 250ms 250ms forwards ${growInAnimation};
+        display: block;
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+      `;
+    }
+
+    return '';
+  }}
 `;
 const Wrapper = styled.header`
   width: 100%;
 `;
 
-export interface IProps {
-  closeMenu: ActionCreator<ICloseMenuAction>;
-  menu: IMenuConfig;
-  openMenu: ActionCreator<IOpenMenuAction>;
-  push: ActionCreator<PushAction>;
-}
-
-export class MobileHeader extends React.PureComponent<IProps> {
-  private readonly navigationContainerRef: React.RefObject<HTMLDivElement>;
-  private readonly overlayRef: React.RefObject<HTMLDivElement>;
-
-  private onMenuItemClick = (path: string) => (
-    event: React.MouseEvent<HTMLAnchorElement>
+export const MobileHeader: React.FC = () => {
+  const dispatch = useDispatch();
+  const items: IMenuItem[] = useSelector(
+    (state: IApplicationState) => state.layout.menu.items
+  );
+  const open: boolean = useSelector(
+    (state: IApplicationState) => state.layout.menu.open
+  );
+  const prevOpen: boolean | undefined = usePrevious<boolean | undefined>(open);
+  const handleMenuClick = (path: string) => (
+    e: React.MouseEvent<HTMLAnchorElement>
   ) => {
-    event.preventDefault();
+    e.preventDefault();
 
-    this.props.push(path);
-    this.closeMenu();
+    dispatch(closeMenuAction());
+    dispatch(push(path));
   };
 
-  constructor(props: IProps) {
-    super(props);
-
-    this.navigationContainerRef = React.createRef();
-    this.overlayRef = React.createRef();
-  }
-
-  private async closeMenu(): Promise<void> {
-    const navigationContainerElement: HTMLDivElement | null = this
-      .navigationContainerRef.current;
-    const overlayElement: HTMLDivElement | null = this.overlayRef.current;
-
-    if (navigationContainerElement && overlayElement) {
-      await animate(
-        navigationContainerElement,
-        { opacity: 0 },
-        {
-          duration: 250,
-          queue: false,
-        }
-      );
-
-      await animate(
-        overlayElement,
-        {
-          height: 0,
-          left: '50%',
-          top: '50%',
-          width: 0,
-        },
-        {
-          duration: 250,
-          queue: false,
-        }
-      );
-    }
-  }
-
-  private async openMenu(): Promise<void> {
-    const navigationContainerElement: HTMLDivElement | null = this
-      .navigationContainerRef.current;
-    const overlayElement: HTMLDivElement | null = this.overlayRef.current;
-
-    if (navigationContainerElement && overlayElement) {
-      await animate(
-        overlayElement,
-        {
-          height: '100%',
-          left: 0,
-          top: 0,
-          width: '100%',
-        },
-        {
-          duration: 250,
-          queue: false,
-        }
-      );
-
-      await animate(
-        navigationContainerElement,
-        { opacity: 1 },
-        {
-          display: 'flex',
-          duration: 250,
-          queue: false,
-        }
-      );
-    }
-  }
-
-  public render(): React.ReactElement<MobileHeader> {
-    const { menu } = this.props;
-
-    return (
-      <Wrapper>
-        <MenuIconContainer>
-          <MenuIconLink to="/">
-            <BannerLogoSvg
-              color={palette.brand.purple500}
-              hoverColor={palette.brand.green500}
-              size="4rem"
-            />
-          </MenuIconLink>
-          <IconButtonContainer onClick={() => this.openMenu()}>
-            <MenuSvg
-              color={palette.brand.purple500}
+  return (
+    <Wrapper>
+      <MenuIconContainer>
+        <MenuIconLink to="/">
+          <BannerLogoSvg
+            color={palette.brand.purple500}
+            hoverColor={palette.brand.green500}
+            size="4rem"
+          />
+        </MenuIconLink>
+        <IconButtonContainer onClick={() => dispatch(openMenuAction())}>
+          <MenuSvg
+            color={palette.brand.purple500}
+            hoverColor={palette.brand.green500}
+            size="3rem"
+          />
+        </IconButtonContainer>
+      </MenuIconContainer>
+      <Overlay open={open} prevOpen={prevOpen}>
+        <NavigationContainer open={open} prevOpen={prevOpen}>
+          <IconButtonContainer onClick={() => dispatch(closeMenuAction())}>
+            <CrossSvg
+              color={palette.greyScale.white}
               hoverColor={palette.brand.green500}
               size="3rem"
             />
           </IconButtonContainer>
-        </MenuIconContainer>
-        <Overlay ref={this.overlayRef}>
-          <NavigationContainer ref={this.navigationContainerRef}>
-            <IconButtonContainer onClick={() => this.closeMenu()}>
-              <CrossSvg
-                color={palette.greyScale.white}
-                hoverColor={palette.brand.green500}
-                size="3rem"
-              />
-            </IconButtonContainer>
-            <Navigation>
-              {menu.items.map((item: IMenuItem, index: number) => (
-                <MenuItemLink
-                  key={`mobile-header__menu-item-${index}`}
-                  onClick={this.onMenuItemClick(item.route)}
-                >
-                  {item.title}
-                </MenuItemLink>
-              ))}
-            </Navigation>
-          </NavigationContainer>
-        </Overlay>
-      </Wrapper>
-    );
-  }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  closeMenu: bindActionCreators(closeMenu, dispatch),
-  openMenu: bindActionCreators(openMenu, dispatch),
-  push: bindActionCreators(push, dispatch),
-});
-const mapStateToProps = (state: IApplicationState) => {
-  return {
-    menu: state.layout.menu,
-  };
+          <Navigation>
+            {items.map((item: IMenuItem, index: number) => (
+              <MenuItemLink
+                key={`mobile-header__menu-item-${index}`}
+                onClick={handleMenuClick(item.route)}
+              >
+                {item.title}
+              </MenuItemLink>
+            ))}
+          </Navigation>
+        </NavigationContainer>
+      </Overlay>
+    </Wrapper>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MobileHeader);
+export default MobileHeader;

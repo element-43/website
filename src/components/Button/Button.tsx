@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-// Styles.
-import palette from '../../styles/palette';
-import typography from '../../styles/typography';
+// Theme.
+import palette from '../../theme/palette';
+import typography from '../../theme/typography';
 
 // Utils.
-import getRandomString from '../../lib/getRandomString';
+import getRandomString from '../../utils/getRandomString';
 
 const buttonOverlayClassName: string = getRandomString(5);
 const dashAnimation = keyframes`
@@ -158,7 +158,7 @@ export interface IProps {
   children: React.ReactNode;
 }
 
-export const Button: React.FC<
+export const Button: React.FunctionComponent<
   IProps & React.ButtonHTMLAttributes<HTMLButtonElement>
 > = (props: IProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => (
   <StyledButton {...props}>

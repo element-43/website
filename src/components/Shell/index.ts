@@ -1,1 +1,1 @@
-export { default as Shell } from './Shell';
+export { default } from './Shell';

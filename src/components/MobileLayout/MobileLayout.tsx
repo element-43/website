@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import MediaQuery from 'react-responsive';
 
 // Sizes.
-import { sizes } from '../../styles/media';
+import { sizes } from '../../theme/media';
 
 export interface IProps {
   children: React.ReactNode;

@@ -1,5 +1,5 @@
 // Enums.
-import { RoutesEnum } from '../../enums/api';
+import { Routes } from '../../enums';
 
 // ====================================================
 // Actions.
@@ -91,10 +91,10 @@ export interface IMenuItem {
 }
 
 export type MenuRoutes =
-  | RoutesEnum.About
-  | RoutesEnum.Contact
-  | RoutesEnum.Home
-  | RoutesEnum.Portfolio;
+  | Routes.About
+  | Routes.Contact
+  | Routes.Home
+  | Routes.Portfolio;
 
 export interface ITerminalConfig {
   open: boolean;

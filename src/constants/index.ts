@@ -1,5 +1,6 @@
-import * as Errors from './errors';
-import * as Headers from './headers';
-import * as Titles from './titles';
+import * as Emails from './Emails';
+import * as Links from './Links';
+import * as Social from './Social';
+import * as Titles from './Titles';
 
-export { Errors, Headers, Titles };
+export { Emails, Links, Social, Titles };

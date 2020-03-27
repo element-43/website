@@ -1,20 +1,8 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { ActionCreator, bindActionCreators, Dispatch } from 'redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-// ActionCreators.
-import { openAsteroids } from '../../store/layout/actionCreators';
-
-// Types.
-import { IOpenAsteroidsAction } from '../../store/layout/types';
-
-export interface IProps {
-  openAsteroids: ActionCreator<IOpenAsteroidsAction>;
-}
-
-export interface IState {
-  position: number;
-}
+// Actions.
+import { openAsteroidsAction } from '../../store/layout/actions';
 
 const codeSequence: number[] = [
   38, // Up
@@ -29,58 +17,38 @@ const codeSequence: number[] = [
   65, // A
 ];
 
-export class KonamiCode extends React.PureComponent<IProps, IState> {
-  public state: IState;
-
-  constructor(props: IProps) {
-    super(props);
-
-    this.state = {
-      position: 0,
-    };
-
-    // Bind functions.
-    this.onKeyUp = this.onKeyUp.bind(this);
-  }
-
-  public componentDidMount(): void {
-    window.addEventListener('keyup', this.onKeyUp);
-  }
-
-  public componentWillUnmount(): void {
-    // Remove the keyup event.
-    window.removeEventListener('keyup', this.onKeyUp);
-  }
-
-  public onKeyUp(event: WindowEventMap['keyup']): void {
+export const KonamiCode: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
+  const [position, setPosition] = useState<number>(0);
+  const handleKeyUp = (event: WindowEventMap['keyup']) => {
     const { keyCode } = event;
-    let position: number = 0;
+    let newPosition: number = 0;
 
-    if (keyCode === codeSequence[this.state.position]) {
+    if (keyCode === codeSequence[position]) {
       // Increase code position.
-      position = this.state.position + 1;
+      newPosition = position + 1;
 
-      if (position >= codeSequence.length) {
+      if (newPosition >= codeSequence.length) {
         // Open the game.
-        this.props.openAsteroids();
+        dispatch(openAsteroidsAction());
 
-        position = 0;
+        // Reset code.
+        newPosition = 0;
       }
-
-      this.setState({ position });
     }
-  }
 
-  public render(): null {
-    return null;
-  }
-}
+    setPosition(newPosition);
+  };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openAsteroids: bindActionCreators(openAsteroids, dispatch),
-});
+  useEffect(() => {
+    window.addEventListener('keyup', handleKeyUp);
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(KonamiCode);
+    return function cleanup() {
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  });
+
+  return null;
+};
+
+export default KonamiCode;

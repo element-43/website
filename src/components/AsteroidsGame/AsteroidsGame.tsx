@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import styled from 'styled-components';
 
 // Action creators.
-import { closeAsteroids } from '../../store/layout/actionCreators';
+import { closeAsteroidsAction } from '../../store/layout/actions';
 
 // Classes.
 import { Asteroid } from './models/Asteroid';
@@ -12,7 +12,7 @@ import { Explosion } from './models/Explosion';
 import { Ship } from './models/Ship';
 
 // Components.
-import { Button } from '../Button';
+import Button from '../Button';
 
 // Constants.
 import {
@@ -26,11 +26,11 @@ import {
   SHIP_SIZE,
 } from './constants';
 
-// Styles.
-import palette from '../../styles/palette';
+// Theme.
+import palette from '../../theme/palette';
 
 // Utils.
-import isLocalStorageAvailable from '../../lib/isLocalStorageAvailable';
+import isLocalStorageAvailable from '../../utils/isLocalStorageAvailable';
 import {
   distBetweenPoints,
   drawAsteroid,
@@ -47,7 +47,7 @@ import {
 } from './utils';
 
 interface IProps {
-  closeAsteroids: typeof closeAsteroids;
+  closeAsteroids: typeof closeAsteroidsAction;
 }
 
 const height: number = 570;
@@ -499,7 +499,7 @@ export class AsteroidsGame extends React.PureComponent<IProps> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  closeAsteroids: bindActionCreators(closeAsteroids, dispatch),
+  closeAsteroids: bindActionCreators(closeAsteroidsAction, dispatch),
 });
 
 export default connect(

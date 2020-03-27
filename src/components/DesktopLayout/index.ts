@@ -1,1 +1,1 @@
-export { default as DesktopLayout } from './DesktopLayout';
+export { default } from './DesktopLayout';

@@ -1,5 +1,5 @@
 // Enums.
-import { RoutesEnum } from '../../enums';
+import { Routes } from '../../enums';
 
 // Reducer.
 import reducer from './reducer';
@@ -97,14 +97,14 @@ describe('store/layout/reducer', () => {
   describe('LayoutActionTypes.SetMenuItem', () => {
     it('should set the menu item to active if the route exists', () => {
       const action: ISetMenuItemAction = {
-        route: RoutesEnum.About,
+        route: Routes.About,
         type: LayoutActionTypes.SetMenuItem,
       };
       const state: ILayoutState = reducer(scope.initialState, action);
 
       expect(
         state.menu.items.find(
-          (value: IMenuItem) => value.route === RoutesEnum.About
+          (value: IMenuItem) => value.route === Routes.About
         ).active
       ).toBe(true);
     });

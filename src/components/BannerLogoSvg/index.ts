@@ -1,1 +1,1 @@
-export { default as BannerLogoSvg } from './BannerLogoSvg';
+export { default } from './BannerLogoSvg';

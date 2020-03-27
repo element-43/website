@@ -9,7 +9,7 @@ import { Titles } from '../constants';
  * @param title specifies what the <title> will be.
  * @return {Element} the <Helmet> node.
  */
-export default function(
+export default function getHelmet(
   title: string = Titles.DEFAULT
 ): React.ReactElement<Helmet> {
   const description: string = 'Not just an element!';

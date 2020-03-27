@@ -2,9 +2,9 @@ import { createElement } from 'react';
 import { render } from 'react-dom';
 
 // Components.
-import { App } from './App';
+import App from './components/App/App';
 
-export function onDOMContentLoaded() {
+export function onDOMContentLoaded(): void {
   const element: HTMLElement | null = document.getElementById('app');
 
   if (element) {

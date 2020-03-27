@@ -1,1 +1,1 @@
-export { default as CrossSvg } from './CrossSvg';
+export { default } from './CrossSvg';

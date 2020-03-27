@@ -22,6 +22,7 @@ export default {
     darkGrey: '#8c8c8c',
     grey: '#ccc',
     lightGrey: '#f2f2f2',
+    semiTransparentBlack: 'rgba(0, 0, 0, 0.8)',
     white: '#fff',
   },
 

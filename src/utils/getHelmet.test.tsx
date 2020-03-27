@@ -10,7 +10,7 @@ import getHelmet from './getHelmet';
 
 describe('getHelmet()', () => {
   it('should return a node containing the correct children', () => {
-    const props: HelmetProps = shallow(getHelmet()).props();
+    const props: HelmetProps = shallow(getHelmet()).props() as HelmetProps;
 
     expect(props.title).toBeDefined();
 
@@ -28,7 +28,7 @@ describe('getHelmet()', () => {
   });
 
   it('should use the default values if nothing is specified', () => {
-    const props: HelmetProps = shallow(getHelmet()).props();
+    const props: HelmetProps = shallow(getHelmet()).props() as HelmetProps;
 
     expect(props.title).toBe(Titles.DEFAULT);
 
@@ -43,7 +43,7 @@ describe('getHelmet()', () => {
 
   it('should use the specified title on the relevant tags', () => {
     const title: string = 'I am Sparta!!!';
-    const props: HelmetProps = shallow(getHelmet(title)).props();
+    const props: HelmetProps = shallow(getHelmet(title)).props() as HelmetProps;
 
     expect(props.title).toBe(title);
 

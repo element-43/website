@@ -1,1 +1,1 @@
-export { default as KonamiCode } from './KonamiCode';
+export { default } from './KonamiCode';

@@ -14,8 +14,8 @@ import {
   SHIP_SIZE,
 } from './constants';
 
-// Styles.
-import palette from '../../styles/palette';
+// Theme.
+import palette from '../../theme/palette';
 
 // Types.
 import { IEntity } from './types';

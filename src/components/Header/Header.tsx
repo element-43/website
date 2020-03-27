@@ -1,21 +1,17 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // Components.
-import { BannerLogoSvg } from '../BannerLogoSvg';
+import BannerLogoSvg from '../BannerLogoSvg';
 
-// Styles.
-import palette from '../../styles/palette';
+// Theme.
+import palette from '../../theme/palette';
 
 // Types.
 import { IApplicationState } from '../../store';
 import { IMenuConfig, IMenuItem } from '../../store/layout/types';
-
-interface IProps {
-  menu: IMenuConfig;
-}
 
 const Inner = styled.div`
   display: flex;
@@ -50,33 +46,33 @@ const Wrapper = styled.header`
   width: 30%;
 `;
 
-export const Header: React.FC<IProps> = (props: IProps) => (
-  <Wrapper>
-    <Inner>
-      <MenuContainer>
-        <Link to="/">
-          <BannerLogoSvg
-            color={palette.greyScale.white}
-            hoverColor={palette.brand.green500}
-            size="4rem"
-          />
-        </Link>
-        <Navigation>
-          {props.menu.items.map((item: IMenuItem, index: number) => (
-            <MenuItemLink key={`header__menu-item-${index}`} to={item.route}>
-              {item.title}
-            </MenuItemLink>
-          ))}
-        </Navigation>
-      </MenuContainer>
-    </Inner>
-  </Wrapper>
-);
+export const Header: React.FunctionComponent = () => {
+  const menu: IMenuConfig = useSelector(
+    (state: IApplicationState) => state.layout.menu
+  );
 
-const mapStateToProps = (state: IApplicationState) => {
-  return {
-    menu: state.layout.menu,
-  };
+  return (
+    <Wrapper>
+      <Inner>
+        <MenuContainer>
+          <Link to="/">
+            <BannerLogoSvg
+              color={palette.greyScale.white}
+              hoverColor={palette.brand.green500}
+              size="4rem"
+            />
+          </Link>
+          <Navigation>
+            {menu.items.map((item: IMenuItem, index: number) => (
+              <MenuItemLink key={`header__menu-item-${index}`} to={item.route}>
+                {item.title}
+              </MenuItemLink>
+            ))}
+          </Navigation>
+        </MenuContainer>
+      </Inner>
+    </Wrapper>
+  );
 };
 
-export default connect(mapStateToProps)(Header);
+export default Header;

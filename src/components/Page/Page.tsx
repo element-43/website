@@ -1,23 +1,23 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 // Components.
-import { DesktopLayout } from '../DesktopLayout';
-import { Header } from '../Header';
-import { MobileHeader } from '../MobileHeader';
-import { MobileLayout } from '../MobileLayout';
+import DesktopLayout from '../DesktopLayout';
+import Header from '../Header';
+import MobileHeader from '../MobileHeader';
+import MobileLayout from '../MobileLayout';
 
-// Styles.
-import media from '../../styles/media';
-import palette from '../../styles/palette';
-import typography from '../../styles/typography';
+// Theme.
+import media from '../../theme/media';
+import palette from '../../theme/palette';
+import typography from '../../theme/typography';
 
 // Types.
 import { IApplicationState } from '../../store';
 
 // Utils.
-import getHelmet from '../../lib/getHelmet';
+import getHelmet from '../../utils/getHelmet';
 
 const Main = styled.main`
   width: 100%;
@@ -39,26 +39,25 @@ const Wrapper = styled.div`
 
 export interface IProps {
   children: React.ReactNode;
-  title: string;
 }
 
-export const Page: React.FC<IProps> = (props: IProps) => (
-  <Wrapper>
-    {getHelmet(props.title)}
-    <MobileLayout>
-      <MobileHeader />
-    </MobileLayout>
-    <DesktopLayout>
-      <Header />
-    </DesktopLayout>
-    <Main>{props.children}</Main>
-  </Wrapper>
-);
+export const Page: React.FunctionComponent<IProps> = (props: IProps) => {
+  const title: string = useSelector(
+    (state: IApplicationState) => state.layout.title
+  );
 
-const mapStateToProps = (state: IApplicationState) => {
-  return {
-    title: state.layout.title,
-  };
+  return (
+    <Wrapper>
+      {getHelmet(title)}
+      <MobileLayout>
+        <MobileHeader />
+      </MobileLayout>
+      <DesktopLayout>
+        <Header />
+      </DesktopLayout>
+      <Main>{props.children}</Main>
+    </Wrapper>
+  );
 };
 
-export default connect(mapStateToProps)(Page);
+export default Page;
