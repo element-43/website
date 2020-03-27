@@ -2,7 +2,7 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 // Components.
-import { IProps, MenuSvg } from './index';
+import { IProps, MenuSvg } from './MenuSvg';
 
 interface IScope {
   props: IProps;

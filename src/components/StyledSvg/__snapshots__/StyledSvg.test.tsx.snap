@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StyledSvg />> <StyledSvg /> snapshots should match the snapshot with the default props 1`] = `ShallowWrapper {}`;
+
+exports[`<StyledSvg />> <StyledSvg /> snapshots should match the snapshot with the optional props 1`] = `ShallowWrapper {}`;

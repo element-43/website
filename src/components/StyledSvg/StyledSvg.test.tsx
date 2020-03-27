@@ -8,7 +8,7 @@ import palette from '../../theme/palette';
 import { IProps, StyledSvg } from './StyledSvg';
 
 interface IScope {
-  props: Props;
+  props: IProps;
   wrapper: ShallowWrapper;
 }
 

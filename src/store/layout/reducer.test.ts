@@ -102,11 +102,11 @@ describe('store/layout/reducer', () => {
       };
       const state: ILayoutState = reducer(scope.initialState, action);
 
-      expect(
-        state.menu.items.find(
-          (value: IMenuItem) => value.route === Routes.About
-        ).active
-      ).toBe(true);
+      state.menu.items.forEach((value: IMenuItem) => {
+        if (value.route === Routes.About) {
+          expect(value.active).toBe(true);
+        }
+      });
     });
 
     it('should not set any items', () => {
