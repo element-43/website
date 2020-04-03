@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CrossSvg />> <CrossSvg /> snapshots should match the snapshot 1`] = `ShallowWrapper {}`;
+
+exports[`<CrossSvg />> <CrossSvg /> snapshots should match the snapshot with optional properties 1`] = `ShallowWrapper {}`;
