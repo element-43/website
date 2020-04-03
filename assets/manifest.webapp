@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "name": "element-43-website",
+  "description": "Website for Element 43 Consulting Limited.",
+  "icons": {
+    "60": "/assets/firefox_app_60x60.png",
+    "128": "/assets/firefox_app_128x128.png",
+    "512": "/assets/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": "Kieran O'Neill",
+    "url": "https://element43.xyz"
+  }
+}
