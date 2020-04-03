@@ -2,7 +2,7 @@ import autoprefixer from 'autoprefixer';
 import { config } from 'dotenv';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import { join, resolve } from 'path';
-import { Configuration, DefinePlugin, LoaderOptionsPlugin } from 'webpack';
+import { Configuration, LoaderOptionsPlugin } from 'webpack';
 
 config();
 

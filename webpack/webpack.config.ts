@@ -37,7 +37,7 @@ const config: Partial<Configuration> = merge(commonConfig, {
   plugins: [
     new DefinePlugin({
       'process.env': {
-        NODE_ENV: 'production',
+        NODE_ENV: JSON.stringify('production'),
       },
     }),
     new HtmlWebpackPlugin({

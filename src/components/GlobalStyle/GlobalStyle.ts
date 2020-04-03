@@ -4,6 +4,11 @@ import {
   GlobalStyleComponent,
 } from 'styled-components';
 
+// Fonts.
+import VT323RegularTTF from '../../fonts/VT323/VT323-Regular.ttf';
+import VT323RegularWOFF from '../../fonts/VT323/VT323-Regular.woff';
+import VT323RegularWOFF2 from '../../fonts/VT323/VT323-Regular.woff2';
+
 // Theme.
 import palette from '../../theme/palette';
 
@@ -12,9 +17,9 @@ const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
     font-family: "VT323";
     font-style: normal;
     font-weight: 400;
-    src: url("${require('../../fonts/VT323/VT323-Regular.ttf')}") format("truetype"),
-      url("${require('../../fonts/VT323/VT323-Regular.woff')}") format("woff"),
-      url("${require('../../fonts/VT323/VT323-Regular.woff2')}") format("woff2");
+    src: url("${VT323RegularTTF}") format("truetype"),
+      url("${VT323RegularWOFF}") format("woff"),
+      url("${VT323RegularWOFF2}") format("woff2");
   }
 
   body {

@@ -1,4 +1,4 @@
-https://github.com/element-43/website/workflows/Deploy%20to%20GitHub%20Pages/badge.svg
+![](https://github.com/element-43/website/workflows/Deployment/badge.svg)
 
 # Element 43 Website
 
