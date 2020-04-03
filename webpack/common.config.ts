@@ -50,14 +50,9 @@ const commonConfig: Partial<Configuration> = {
     new FaviconsWebpackPlugin({
       logo: resolve(WebpackConstants.SRC_PATH, 'favicon.png'),
     }),
-    new DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'), // Default to development.
-      },
-    }),
     new LoaderOptionsPlugin({
       options: {
-        postcss: () => [autoprefixer({ browsers: ['last 3 versions'] })],
+        postcss: () => [autoprefixer()],
       },
     }),
   ],
