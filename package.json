@@ -89,6 +89,12 @@
     "webpack-merge": "^4.2.2",
     "webpack-notifier": "^1.8.0"
   },
+  "resolutions": {
+    "**/**/acorn": "^6.4.1",
+    "**/**/kind-of": "^6.0.3",
+    "**/**/minimist": "^1.2.2",
+    "**/**/serialize-javascript": "^2.1.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
