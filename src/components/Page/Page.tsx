@@ -20,20 +20,28 @@ import { IApplicationState } from '../../store';
 import getHelmet from '../../utils/getHelmet';
 
 const Main = styled.main`
-  width: 100%;
+  flex: 1;
+  margin: 1.4rem 0 0;
+  padding: 0 1.4rem;
+
+  ${media.tabletAndUp`
+    margin: 2rem 0 0;
+    padding: 0 2rem;
+  `}
 `;
 const Wrapper = styled.div`
+  align-items: center;
   background-color: ${palette.greyScale.white};
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-size: 100%;
   font-family: ${typography.primaryFontFamily};
   min-height: 100vh;
   width: 100%;
 
-  ${media.tablet`
-    flex-direction: column;
-    justify-content: flex-start;
+  ${media.tabletAndUp`
+    align-items: flex-start;
+    flex-direction: row;
   `}
 `;
 

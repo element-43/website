@@ -19,7 +19,7 @@ export const Home: React.FC = () => {
 
   return (
     <Page>
-      <h1>Hello human</h1>
+      <h1>Hello human hoo are you doing today??</h1>
     </Page>
   );
 };

@@ -85,7 +85,7 @@ const MenuIconContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1.4rem;
 `;
 const MenuIconLink = styled(Link)`
   display: block;
