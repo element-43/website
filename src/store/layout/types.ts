@@ -6,7 +6,7 @@ import { Routes } from '../../enums';
 // ====================================================
 
 export interface ICloseAsteroidsAction {
-  type: LayoutActionTypes.CloseAsteriods;
+  type: LayoutActionTypes.CloseAsteroids;
 }
 
 export interface ICloseMenuAction {
@@ -29,6 +29,11 @@ export interface IOpenTerminalAction {
   type: LayoutActionTypes.OpenTerminal;
 }
 
+export interface ISetBarrelRollingAction {
+  state: boolean;
+  type: LayoutActionTypes.SetBarrelRolling;
+}
+
 export interface ISetMenuItemAction {
   route?: MenuRoutes;
   type: LayoutActionTypes.SetMenuItem;
@@ -46,6 +51,7 @@ export type LayoutActions =
   | IOpenAsteroidsAction
   | IOpenMenuAction
   | IOpenTerminalAction
+  | ISetBarrelRollingAction
   | ISetMenuItemAction
   | ISetTitleAction;
 
@@ -54,12 +60,13 @@ export type LayoutActions =
 // ====================================================
 
 export enum LayoutActionTypes {
-  CloseAsteriods = '@layout/CLOSE_ASTEROIDS',
+  CloseAsteroids = '@layout/CLOSE_ASTEROIDS',
   CloseMenu = '@layout/CLOSE_MENU',
   CloseTerminal = '@layout/CLOSE_TERMINAL',
   OpenAsteroids = '@layout/OPEN_ASTEROIDS',
   OpenMenu = '@layout/OPEN_MENU',
   OpenTerminal = '@layout/OPEN_TERMINAL',
+  SetBarrelRolling = '@layout/SET_BARREL_ROLLING',
   SetTitle = '@layout/SET_TITLE',
   SetMenuItem = '@layout/SET_MENU_ITEM',
 }
@@ -70,6 +77,7 @@ export enum LayoutActionTypes {
 
 export interface ILayoutState {
   asteroids: IAsteroidsConfig;
+  barrelRolling: boolean;
   menu: IMenuConfig;
   terminal: ITerminalConfig;
   title: string;

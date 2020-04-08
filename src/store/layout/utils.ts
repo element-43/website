@@ -32,6 +32,7 @@ export function getInitialState(): ILayoutState {
       ],
       open: false,
     },
+    barrelRolling: false,
     terminal: {
       open: false,
     },

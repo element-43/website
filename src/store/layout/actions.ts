@@ -6,6 +6,7 @@ import {
   IOpenAsteroidsAction,
   IOpenMenuAction,
   IOpenTerminalAction,
+  ISetBarrelRollingAction,
   ISetMenuItemAction,
   ISetTitleAction,
   LayoutActionTypes,
@@ -14,7 +15,7 @@ import {
 
 export function closeAsteroidsAction(): ICloseAsteroidsAction {
   return {
-    type: LayoutActionTypes.CloseAsteriods,
+    type: LayoutActionTypes.CloseAsteroids,
   };
 }
 
@@ -45,6 +46,15 @@ export function openMenuAction(): IOpenMenuAction {
 export function openTerminalAction(): IOpenTerminalAction {
   return {
     type: LayoutActionTypes.OpenTerminal,
+  };
+}
+
+export function setBarrelRollingAction(
+  state: boolean
+): ISetBarrelRollingAction {
+  return {
+    state,
+    type: LayoutActionTypes.SetBarrelRolling,
   };
 }
 

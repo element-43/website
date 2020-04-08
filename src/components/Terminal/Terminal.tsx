@@ -8,6 +8,7 @@ import {
   closeTerminalAction,
   openAsteroidsAction,
   openTerminalAction,
+  setBarrelRollingAction,
 } from '../../store/layout/actions';
 import { push } from '../../store/router/actions';
 
@@ -144,6 +145,10 @@ export const Terminal: React.FC = () => {
             asteroidsOpen ? closeAsteroidsAction() : openAsteroidsAction()
           );
           dispatch(closeTerminalAction());
+          break;
+        case '/barrel roll':
+        case '/roll':
+          dispatch(setBarrelRollingAction(true));
           break;
         case '/close':
           dispatch(closeTerminalAction());

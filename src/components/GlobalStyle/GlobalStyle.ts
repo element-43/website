@@ -2,7 +2,11 @@ import {
   createGlobalStyle,
   DefaultTheme,
   GlobalStyleComponent,
+  keyframes,
 } from 'styled-components';
+
+// Components.
+import RollAnimation from '../RollAnimation';
 
 // Fonts.
 import VT323RegularTTF from '../../fonts/VT323/VT323-Regular.ttf';
@@ -13,14 +17,6 @@ import VT323RegularWOFF2 from '../../fonts/VT323/VT323-Regular.woff2';
 import palette from '../../theme/palette';
 
 const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
-  @keyframes roll {
-    from {
-      transform: rotate(0);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
   @font-face {
     font-family: "VT323";
     font-style: normal;
@@ -33,9 +29,10 @@ const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
   body {
     margin: 0;
     min-height: 100vh;
-    animation-duration: 4s;
-    animation-iteration-count: 1;
-    animation-name: roll;
+
+    &.roll {
+      animation: 3000ms forwards ${RollAnimation};
+    }
   }
 
   #app {

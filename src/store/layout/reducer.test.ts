@@ -36,7 +36,7 @@ describe('store/layout/reducer', () => {
 
   it('should close the asteroids game', () => {
     const action: ICloseAsteroidsAction = {
-      type: LayoutActionTypes.CloseAsteriods,
+      type: LayoutActionTypes.CloseAsteroids,
     };
 
     scope.initialState.asteroids.open = true;
