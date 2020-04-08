@@ -1,5 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+// Actions.
+import { closeAsteroidsAction } from '../../store/layout/actions';
 
 // Store.
 import { IApplicationState } from '../../store';
@@ -19,13 +22,16 @@ export const Shell: React.FunctionComponent<IProps> = (props: IProps) => {
   const asteroidsOpen: boolean = useSelector(
     (state: IApplicationState) => state.layout.asteroids.open
   );
+  const dispatch = useDispatch();
 
   return (
     <>
       <GoogleAnalytics />
       <KonamiCode />
       <ScrollToTop />
-      {asteroidsOpen && <AsteroidsGame />}
+      {asteroidsOpen && (
+        <AsteroidsGame onClose={() => dispatch(closeAsteroidsAction())} />
+      )}
       <Terminal />
       {props.children}
     </>

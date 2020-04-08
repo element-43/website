@@ -5,4 +5,4 @@ interface IEntity {
   y: number;
 }
 
-export { IEntity };
+export default IEntity;
