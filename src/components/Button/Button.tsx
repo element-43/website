@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 // Theme.
@@ -158,7 +158,7 @@ export interface IProps {
   children: React.ReactNode;
 }
 
-export const Button: React.FunctionComponent<
+export const Button: React.FC<
   IProps & React.ButtonHTMLAttributes<HTMLButtonElement>
 > = (props: IProps & React.ButtonHTMLAttributes<HTMLButtonElement>) => (
   <StyledButton {...props}>

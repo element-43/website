@@ -1,7 +1,7 @@
 // Classes.
-import { Particle } from './Particle';
+import Particle from './Particle';
 
-class Explosion {
+export default class Explosion {
   public particles: Particle[];
   public x: number;
   public y: number;
@@ -16,5 +16,3 @@ class Explosion {
     }
   }
 }
-
-export { Explosion };

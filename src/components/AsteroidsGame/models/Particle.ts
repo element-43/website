@@ -1,7 +1,7 @@
 // Types.
 import { IEntity } from '../types';
 
-class Particle implements IEntity {
+export default class Particle implements IEntity {
   public angle: number;
   public radius: number;
   public x: number;
@@ -34,5 +34,3 @@ class Particle implements IEntity {
     );
   }
 }
-
-export { Particle };

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export const GoogleAnalytics: React.FunctionComponent = () => {
+export const GoogleAnalytics: React.FC = () => {
   const trackPage: () => void = () => {
     // Send page tracking to the omnipotent Google, but only in production.
     if (process.env.NODE_ENV === 'production' && window.ga) {

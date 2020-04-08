@@ -8,6 +8,7 @@ import {
   closeTerminalAction,
   openAsteroidsAction,
   openTerminalAction,
+  setBarrelRollingAction,
 } from '../../store/layout/actions';
 import { push } from '../../store/router/actions';
 
@@ -105,7 +106,7 @@ const Wrapper = styled.div<{ open: boolean; prevOpen: boolean | undefined }>`
   }}
 `;
 
-export const Terminal: React.FunctionComponent = () => {
+export const Terminal: React.FC = () => {
   const inputRef: React.RefObject<HTMLInputElement> = createRef<
     HTMLInputElement
   >();
@@ -145,7 +146,11 @@ export const Terminal: React.FunctionComponent = () => {
           );
           dispatch(closeTerminalAction());
           break;
-        case '/exit':
+        case '/barrel roll':
+        case '/roll':
+          dispatch(setBarrelRollingAction(true));
+          break;
+        case '/close':
           dispatch(closeTerminalAction());
           break;
         case Routes.About:

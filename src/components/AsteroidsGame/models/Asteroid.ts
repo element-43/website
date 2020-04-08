@@ -1,10 +1,10 @@
 // Constants.
-import { FPS } from '../constants';
+import { GameConstants } from '../constants';
 
 // Types.
 import { IEntity } from '../types';
 
-class Asteroid implements IEntity {
+export default class Asteroid implements IEntity {
   public angle: number;
   public offsets: number[];
   public radius: number;
@@ -23,10 +23,10 @@ class Asteroid implements IEntity {
     this.x = x;
     this.y = y;
     this.xv =
-      ((Math.random() * speed * multiplier) / FPS) *
+      ((Math.random() * speed * multiplier) / GameConstants.FPS) *
       (Math.random() < 0.5 ? 1 : -1);
     this.yv =
-      ((Math.random() * speed * multiplier) / FPS) *
+      ((Math.random() * speed * multiplier) / GameConstants.FPS) *
       (Math.random() < 0.5 ? 1 : -1);
     this.angle = Math.random() * Math.PI * 2; // in radians.
     this.radius = radius;
@@ -38,5 +38,3 @@ class Asteroid implements IEntity {
     }
   }
 }
-
-export { Asteroid };

@@ -19,7 +19,7 @@ const reducer: Reducer<ILayoutState, LayoutActions> = (
   action: LayoutActions
 ) => {
   switch (action.type) {
-    case LayoutActionTypes.CloseAsteriods:
+    case LayoutActionTypes.CloseAsteroids:
       return {
         ...state,
         asteroids: {
@@ -66,6 +66,11 @@ const reducer: Reducer<ILayoutState, LayoutActions> = (
           ...state.terminal,
           open: true,
         },
+      };
+    case LayoutActionTypes.SetBarrelRolling:
+      return {
+        ...state,
+        barrelRolling: !state.barrelRolling,
       };
     case LayoutActionTypes.SetMenuItem:
       return {

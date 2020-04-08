@@ -7,7 +7,7 @@ import { usePrevious } from '../../hooks';
 // Types.
 import { IApplicationState } from '../../store';
 
-export const ScrollToTop: React.FunctionComponent = () => {
+export const ScrollToTop: React.FC = () => {
   const pathname: string = useSelector(
     (state: IApplicationState) => state.router.location.pathname
   );

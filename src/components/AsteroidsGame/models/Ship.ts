@@ -1,24 +1,10 @@
 // Constants.
-import { FPS, SHIP_BLINK_DURATION, SHIP_SIZE } from '../constants';
+import { GameConstants, ShipConstants } from '../constants';
 
 // Types.
-import { IEntity } from '../types';
+import { IEntity, ILaser, IThrust } from '../types';
 
-interface ILaser {
-  x: number;
-  y: number;
-  xv: number;
-  yv: number;
-  dist: number;
-  explodeTime: number;
-}
-
-interface IThrust {
-  x: number;
-  y: number;
-}
-
-class Ship implements IEntity {
+export default class Ship implements IEntity {
   public angle: number;
   public blinkNum: number;
   public blinkTime: number;
@@ -35,13 +21,15 @@ class Ship implements IEntity {
 
   constructor(x: number, y: number) {
     this.angle = (90 / 180) * Math.PI; // convert to radians
-    this.blinkNum = Math.ceil(3 / SHIP_BLINK_DURATION);
-    this.blinkTime = Math.ceil(SHIP_BLINK_DURATION * FPS);
+    this.blinkNum = Math.ceil(3 / ShipConstants.BLINK_DURATION);
+    this.blinkTime = Math.ceil(
+      ShipConstants.BLINK_DURATION * GameConstants.FPS
+    );
     this.canShoot = true;
     this.dead = false;
     this.explodeTime = 0;
     this.lasers = [];
-    this.radius = SHIP_SIZE / 2;
+    this.radius = ShipConstants.SIZE / 2;
     this.rotation = 0;
     this.thrusting = false;
     this.thrust = {
@@ -62,9 +50,9 @@ class Ship implements IEntity {
         dist: 0,
         explodeTime: 0,
         x: this.x + (4 / 3) * this.radius * Math.cos(this.angle),
-        xv: (laserSpeed * Math.cos(this.angle)) / FPS,
+        xv: (laserSpeed * Math.cos(this.angle)) / GameConstants.FPS,
         y: this.y - (4 / 3) * this.radius * Math.sin(this.angle),
-        yv: (-laserSpeed * Math.sin(this.angle)) / FPS,
+        yv: (-laserSpeed * Math.sin(this.angle)) / GameConstants.FPS,
       });
     }
 
@@ -72,5 +60,3 @@ class Ship implements IEntity {
     this.canShoot = false;
   }
 }
-
-export { ILaser, Ship, IThrust };

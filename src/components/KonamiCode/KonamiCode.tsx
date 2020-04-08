@@ -17,7 +17,7 @@ const codeSequence: number[] = [
   65, // A
 ];
 
-export const KonamiCode: React.FunctionComponent = () => {
+export const KonamiCode: React.FC = () => {
   const dispatch = useDispatch();
   const [position, setPosition] = useState<number>(0);
   const handleKeyUp = (event: WindowEventMap['keyup']) => {
