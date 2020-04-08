@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // Action.
 import { setTitleAction } from '../../store/layout/actions';
@@ -24,13 +25,16 @@ export const Home: React.FC = () => {
 
   return (
     <Page>
-      <Title>Hello.</Title>
+      <Title level={2}>
+        Kieran's the name, keyboard mashing until code works is my game.
+      </Title>
       <Paragraph>
         This is another one of those portfolio sites for a software developer.
       </Paragraph>
       <Paragraph>
         If you want to find out more about me, head on over to the{' '}
-        <a href={Routes.About}>About</a> page.
+        <Link to={Routes.About}>About</Link> page. Otherwise, try to find some
+        easter eggs!
       </Paragraph>
     </Page>
   );
