@@ -47,7 +47,7 @@ export interface IProps {
   children: React.ReactNode;
 }
 
-export const Page: React.FunctionComponent<IProps> = ({ children }: IProps) => {
+export const Page: React.FC<IProps> = ({ children }: IProps) => {
   const title: string = useSelector(
     (state: IApplicationState) => state.layout.title
   );

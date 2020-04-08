@@ -68,7 +68,7 @@ const Wrapper = styled.header`
   width: 30%;
 `;
 
-export const Header: React.FunctionComponent = () => {
+export const Header: React.FC = () => {
   const menu: IMenuConfig = useSelector(
     (state: IApplicationState) => state.layout.menu
   );

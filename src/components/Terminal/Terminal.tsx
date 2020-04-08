@@ -105,7 +105,7 @@ const Wrapper = styled.div<{ open: boolean; prevOpen: boolean | undefined }>`
   }}
 `;
 
-export const Terminal: React.FunctionComponent = () => {
+export const Terminal: React.FC = () => {
   const inputRef: React.RefObject<HTMLInputElement> = createRef<
     HTMLInputElement
   >();
@@ -145,7 +145,7 @@ export const Terminal: React.FunctionComponent = () => {
           );
           dispatch(closeTerminalAction());
           break;
-        case '/exit':
+        case '/close':
           dispatch(closeTerminalAction());
           break;
         case Routes.About:

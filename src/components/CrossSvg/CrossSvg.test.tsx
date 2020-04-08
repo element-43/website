@@ -1,5 +1,5 @@
 import { shallow, ShallowWrapper } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 
 // Components.
 import { CrossSvg, IProps } from './CrossSvg';

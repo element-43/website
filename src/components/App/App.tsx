@@ -24,7 +24,7 @@ import { configureStore, IApplicationState } from '../../store';
 const history: History = createBrowserHistory();
 const store: Store<IApplicationState> = configureStore(history);
 
-export const App: React.FunctionComponent = () => {
+export const App: React.FC = () => {
   return (
     <Provider store={store}>
       <GlobalStyle />

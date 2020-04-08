@@ -18,7 +18,7 @@ export interface IProps {
   children: React.ReactNode;
 }
 
-export const Shell: React.FunctionComponent<IProps> = (props: IProps) => {
+export const Shell: React.FC<IProps> = ({ children }: IProps) => {
   const asteroidsOpen: boolean = useSelector(
     (state: IApplicationState) => state.layout.asteroids.open
   );
@@ -33,7 +33,7 @@ export const Shell: React.FunctionComponent<IProps> = (props: IProps) => {
         <AsteroidsGame onClose={() => dispatch(closeAsteroidsAction())} />
       )}
       <Terminal />
-      {props.children}
+      {children}
     </>
   );
 };

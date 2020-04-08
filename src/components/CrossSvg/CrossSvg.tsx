@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 // Components.
 import StyledSvg from '../StyledSvg';
@@ -9,7 +9,7 @@ export interface IProps {
   size?: string;
 }
 
-export const CrossSvg: React.FunctionComponent<IProps> = (props: IProps) => (
+export const CrossSvg: React.FC<IProps> = (props: IProps) => (
   <StyledSvg
     color={props.color}
     hoverColor={props.hoverColor}
