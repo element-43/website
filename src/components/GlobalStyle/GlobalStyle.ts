@@ -29,46 +29,27 @@ const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
 
   #app {
     display: flex;
+    font-size: 100%;
     flex-direction: column;
     min-height: 100%;
   }
 
+  a,
   h1,
   h2,
   h3,
   h4,
+  h5,
   p,
-  a {
+  span {
     color: ${palette.greyScale.black};
     font-weight: 400;
-    margin: 0;
-  }
-
-  h1 {
-    font-size: 3.2rem;
-  }
-
-  h2 {
-    font-size: 2.5rem;
-  }
-
-  h3 {
-    font-size: 1.8rem;
-  }
-
-  h4 {
-    font-size: 1.3rem;
-  }
-
-  a,
-  p {
-    font-size: 1rem;
   }
 
   a {
     color: ${palette.brand.purple500};
     cursor: pointer;
-    display: block;
+    font-size: 1.3rem;
     text-decoration: none;
     transition: all 300ms ease-in-out;
 

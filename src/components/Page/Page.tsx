@@ -30,7 +30,6 @@ const Main = styled.main`
   `}
 `;
 const Wrapper = styled.div`
-  align-items: center;
   background-color: ${palette.greyScale.white};
   display: flex;
   flex-direction: column;
@@ -40,7 +39,6 @@ const Wrapper = styled.div`
   width: 100%;
 
   ${media.tabletAndUp`
-    align-items: flex-start;
     flex-direction: row;
   `}
 `;
@@ -49,7 +47,7 @@ export interface IProps {
   children: React.ReactNode;
 }
 
-export const Page: React.FunctionComponent<IProps> = (props: IProps) => {
+export const Page: React.FunctionComponent<IProps> = ({ children }: IProps) => {
   const title: string = useSelector(
     (state: IApplicationState) => state.layout.title
   );
@@ -63,7 +61,7 @@ export const Page: React.FunctionComponent<IProps> = (props: IProps) => {
       <DesktopLayout>
         <Header />
       </DesktopLayout>
-      <Main>{props.children}</Main>
+      <Main>{children}</Main>
     </Wrapper>
   );
 };

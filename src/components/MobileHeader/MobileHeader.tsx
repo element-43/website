@@ -10,7 +10,13 @@ import { push } from '../../store/router/actions';
 // Components.
 import BannerLogoSvg from '../BannerLogoSvg';
 import CrossSvg from '../CrossSvg';
+import GitHubSvg from '../GitHubSvg';
+import LinkedInSvg from '../LinkedInSvg';
 import MenuSvg from '../MenuSvg';
+import TwitterSvg from '../TwitterSvg';
+
+// Constants.
+import { Links } from '../../constants';
 
 // Hooks.
 import { usePrevious } from '../../hooks';
@@ -80,6 +86,33 @@ const IconButtonContainer = styled.button`
     outline: 0;
   }
 `;
+const MenuContainer = styled.div<IAnimatedProps>`
+  align-items: flex-end;
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  margin: 2rem 2rem 0;
+  position: relative;
+  ${({ open, prevOpen }) => {
+    if (prevOpen !== undefined && prevOpen !== open) {
+      if (open) {
+        return css`
+          animation: 250ms 250ms forwards ${fadeInAnimation};
+          display: flex;
+          opacity: 0;
+        `;
+      }
+
+      return css`
+        animation: 250ms forwards ${fadeOutAnimation};
+        display: flex;
+        opacity: 1;
+      `;
+    }
+
+    return '';
+  }}
+`;
 const MenuIconContainer = styled.div`
   align-items: center;
   display: flex;
@@ -103,32 +136,6 @@ const Navigation = styled.nav`
   padding: 0;
   width: 100%;
 `;
-const NavigationContainer = styled.div<IAnimatedProps>`
-  align-items: flex-end;
-  display: none;
-  flex-direction: column;
-  padding: 2rem;
-  position: relative;
-  ${({ open, prevOpen }) => {
-    if (prevOpen !== undefined && prevOpen !== open) {
-      if (open) {
-        return css`
-          animation: 250ms 250ms forwards ${fadeInAnimation};
-          display: flex;
-          opacity: 0;
-        `;
-      }
-
-      return css`
-        animation: 250ms forwards ${fadeOutAnimation};
-        display: flex;
-        opacity: 1;
-      `;
-    }
-
-    return '';
-  }}
-`;
 const Overlay = styled.div<IAnimatedProps>`
   background-color: ${palette.brand.purple500};
   display: none;
@@ -139,7 +146,7 @@ const Overlay = styled.div<IAnimatedProps>`
       if (open) {
         return css`
           animation: 250ms forwards ${growOutAnimation};
-          display: block;
+          display: flex;
           height: 0;
           left: 50%;
           top: 50%;
@@ -149,7 +156,7 @@ const Overlay = styled.div<IAnimatedProps>`
 
       return css`
         animation: 250ms 250ms forwards ${growInAnimation};
-        display: block;
+        display: flex;
         height: 100%;
         left: 0;
         top: 0;
@@ -159,6 +166,19 @@ const Overlay = styled.div<IAnimatedProps>`
 
     return '';
   }}
+`;
+const SocialContainer = styled.div`
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 0 3rem;
+  width: 100%;
+`;
+const SocialLink = styled.a`
+  display: block;
+  padding: 0 1rem;
 `;
 const Wrapper = styled.header`
   width: 100%;
@@ -201,7 +221,7 @@ export const MobileHeader: React.FC = () => {
         </IconButtonContainer>
       </MenuIconContainer>
       <Overlay open={open} prevOpen={prevOpen}>
-        <NavigationContainer open={open} prevOpen={prevOpen}>
+        <MenuContainer open={open} prevOpen={prevOpen}>
           <IconButtonContainer onClick={() => dispatch(closeMenuAction())}>
             <CrossSvg
               color={palette.greyScale.white}
@@ -219,7 +239,30 @@ export const MobileHeader: React.FC = () => {
               </MenuItemLink>
             ))}
           </Navigation>
-        </NavigationContainer>
+          <SocialContainer>
+            <SocialLink href={Links.GITHUB} target="_blank">
+              <GitHubSvg
+                color={palette.greyScale.white}
+                hoverColor={palette.brand.green500}
+                size="3rem"
+              />
+            </SocialLink>
+            <SocialLink href={Links.TWITTER} target="_blank">
+              <TwitterSvg
+                color={palette.greyScale.white}
+                hoverColor={palette.brand.green500}
+                size="3rem"
+              />
+            </SocialLink>
+            <SocialLink href={Links.LIKNEDIN} target="_blank">
+              <LinkedInSvg
+                color={palette.greyScale.white}
+                hoverColor={palette.brand.green500}
+                size="3rem"
+              />
+            </SocialLink>
+          </SocialContainer>
+        </MenuContainer>
       </Overlay>
     </Wrapper>
   );
