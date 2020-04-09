@@ -9,25 +9,30 @@ import {
   Square,
 } from './ButtonStyles';
 
+// Themes.
+import palette from '../../theme/palette';
+
 // Utils.
 import getRandomString from '../../utils/getRandomString';
 
 const buttonOverlayClassName: string = getRandomString(5);
 
-const StyledButton = styled.button`
+const StyledLink = styled.a`
   ${ButtonStyles}
 
   &:hover {
+    color: ${palette.greyScale.white};
+
     .${buttonOverlayClassName} {
       ${ButtonHoverStyles}
     }
   }
 `;
 
-export const Button: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (
-  props: React.HTMLAttributes<HTMLButtonElement>
-) => (
-  <StyledButton {...props}>
+export const LinkButton: React.FC<React.AnchorHTMLAttributes<
+  HTMLAnchorElement
+>> = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+  <StyledLink {...props}>
     <ButtonOverlay className={buttonOverlayClassName}>
       <Square />
       <Square />
@@ -36,7 +41,7 @@ export const Button: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (
       <Square />
     </ButtonOverlay>
     {props.children}
-  </StyledButton>
+  </StyledLink>
 );
 
-export default Button;
+export default LinkButton;
