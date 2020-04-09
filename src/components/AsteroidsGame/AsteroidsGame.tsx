@@ -2,7 +2,7 @@ import React, { createRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 // Components.
-import Button from '../Button';
+import { Button } from '../Button';
 
 // Constants.
 import { GameConstants } from './constants';
