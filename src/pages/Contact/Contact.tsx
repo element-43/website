@@ -42,6 +42,7 @@ export const Contact: React.FC = () => {
         </a>
         .
       </Paragraph>
+      <Paragraph>Or if you prefer to socialise:</Paragraph>
       <LinkButton
         href={`https://twitter.com/messages/compose?recipient_id=${Social.TWITTER_ID}`}
         target="_blank"

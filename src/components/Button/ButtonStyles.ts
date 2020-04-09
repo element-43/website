@@ -85,6 +85,7 @@ export const ButtonStyles = css`
   font-family: ${typography.primaryFontFamily};
   font-size: 1rem;
   justify-content: center;
+  min-width: 6rem;
   padding: 1rem 2rem;
   position: relative;
   text-transform: uppercase;
