@@ -18,7 +18,7 @@ export const Portfolio: React.FC = () => {
   }, []);
 
   return (
-    <Page>
+    <Page noGutter={true}>
       <h1>Portfolio</h1>
     </Page>
   );

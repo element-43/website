@@ -19,14 +19,19 @@ import { IApplicationState } from '../../store';
 // Utils.
 import getHelmet from '../../utils/getHelmet';
 
-const Main = styled.main`
+const Main = styled.main<{ noGutter: boolean }>`
   flex: 1;
-  margin: 1.4rem 0 0;
-  padding: 0 1.4rem;
 
-  ${media.tabletAndUp`
-    margin: 2rem 0 0;
-    padding: 0 2rem;
+  ${({ noGutter }: { noGutter: boolean }) =>
+    !noGutter &&
+    `
+    margin: 1.4rem 0 0;
+    padding: 0 1.4rem;
+
+    ${media.tabletAndUp`
+      margin: 2rem 0 0;
+      padding: 0 2rem;
+    `}
   `}
 `;
 const Wrapper = styled.div`
@@ -45,9 +50,13 @@ const Wrapper = styled.div`
 
 export interface IProps {
   children: React.ReactNode;
+  noGutter?: boolean;
 }
 
-export const Page: React.FC<IProps> = ({ children }: IProps) => {
+export const Page: React.FC<IProps> = ({
+  children,
+  noGutter = false,
+}: IProps) => {
   const title: string = useSelector(
     (state: IApplicationState) => state.layout.title
   );
@@ -61,7 +70,7 @@ export const Page: React.FC<IProps> = ({ children }: IProps) => {
       <DesktopLayout>
         <Header />
       </DesktopLayout>
-      <Main>{children}</Main>
+      <Main noGutter={noGutter}>{children}</Main>
     </Wrapper>
   );
 };
