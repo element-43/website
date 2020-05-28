@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import { usePrevious } from '../../hooks';
 
 // Types.
-import { IApplicationState } from '../../store';
+import { ApplicationState } from '../../types';
 
 export const ScrollToTop: React.FC = () => {
   const pathname: string = useSelector(
-    (state: IApplicationState) => state.router.location.pathname
+    (state: ApplicationState) => state.router.location.pathname
   );
   const prevPathname: string | undefined = usePrevious(pathname);
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // ActionCreators.
-import { setTitleAction } from '../../store/layout/actions';
+import { setTitleAction } from '../../actions';
 
 // Components.
 import Page from '../../components/Page';

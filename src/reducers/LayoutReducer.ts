@@ -1,22 +1,72 @@
 import { Reducer } from 'redux';
 
+// Enums.
+import { LayoutActionTypes, Routes } from '../enums';
+
+// Constants.
+import { Titles } from '../constants';
+
 // Types.
 import {
-  IAsteroidsConfig,
-  ILayoutState,
-  IMenuConfig,
-  IMenuItem,
-  ITerminalConfig,
-  LayoutActions,
-  LayoutActionTypes,
-} from './types';
+  CloseAsteroidsAction,
+  CloseMenuAction,
+  CloseTerminalAction,
+  LayoutState,
+  OpenAsteroidsAction,
+  OpenMenuAction,
+  OpenTerminalAction,
+  SetBarrelRollingAction,
+  SetMenuItemAction,
+  SetTitleAction,
+} from '../types';
 
-// Utils.
-import { getInitialState } from './utils';
+type Actions =
+  | CloseAsteroidsAction
+  | CloseMenuAction
+  | CloseTerminalAction
+  | OpenAsteroidsAction
+  | OpenMenuAction
+  | OpenTerminalAction
+  | SetBarrelRollingAction
+  | SetMenuItemAction
+  | SetTitleAction;
 
-const reducer: Reducer<ILayoutState, LayoutActions> = (
-  state: ILayoutState = getInitialState(),
-  action: LayoutActions
+export function getInitialState(): LayoutState {
+  return {
+    asteroids: {
+      open: false,
+    },
+    menu: {
+      items: [
+        {
+          active: false,
+          route: Routes.About,
+          title: Titles.ABOUT,
+        },
+        {
+          active: false,
+          route: Routes.Portfolio,
+          title: Titles.PORTFOLIO,
+        },
+        {
+          active: false,
+          route: Routes.Contact,
+          title: Titles.CONTACT,
+        },
+      ],
+      open: false,
+    },
+    barrelRolling: false,
+    terminal: {
+      open: false,
+    },
+    title: Titles.DEFAULT,
+  };
+}
+
+const reducer: Reducer<LayoutState, Actions> = (
+  state: LayoutState = getInitialState(),
+  action: Actions
 ) => {
   switch (action.type) {
     case LayoutActionTypes.CloseAsteroids:
@@ -77,7 +127,7 @@ const reducer: Reducer<ILayoutState, LayoutActions> = (
         ...state,
         menu: {
           ...state.menu,
-          items: state.menu.items.map((value: IMenuItem) => ({
+          items: state.menu.items.map((value) => ({
             ...value,
             active: value.route === action.route,
           })),

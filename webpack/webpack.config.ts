@@ -22,7 +22,7 @@ const config: Partial<Configuration> = merge(commonConfig, {
           chunks: 'initial',
           enforce: true,
           name: 'vendor',
-          test: /react|react-dom|react-router-dom/,
+          test: /moment|react|react-dom|react-router|react-router-dom|redux|styled-components/,
         },
       },
     },

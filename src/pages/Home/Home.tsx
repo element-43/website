@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 // Action.
-import { setTitleAction } from '../../store/layout/actions';
+import { setTitleAction } from '../../actions';
 
 // Components.
 import Page from '../../components/Page';
@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
   return (
     <Page>
       <Title level={2}>
-        Kieran's the name, keyboard mashing until code works is my game.
+        Kieran&apos;s the name, keyboard mashing until code works is my game.
       </Title>
       <Paragraph>
         This is another one of those portfolio sites for a software developer.

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Actions.
-import { openAsteroidsAction } from '../../store/layout/actions';
+import { openAsteroidsAction } from '../../actions';
 
 const codeSequence: number[] = [
   38, // Up

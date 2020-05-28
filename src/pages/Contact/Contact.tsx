@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 // Actions.
-import { setTitleAction } from '../../store/layout/actions';
+import { setTitleAction } from '../../actions';
 
 // Components.
 import { LinkButton } from '../../components/Button';
@@ -37,7 +37,11 @@ export const Contact: React.FC = () => {
       <Title level={2}>Want to get in touch?</Title>
       <Paragraph>
         Drop me a mail at{' '}
-        <a href={`mailto:${Emails.KIERAN_ONEILL}`} target="_blank">
+        <a
+          href={`mailto:${Emails.KIERAN_ONEILL}`}
+          rel="noreferrer"
+          target="_blank"
+        >
           {Emails.KIERAN_ONEILL}
         </a>
         .

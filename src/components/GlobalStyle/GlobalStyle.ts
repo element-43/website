@@ -2,7 +2,6 @@ import {
   createGlobalStyle,
   DefaultTheme,
   GlobalStyleComponent,
-  keyframes,
 } from 'styled-components';
 
 // Components.
@@ -16,7 +15,10 @@ import VT323RegularWOFF2 from '../../fonts/VT323/VT323-Regular.woff2';
 // Theme.
 import palette from '../../theme/palette';
 
-const GlobalStyle: GlobalStyleComponent<{}, DefaultTheme> = createGlobalStyle`
+const GlobalStyle: GlobalStyleComponent<
+  unknown,
+  DefaultTheme
+> = createGlobalStyle`
   @font-face {
     font-family: "VT323";
     font-style: normal;

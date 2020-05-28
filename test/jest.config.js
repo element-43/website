@@ -4,7 +4,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/typescript/tsconfig.test.json',
+      tsConfig: '<rootDir>/tsconfig.json',
     },
   },
   moduleFileExtensions: ['js', 'ts', 'tsx'],

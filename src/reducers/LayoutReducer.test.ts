@@ -1,31 +1,26 @@
 // Enums.
-import { Routes } from '../../enums';
+import { LayoutActionTypes, Routes } from '../enums';
 
 // Reducer.
-import reducer from './reducer';
+import reducer, { getInitialState } from './LayoutReducer';
 
 // Types.
 import {
-  ICloseAsteroidsAction,
-  ICloseMenuAction,
-  ICloseTerminalAction,
-  ILayoutState,
-  IMenuItem,
-  IOpenAsteroidsAction,
-  IOpenMenuAction,
-  IOpenTerminalAction,
-  ISetMenuItemAction,
-  LayoutActionTypes,
-} from './types';
-
-// Utils.
-import { getInitialState } from './utils';
+  CloseAsteroidsAction,
+  CloseMenuAction,
+  CloseTerminalAction,
+  LayoutState,
+  OpenAsteroidsAction,
+  OpenMenuAction,
+  OpenTerminalAction,
+  SetMenuItemAction,
+} from '../types';
 
 interface IScope {
-  initialState: ILayoutState;
+  initialState: LayoutState;
 }
 
-describe('store/layout/reducer', () => {
+describe('reducers/LayoutReducer', () => {
   let scope: IScope;
 
   beforeEach(() => {
@@ -35,7 +30,7 @@ describe('store/layout/reducer', () => {
   });
 
   it('should close the asteroids game', () => {
-    const action: ICloseAsteroidsAction = {
+    const action: CloseAsteroidsAction = {
       type: LayoutActionTypes.CloseAsteroids,
     };
 
@@ -45,7 +40,7 @@ describe('store/layout/reducer', () => {
   });
 
   it('should close the menu', () => {
-    const action: ICloseMenuAction = {
+    const action: CloseMenuAction = {
       type: LayoutActionTypes.CloseMenu,
     };
 
@@ -55,7 +50,7 @@ describe('store/layout/reducer', () => {
   });
 
   it('should close the terminal', () => {
-    const action: ICloseTerminalAction = {
+    const action: CloseTerminalAction = {
       type: LayoutActionTypes.CloseTerminal,
     };
 
@@ -65,7 +60,7 @@ describe('store/layout/reducer', () => {
   });
 
   it('should open the asteroids game', () => {
-    const action: IOpenAsteroidsAction = {
+    const action: OpenAsteroidsAction = {
       type: LayoutActionTypes.OpenAsteroids,
     };
 
@@ -75,7 +70,7 @@ describe('store/layout/reducer', () => {
   });
 
   it('should open the menu', () => {
-    const action: IOpenMenuAction = {
+    const action: OpenMenuAction = {
       type: LayoutActionTypes.OpenMenu,
     };
 
@@ -85,7 +80,7 @@ describe('store/layout/reducer', () => {
   });
 
   it('should open the terminal', () => {
-    const action: IOpenTerminalAction = {
+    const action: OpenTerminalAction = {
       type: LayoutActionTypes.OpenTerminal,
     };
 
@@ -96,13 +91,13 @@ describe('store/layout/reducer', () => {
 
   describe('LayoutActionTypes.SetMenuItem', () => {
     it('should set the menu item to active if the route exists', () => {
-      const action: ISetMenuItemAction = {
+      const action: SetMenuItemAction = {
         route: Routes.About,
         type: LayoutActionTypes.SetMenuItem,
       };
-      const state: ILayoutState = reducer(scope.initialState, action);
+      const state: LayoutState = reducer(scope.initialState, action);
 
-      state.menu.items.forEach((value: IMenuItem) => {
+      state.menu.items.forEach((value) => {
         if (value.route === Routes.About) {
           expect(value.active).toBe(true);
         }
@@ -110,10 +105,10 @@ describe('store/layout/reducer', () => {
     });
 
     it('should not set any items', () => {
-      const action: ISetMenuItemAction = {
+      const action: SetMenuItemAction = {
         type: LayoutActionTypes.SetMenuItem,
       };
-      const state: ILayoutState = reducer(scope.initialState, action);
+      const state: LayoutState = reducer(scope.initialState, action);
 
       expect(state.menu.items).toEqual(scope.initialState.menu.items);
     });

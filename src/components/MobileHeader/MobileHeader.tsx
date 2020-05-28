@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import styled, { css, keyframes } from 'styled-components';
 
 // Actions.
-import { closeMenuAction, openMenuAction } from '../../store/layout/actions';
-import { push } from '../../store/router/actions';
+import { closeMenuAction, openMenuAction, pushAction } from '../../actions';
 
 // Components.
 import BannerLogoSvg from '../BannerLogoSvg';
@@ -25,8 +24,7 @@ import { usePrevious } from '../../hooks';
 import palette from '../../theme/palette';
 
 // Types.
-import { IApplicationState } from '../../store';
-import { IMenuItem } from '../../store/layout/types';
+import { ApplicationState, MenuItem } from '../../types';
 
 interface IAnimatedProps {
   open: boolean;
@@ -186,11 +184,11 @@ const Wrapper = styled.header`
 
 export const MobileHeader: React.FC = () => {
   const dispatch = useDispatch();
-  const items: IMenuItem[] = useSelector(
-    (state: IApplicationState) => state.layout.menu.items
+  const items: MenuItem[] = useSelector(
+    (state: ApplicationState) => state.layout.menu.items
   );
   const open: boolean = useSelector(
-    (state: IApplicationState) => state.layout.menu.open
+    (state: ApplicationState) => state.layout.menu.open
   );
   const prevOpen: boolean | undefined = usePrevious<boolean | undefined>(open);
   const handleMenuClick = (path: string) => (
@@ -199,7 +197,7 @@ export const MobileHeader: React.FC = () => {
     e.preventDefault();
 
     dispatch(closeMenuAction());
-    dispatch(push(path));
+    dispatch(pushAction(path));
   };
 
   return (
@@ -230,7 +228,7 @@ export const MobileHeader: React.FC = () => {
             />
           </IconButtonContainer>
           <Navigation>
-            {items.map((item: IMenuItem, index: number) => (
+            {items.map((item: MenuItem, index: number) => (
               <MenuItemLink
                 key={`mobile-header__menu-item-${index}`}
                 onClick={handleMenuClick(item.route)}

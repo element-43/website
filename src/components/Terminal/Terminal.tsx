@@ -8,9 +8,9 @@ import {
   closeTerminalAction,
   openAsteroidsAction,
   openTerminalAction,
+  pushAction,
   setBarrelRollingAction,
-} from '../../store/layout/actions';
-import { push } from '../../store/router/actions';
+} from '../../actions';
 
 // Enums.
 import { Routes } from '../../enums';
@@ -22,7 +22,7 @@ import { usePrevious } from '../../hooks';
 import palette from '../../theme/palette';
 
 // Types.
-import { IApplicationState } from '../../store';
+import { ApplicationState } from '../../types';
 
 const slideUpAnimation = keyframes`
   from {
@@ -112,10 +112,10 @@ export const Terminal: React.FC = () => {
   >();
   const dispatch = useDispatch();
   const asteroidsOpen: boolean = useSelector(
-    (state: IApplicationState) => state.layout.asteroids.open
+    (state: ApplicationState) => state.layout.asteroids.open
   );
   const terminalOpen: boolean = useSelector(
-    (state: IApplicationState) => state.layout.terminal.open
+    (state: ApplicationState) => state.layout.terminal.open
   );
   const prevTerminalOpen: boolean | undefined = usePrevious<
     boolean | undefined
@@ -154,19 +154,19 @@ export const Terminal: React.FC = () => {
           dispatch(closeTerminalAction());
           break;
         case Routes.About:
-          dispatch(push(Routes.About));
+          dispatch(pushAction(Routes.About));
           dispatch(closeTerminalAction());
           break;
         case Routes.Contact:
-          dispatch(push(Routes.Contact));
+          dispatch(pushAction(Routes.Contact));
           dispatch(closeTerminalAction());
           break;
         case Routes.Home:
-          dispatch(push(Routes.Home));
+          dispatch(pushAction(Routes.Home));
           dispatch(closeTerminalAction());
           break;
         case Routes.Portfolio:
-          dispatch(push(Routes.Portfolio));
+          dispatch(pushAction(Routes.Portfolio));
           dispatch(closeTerminalAction());
           break;
         default:

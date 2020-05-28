@@ -2,13 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Actions.
-import {
-  closeAsteroidsAction,
-  setBarrelRollingAction,
-} from '../../store/layout/actions';
-
-// Store.
-import { IApplicationState } from '../../store';
+import { closeAsteroidsAction, setBarrelRollingAction } from '../../actions';
 
 // Components.
 import AsteroidsGame from '../AsteroidsGame';
@@ -18,16 +12,19 @@ import KonamiCode from '../KonamiCode';
 import ScrollToTop from '../ScrollToTop';
 import Terminal from '../Terminal';
 
+// Types.
+import { ApplicationState } from '../../types';
+
 export interface IProps {
   children: React.ReactNode;
 }
 
 export const Shell: React.FC<IProps> = ({ children }: IProps) => {
   const asteroidsOpen: boolean = useSelector(
-    (state: IApplicationState) => state.layout.asteroids.open
+    (state: ApplicationState) => state.layout.asteroids.open
   );
   const barrelRolling: boolean = useSelector(
-    (state: IApplicationState) => state.layout.barrelRolling
+    (state: ApplicationState) => state.layout.barrelRolling
   );
   const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 import { ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory, History } from 'history';
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Store } from 'redux';
@@ -12,36 +12,49 @@ import Shell from '../Shell';
 // Enums.
 import { Routes } from '../../enums';
 
-// Pages.
-import About from '../../pages/About';
-import Contact from '../../pages/Contact';
-import Home from '../../pages/Home';
-import Portfolio from '../../pages/Portfolio';
+// Types.
+import { ApplicationState } from '../../types';
 
-// Store.
-import { configureStore, IApplicationState } from '../../store';
+// Utils.
+import { createStore } from '../../utils';
 
 const history: History = createBrowserHistory();
-const store: Store<IApplicationState> = configureStore(history);
+const store: Store<ApplicationState> = createStore(history);
 
-export const App: React.FC = () => {
-  return (
-    <Provider store={store}>
-      <GlobalStyle />
-      <ConnectedRouter history={history}>
+export const App: React.FC = () => (
+  <Provider store={store}>
+    <GlobalStyle />
+    <ConnectedRouter history={history}>
+      <Suspense fallback={null}>
         <Shell>
           <Switch>
-            <Route exact={true} path="/" component={Home} />
-            <Route exact={true} path={Routes.About} component={About} />
-            <Route exact={true} path={Routes.Contact} component={Contact} />
-            <Route exact={true} path={Routes.Portfolio} component={Portfolio} />
+            <Route
+              exact={true}
+              path="/"
+              component={lazy(() => import('../../pages/Home'))}
+            />
+            <Route
+              exact={true}
+              path={Routes.About}
+              component={lazy(() => import('../../pages/About'))}
+            />
+            <Route
+              exact={true}
+              path={Routes.Contact}
+              component={lazy(() => import('../../pages/Contact'))}
+            />
+            <Route
+              exact={true}
+              path={Routes.Portfolio}
+              component={lazy(() => import('../../pages/Portfolio'))}
+            />
             <Redirect from={Routes.Home} to="/" />
             <Redirect from="*" to="/" />
           </Switch>
         </Shell>
-      </ConnectedRouter>
-    </Provider>
-  );
-};
+      </Suspense>
+    </ConnectedRouter>
+  </Provider>
+);
 
 export default App;

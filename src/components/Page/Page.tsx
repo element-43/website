@@ -5,6 +5,7 @@ import styled from 'styled-components';
 // Components.
 import DesktopLayout from '../DesktopLayout';
 import Header from '../Header';
+import Helmet from '../Helmet';
 import MobileHeader from '../MobileHeader';
 import MobileLayout from '../MobileLayout';
 
@@ -14,10 +15,7 @@ import palette from '../../theme/palette';
 import typography from '../../theme/typography';
 
 // Types.
-import { IApplicationState } from '../../store';
-
-// Utils.
-import getHelmet from '../../utils/getHelmet';
+import { ApplicationState } from '../../types';
 
 const Main = styled.main<{ noGutter: boolean }>`
   flex: 1;
@@ -58,12 +56,12 @@ export const Page: React.FC<IProps> = ({
   noGutter = false,
 }: IProps) => {
   const title: string = useSelector(
-    (state: IApplicationState) => state.layout.title
+    (state: ApplicationState) => state.layout.title
   );
 
   return (
     <Wrapper>
-      {getHelmet(title)}
+      <Helmet title={title} />
       <MobileLayout>
         <MobileHeader />
       </MobileLayout>

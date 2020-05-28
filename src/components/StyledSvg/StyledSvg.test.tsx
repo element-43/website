@@ -5,10 +5,10 @@ import React from 'react';
 import palette from '../../theme/palette';
 
 // Components.
-import { IProps, StyledSvg } from './StyledSvg';
+import { Props, StyledSvg } from './StyledSvg';
 
 interface IScope {
-  props: IProps;
+  props: Props;
   wrapper: ShallowWrapper;
 }
 
@@ -16,7 +16,7 @@ describe('<StyledSvg />>', () => {
   let scope: IScope;
 
   beforeEach(() => {
-    const props: IProps = {
+    const props: Props = {
       viewBox: '0 0 0 0',
     };
 
@@ -32,15 +32,11 @@ describe('<StyledSvg />>', () => {
     });
 
     it('should match the snapshot with the optional props', () => {
-      let wrapper: ShallowWrapper;
-
       scope.props.color = palette.ui.red;
       scope.props.hoverColor = palette.greyScale.white;
       scope.props.size = '100px';
 
-      wrapper = shallow(<StyledSvg {...scope.props} />);
-
-      expect(wrapper).toMatchSnapshot();
+      expect(shallow(<StyledSvg {...scope.props} />)).toMatchSnapshot();
     });
   });
 });

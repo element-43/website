@@ -16,8 +16,7 @@ import { Links } from '../../constants';
 import palette from '../../theme/palette';
 
 // Types.
-import { IApplicationState } from '../../store';
-import { IMenuConfig, IMenuItem } from '../../store/layout/types';
+import { ApplicationState, MenuConfig, MenuItem } from '../../types';
 
 const HomeLink = styled(Link)`
   margin: 0 0 1rem;
@@ -69,8 +68,8 @@ const Wrapper = styled.header`
 `;
 
 export const Header: React.FC = () => {
-  const menu: IMenuConfig = useSelector(
-    (state: IApplicationState) => state.layout.menu
+  const menu: MenuConfig = useSelector(
+    (state: ApplicationState) => state.layout.menu
   );
 
   return (
@@ -85,7 +84,7 @@ export const Header: React.FC = () => {
             />
           </HomeLink>
           <Navigation>
-            {menu.items.map((item: IMenuItem, index: number) => (
+            {menu.items.map((item: MenuItem, index: number) => (
               <MenuItemLink key={`header__menu-item-${index}`} to={item.route}>
                 {item.title}
               </MenuItemLink>

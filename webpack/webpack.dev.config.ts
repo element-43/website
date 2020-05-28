@@ -19,7 +19,7 @@ const config: Configuration = merge(commonConfig, {
     contentBase: WebpackConstants.DIST_PATH,
     historyApiFallback: true,
     host: '0.0.0.0',
-    port: parseInt(process.env.PORT, 10),
+    port: parseInt(process.env.PORT || '8080', 10),
   },
 
   devtool: 'cheap-module-source-map',

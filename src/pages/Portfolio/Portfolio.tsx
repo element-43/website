@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // ActionCreators.
-import { setTitleAction } from '../../store/layout/actions';
+import { setTitleAction } from '../../actions';
 
 // Components.
+import Folium from '../../components/Folium';
 import Page from '../../components/Page';
 
 // Strings.
@@ -14,12 +15,12 @@ export const Portfolio: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setTitleAction(Titles.PORTFOLIO));
+    dispatch(setTitleAction(`${Titles.DEFAULT} - ${Titles.PORTFOLIO}`));
   }, []);
 
   return (
     <Page noGutter={true}>
-      <h1>Portfolio</h1>
+      <Folium />
     </Page>
   );
 };

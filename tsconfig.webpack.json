@@ -10,6 +10,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
-  "exclude": ["../dist", "../node_modules", "../src/**/*", "../test"],
-  "include": ["../webpack/**/*"]
+  "exclude": ["dist", "node_modules", "src/**/*", "test"],
+  "include": ["webpack/**/*"]
 }

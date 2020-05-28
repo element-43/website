@@ -1,7 +1,7 @@
 import autoprefixer from 'autoprefixer';
 import { config } from 'dotenv';
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin';
-import { join, resolve } from 'path';
+import { resolve } from 'path';
 import { Configuration, LoaderOptionsPlugin } from 'webpack';
 
 config();
@@ -23,7 +23,7 @@ const commonConfig: Partial<Configuration> = {
         exclude: /node_modules/,
         loader: 'ts-loader',
         options: {
-          configFile: join(__dirname, '..', 'typescript', 'tsconfig.json'),
+          configFile: resolve(process.cwd(), 'tsconfig.json'),
         },
         test: /\.tsx?$/,
       },
